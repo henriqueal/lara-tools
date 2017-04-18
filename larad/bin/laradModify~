@@ -1,0 +1,62 @@
+#!/bin/bash
+
+
+for var in "$@"
+  do
+    #echo "$var"
+  if [[ $var == -target=* ]]; then
+    target=${var:8:100}
+  fi
+  if [[ $var == -algo=* ]]; then
+    algo=${var:10:100}
+  fi
+  if [[ $var == -nsteps=* ]]; then
+    nsteps=${var:8:100}
+  fi
+  if [[ $var == -seqlen=* ]]; then
+    seqlen=${var:8:100}
+  fi
+  if [[ $var == -nexec=* ]]; then
+    nexec=${var:7:100}
+  fi
+  if [[ $var == -compiler=* ]]; then
+    compiler=${var:10:100}
+  fi
+  if [[ $var == -nr=* ]]; then
+    nr=${var:4:100}
+  fi
+  if [[ $var == -selection=* ]]; then
+    sel=${var:11:100}
+  fi
+
+  done
+
+echo $sel
+
+
+if [[ "$target" == "" ]]; then
+  help
+  exit 1
+fi
+
+compiler2=$compiler
+if [[ "$compiler" == "llvmfunc" ]]; then
+  compiler="llvm"
+  compiler2="llvmfunc"
+fi
+
+#if [[ "$algo" == "sa" ]]; then
+cp /opt/lara-tools/larad/cleanseq.lara .
+cp /opt/lara-tools/larad/compilers/"$compiler"/compiler_optimlevels.lara .
+cp /opt/lara-tools/larad/compilers/compiler_setup.lara .
+
+compiler=$compiler2
+cp /opt/lara-tools/larad/targets/"$target"/"$compiler"/target_config.lara .
+cp /opt/lara-tools/larad/algorithms/"$algo"/dse_algo.lara .
+cp /opt/lara-tools/larad/reflectc_runoptims.xml .
+cp /opt/lara-tools/larad/dse.lara .
+
+larai dse.lara "--argv ('$cfile', $seqlen, $nexec, $nsteps, '$compiler', '$nr')" 2>&1 | tee "$cfile"_"$seqlen"_"$nexec"_"$nsteps"_"$algo"_"$target"_"$compiler"_"$nr".txt
+
+rm cleanseq.lara compiler_optimlevels.lara compiler_setup.lara target_config.lara dse_algo.lara reflectc_runoptims.xml dse.lara dse.xml 
+exit 1

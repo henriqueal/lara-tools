@@ -1,0 +1,139 @@
+// TODO: confirmar se faltam alguns, que tenham sido introduzidos na versao 3.7.1 (duvido!)
+
+
+// LLVM 3.7 (only ones existing on 41 kernels from TI with SA 1M iterations)
+"-aa-eval",			// + Exhaustive Alias Analysis Precision Evaluator
+"-adce",			// º Aggressive Dead Code Elimination
+"-add-discriminators",		// + Add DWARF path discriminators
+"-alignment-from-assumptions",	// º Alignment from assumptions
+"-alloca-hoisting",		// + Hoisting alloca instructions in non-entry blocks to the entry block
+"-always-inline",		// + Inliner for always_inline function
+"-argpromotion",		// º Promote 'by reference' arguments to scalars
+"-assumption-cache-tracker",	// º Assumption Cache Tracker
+"-atomic-expand",		// + Expand Atomic calls in terms of either load-linked & store-conditional or cmpxchg
+"-barrier",			// º A No-Op Barrier Pass
+"-basicaa",			// º Basic Alias Analysis (stateless AA impl)
+"-basiccg",			// º CallGraph Construction
+"-bb-vectorize",		// + Basic-Block Vectorization
+"-bdce",			// º Bit-Tracking Dead Code Elimination
+"-block-freq",			// º Block Frequency Analysis
+"-bounds-checking",		// + Run-time bounds checking
+"-branch-prob",			// º Branch Probability Analysis
+"-break-crit-edges",		// + Break critical edges in CFG
+"-cfl-aa",			// + CFL-Based AA implementation
+"-codegenprepare",		// + Optimize for code generation
+"-consthoist",			// + Constant Hoisting
+"-constmerge",			// º Merge Duplicate Global Constants
+"-constprop",			// + Simple constant propagation
+"-correlated-propagation",	// º Value Propagation
+"-cost-model",			// + Cost Model Analysis
+"-count-aa",			// + Count Alias Analysis Query Responses
+"-da",				// Dependence Analysis
+"-dce",				// Dead Code Elimination
+"-deadargelim",			// Dead Argument Elimination
+"-debug-aa",			// AA use debugger
+"-delinearize",			// Delinearization
+"-die",				// Dead Instruction Elimination
+"-divergence",			// Divergence Analysis
+"-domfrontier",			// Dominance Frontier Construction
+"-domtree",			// Dominator Tree Construction
+"-dse",				// Dead Store Elimination
+"-early-cse",			// Early CSE
+"-elim-avail-extern",		// Eliminate Available Externally Globals
+"-flattencfg",			// Flatten the CFG
+"-float2int",			// Float to int
+"-functionattrs",		// Deduce function attributes
+"-globaldce",			// Dead Global Elimination
+"-globalopt",			// Global Variable Optimizer
+"-globalsmodref-aa",		// Simple mod/ref analysis for globals
+"-gvn",				// Global Value Numbering
+"-indvars",			// Induction Variable Simplification
+"-inline",			// Function Integration/Inlining
+"-inline-cost",			// Inline Cost Analysis
+"-instcombine",			// Combine redundant instructions
+"-instcount",			// Counts the various types of Instructions
+"-instnamer",			// Assign names to anonymous instructions
+"-instrprof",			// Frontend instrumentation-based coverage lowering
+"-instsimplify",		// Remove redundant instructions
+"-intervals",			// Interval Partition Construction
+"-ipconstprop",			// Interprocedural constant propagation
+"-ipsccp",			// Interprocedural Sparse Conditional Constant Propagation
+"-irce",			// Inductive range check elimination
+"-iv-users",			// Induction Variable Users
+"-jump-threading",		// Jump Threading
+"-lazy-value-info",		// Lazy Value Information Analysis
+"-lcssa",			// Loop-Closed SSA Form Pass
+"-libcall-aa",			// LibCall Alias Analysis
+"-licm",			// Loop Invariant Code Motion
+"-lint",			// Statically lint-checks LLVM IR
+"-load-combine",		// Combine Adjacent Loads
+"-loop-accesses",		// Loop Access Analysis
+"-loop-deletion",		// Delete dead loops
+"-loop-distribute",		// Loop Distribition
+//"-loop-extract",		
+//"-loop-extract-single",
+"-loop-idiom",
+"-loop-instsimplify",
+"-loop-interchange",
+"-loop-reduce",
+"-loop-reroll",
+"-loop-rotate",
+"-loop-simplify",
+"-loop-unroll",
+"-loop-unswitch",
+"-loop-vectorize",
+"-loops",
+"-lower-expect",
+"-loweratomic",
+"-lowerbitsets",
+"-lowerinvoke",
+"-lowerswitch",
+"-mem2reg",
+"-memcpyopt",
+"-memdep",
+"-mergefunc",
+"-mergereturn",
+"-mldst-motion",
+"-module-debuginfo",
+"-nary-reassociate",
+"-no-aa",
+"-pa-eval",
+"-partial-inliner",
+"-partially-inline-libcalls",
+"-place-backedge-safepoints-impl",
+"-place-safepoints",
+"-postdomtree",
+"-prune-eh",
+"-reassociate",
+"-reg2mem",
+"-regions",
+"-rewrite-statepoints-for-gc",
+"-rewrite-symbols",
+"-safe-stack",
+"-sancov",
+"-scalar-evolution",
+"-scalarizer",
+"-scalarrepl",
+"-scalarrepl-ssa",
+"-sccp",
+"-scev-aa",
+"-scoped-noalias",
+"-separate-const-offset-from-gep",
+"-simplifycfg",
+"-sink",
+"-slp-vectorizer",
+"-slsr",
+"-speculative-execution",
+"-sroa",
+"-strip",
+"-strip-dead-debug-info",
+"-strip-dead-prototypes",
+"-strip-debug-declare",
+"-strip-nondebug",
+"-structurizecfg",
+"-tailcallelim",
+"-targetlibinfo",
+"-tbaa",
+"-tti",
+"-verify"
+

@@ -1,0 +1,160 @@
+/*      Ricardo Nobre                                   *
+ *      Departamento de Engenharia Informática          *
+ *      FEUP, Porto, Portugal                           * 
+ *      ricardo.nobre@fe.up.pt                          */
+
+aspectdef dse_algo
+
+        input
+                exploreParams = [], frontend, compile, execute, compile_and_execute, report_latency, add_timing, cleanall, nexecutions = 1, minimumLat = 100, sequences, iterations, maxwidth;
+        end
+
+        output
+                bestSeq, bestSeqLatency, total_steps;
+        end
+
+
+	/* GLOBAL SA EXPLORATION SETTINGS */
+        var startTempFactor = -1 / Math.log(0.5); 		// 50% chance of selecting a sequence that is 100% worse than currently selected sequence
+        var finalTempFactor = -0.00001 / Math.log(0.01);	// 1%  chance of selecting a sequence that is 0.001% worse than currently selected sequence
+
+
+	function isnooptim(x){
+		if(x !== "NOOPTIM") {
+    			return true;
+		}
+	}
+
+	// The unroll factors are not being used right now. Consider using in future or remove from code.
+	//var loopranks = [];
+        //var loopfactors = [];
+
+	var i, i0, l_x;
+	var inputstring = ""; 
+
+	var optimLevel = ""; //"-O0";	// No optimization
+	var latencyRef = Number.MAX_VALUE;
+	for(var i=0; i<nexecutions; i++) {
+		compile_and_execute(optimLevel);
+		var latencyRefTest = report_latency();
+        	if(latencyRefTest == undefined) {
+        		throw "ERROR: Latency not set!";
+        	}
+		else {
+			if(latencyRefTest < latencyRef) {
+				latencyRef = latencyRefTest;
+			}
+		}
+	}
+
+	var currentConfig = new Array();
+	for(var i=0; i<maxwidth; i++) {
+		currentConfig.push("NOOPTIM");
+	}
+
+	/*
+	optimLevel = currentConfig.join(" ");
+        cmd("sh", ["/opt/lara-tools/larad/run.sh", aditionalflags + " " + optimLevel]);
+        report("exectimeexporter", [cfile_noext]);
+        var currentLatency = @function[cfile_noext].latency;	// starting latency (latency represents the cost function)
+	*/
+
+	// starting latency	
+	var currentLatency = Number.MAX_VALUE;	
+		
+	println("\nTuning Simulated Annealing Paramenters...");
+	var temp = latencyRef * startTempFactor;
+	println("\tT_max\t: " + temp);	
+	
+	var temp_min = latencyRef * finalTempFactor;
+	println("\tT_min\t: " + temp_min);
+
+	// Calculates alpha based on parameters
+	var alpha = Math.pow(2.71828182846, Math.log(temp_min/temp)/iterations); //0.95 for subband	// TODO: chose a suitable value
+	println("\tα \t: " + alpha);
+	
+	var num_steps = 1;	// Number of steps per temperature // changed from 1 to 10 in 11 may 2013
+	var k;
+
+	// TODO: use time limit to limit amount of time used for DSE
+	//var timeLimit = 2 * 60;	// 2 minutes
+
+	bestSeq = new Array();
+	bestSeqLatency = Number.MAX_VALUE;
+
+	total_steps = 0;
+
+	println("\nPerforming " + iterations + " DSE iterations using Simulated Annealing while considering a maximum of " + maxwidth + " compiler passes per sequence...");
+
+	for(; temp > temp_min; temp = temp * alpha) {
+        	for(k=0; k<num_steps; k++) {
+			
+			total_steps = total_steps + 1;
+
+			var newConfig = new Array();
+			newConfig = currentConfig.slice(0);
+			
+			var probability = 0.5;
+			var rand_perturb = Math.random();
+			
+			// Chose perturbation method randomly
+			if(rand_perturb < probability) {
+				// random number between 0 and the number of optimizations from the list minus 1
+				var rand_posExploreList = Math.floor((Math.random()*exploreParams.length)+0);
+                        	var rand_posConfigList = Math.floor((Math.random()*currentConfig.length)+0);
+
+                        	newConfig[rand_posConfigList] = exploreParams[rand_posExploreList];
+			}
+			else if(rand_perturb < (probability * 2)) {
+
+				// swap two array positions
+				var rand_posConfigList_1 = Math.floor((Math.random()*currentConfig.length)+0);
+                        	var rand_posConfigList_2 = Math.floor((Math.random()*currentConfig.length)+0);
+				
+				var temporary = newConfig[rand_posConfigList_1];
+    				newConfig[rand_posConfigList_1] = newConfig[rand_posConfigList_2];
+    				newConfig[rand_posConfigList_2] = temporary;
+			}
+
+			optimLevel = newConfig.filter(isnooptim).join(" ");
+
+			compile_and_execute(optimLevel);
+			newLatency = report_latency();
+
+                        if((newLatency == undefined) || (newLatency < minimumLat)) {
+                                println("Problematic sequence: " + newConfig.filter(isnooptim).join(" "));
+                                continue;       // goes to the next iteration ignoring previous configuration
+                        }
+
+			if(newLatency <= currentLatency) {
+				currentLatency = newLatency;
+	                        currentConfig = newConfig;	// TODO: maybe needed to do slice(0)
+                                // println("BETTER SOLUTION ACCEPTED");
+                                println("\t" + total_steps + "\t : " + currentLatency + "\t : " + currentConfig.filter(isnooptim).join(" ") + "");
+
+				if(newLatency <= bestSeqLatency) {
+					bestSeqLatency = newLatency;
+					bestSeq = newConfig.filter(isnooptim);
+				}
+			}
+			else {
+				var rand = Math.random();	// random number between 0 and 1 (TODO: attention if it is exclusive or inclusive with 1!)
+				var exponential = 2.71828182846;
+				var delta_lat = newLatency - currentLatency;
+				var val = Math.pow(exponential, - (delta_lat / temp));
+				
+				if(val > rand) {
+					currentLatency = newLatency;
+	                                currentConfig = newConfig;      // TODO: maybe needed to do slice(0)
+                                        // println("WORST SOLUTION ACCEPTD");	// Can also be a solution with same latency
+	                                println("\t" + total_steps + "\t : " + currentLatency + "\t : " + currentConfig.filter(isnooptim).join(" ") + "");
+				}
+				else {
+                        	        // println("WORST SOLUTION NOT ACCEPTED");
+				}
+			}
+		}
+	}
+
+
+end

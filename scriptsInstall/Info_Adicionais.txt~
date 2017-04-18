@@ -1,0 +1,22 @@
+# Informacoes adicionais
+# ======================
+
+# Algoritmo List
+Recebe uma lista de sequencias a testar
+
+
+# Testes no computador (-target=host)
+
+sudo gedit /opt/lara-tools/larad/targets/host/llvm371/scripts/frontend.sh
+# retirar: -fopenmp=libomp -I /opt/llvm-openmp-3.7.1/include
+
+sudo gedit /opt/lara-tools/larad/targets/host/llvm371/scripts/backend.sh
+# retirar: -fopenmp=libomp -L /opt/llvm-openmp-3.7.1/lib
+
+
+# Abrir o arquivo .c com a main() e incluir os seguintes pragmas antes e após a chamada da funcao
+# (usados para medir o tempo de execucao da funcao)
+
+#pragma monitor start
+
+#pragma monitor stop

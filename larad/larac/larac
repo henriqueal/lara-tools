@@ -1,0 +1,1 @@
+java -jar  /opt/lara-tools/larad/larac/larac.jar $*

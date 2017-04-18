@@ -1,0 +1,106 @@
+/*      Ricardo Nobre                                   *
+ *      Departamento de Engenharia Informática          *
+ *      FEUP, Porto, Portugal                           *
+ *      ricardo.nobre@fe.up.pt                          */
+
+import compiler_optimlevels;
+
+aspectdef compiler_setup
+	input
+		cfile = "", target_name = "", latency_exporter = "", compilerName = "", nexecutions = 1, aditionalflags = "";
+	end
+
+	output
+		frontend, compile, execute_and_report, compile_execute_and_report, check_sequence_is_valid, add_timing, cleanall, optimlevelsName, optimlevelsSwitch;
+	end
+
+	call optimlevels : compiler_optimlevels();
+	optimlevelsName = optimlevels.optimlevelsName;
+	optimlevelsSwitch = optimlevels.optimlevelsSwitch;
+
+        var cfile_noext = cfile.substring(0, cfile.length - 2);     // Removes ".c" extension
+
+        function frontend2() {
+                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/frontend.sh", ""]);
+        }
+
+        function compile2(optimLevel){
+                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/opt.sh", aditionalflags + " " + optimLevel]);
+                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/backend.sh", ""]);
+        }
+
+	// Auxiliar function, used by 'execute_and_report' and by 'compile_execute_and_report'
+        function report_latency() {
+                if(@function != undefined) {
+                        @function[cfile_noext].latency = undefined;
+                }
+                report(latency_exporter, [cfile_noext]);
+                var lat = @function[cfile_noext].latency;
+                return lat;
+        }
+
+        function execute_and_report2() {
+		var latency_acc = 0;
+
+		for(var i=0; i<nexecutions; i++) {
+	                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/execute.sh", ""]);
+			var lat = report_latency();
+			latency_acc = latency_acc + lat;
+		}
+		return Math.floor(latency_acc / nexecutions);
+        }
+
+        function compile_execute_and_report2(optimLevel) {
+                compile2(optimLevel);
+                var latency = execute_and_report2();
+		return latency;
+        }
+
+        function check_sequence_is_valid2(newLatency, sequence, iteration) {
+		if(newLatency > 0) {
+			return true;
+		}
+
+
+		switch(newLatency) {
+			case 0:
+				println("\t" + iteration + " Problematic sequence (incorrect result)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+			case -1:
+	                        println("\t" + iteration + " Problematic sequence (Function IR and ASM for main function not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+			case -2:
+                                println("\t" + iteration + " Problematic sequence (ASM for main function not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+                        case -3:
+                                println("\t" + iteration + " Problematic sequence (IR for function to optimize not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+                        case -4:
+				println("\t" + iteration + " Problematic sequence (Optimized function IR not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+                        case -5:
+				println("\t" + iteration + " Problematic sequence (ASM for optimized function IR not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+                        case -6:
+				println("\t" + iteration + " Problematic sequence (Binary not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+                        case -7:
+				println("\t" + iteration + " Problematic sequence (Report not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+                        case -8:
+				println("\t" + iteration + " Problematic sequence (Report is broken)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+		}
+//                else if(newLatency < minimumLat) {
+//                        println("\t" + iteration + " Problematic sequence (too few cycles)\t: " + Number.MAX_VALUE + " : " + sequence);
+//                }
+		return false;
+        }
+
+        function add_timing2() {
+                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/add_timing.sh", cfile]);
+        }
+
+        function cleanall2() {
+                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/cleanall.sh", ""]);
+        }
+
+	frontend = frontend2;
+	compile = compile2;
+	execute_and_report = execute_and_report2;
+	compile_execute_and_report = compile_execute_and_report2;
+	check_sequence_is_valid = check_sequence_is_valid2;
+	add_timing = add_timing2;
+	cleanall = cleanall2;
+end

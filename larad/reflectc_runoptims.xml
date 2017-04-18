@@ -1,0 +1,348 @@
+<aspects main="reflectc_runoptims">
+  <aspect name="reflectc_runoptims">
+    <parameters>
+      <input>
+        <parameter name="optimizationsArray" type="array">
+          <literal type="array"/>
+        </parameter>
+        <parameter name="loopranks" type="array">
+          <literal type="array"/>
+        </parameter>
+        <parameter name="loopfactors" type="array">
+          <literal type="array"/>
+        </parameter>
+      </input>
+    </parameters>
+    <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:7:17:7:35" label="reflectc_runoptims_select_0" name="select">
+      <expression>
+        <literal type="string" value="file"/>
+      </expression>
+      <expression>
+        <literal type="string" value="file_hidden_0"/>
+      </expression>
+      <expression/>
+      <expression>
+        <literal type="string" value="function"/>
+      </expression>
+      <expression>
+        <literal type="string" value="function"/>
+      </expression>
+      <expression/>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:8:17:30:19" label="reflectc_runoptims_apply_0_0" name="apply">
+      <expression>
+        <id name="reflectc_runoptims_select_0"/>
+      </expression>
+      <expression/>
+      <code desc="before"/>
+      <code desc="do">
+        <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:9:17:9:19" name="loop">
+          <code desc="init">
+            <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:9:17:9:19" name="vardecl">
+              <expression>
+                <literal type="string" value="j"/>
+              </expression>
+              <expression desc="init">
+                <literal type="int" value="0"/>
+              </expression>
+            </statement>
+          </code>
+          <expression desc="condition">
+            <op name="LT">
+              <id name="j"/>
+              <property>
+                <id name="optimizationsArray"/>
+                <literal type="string" value="length"/>
+              </property>
+            </op>
+          </expression>
+          <code desc="body">
+            <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:12:25:12:70" name="vardecl">
+              <expression>
+                <literal type="string" value="optimization"/>
+              </expression>
+              <expression desc="init">
+                <op name="ADD">
+                  <literal type="string" value=""/>
+                  <property>
+                    <id name="optimizationsArray"/>
+                    <id name="j"/>
+                  </property>
+                </op>
+              </expression>
+            </statement>
+            <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:14:25:14:26" name="if">
+              <expression desc="condition">
+                <op name="EQ">
+                  <id name="optimization"/>
+                  <literal type="string" value="unroll"/>
+                </op>
+              </expression>
+              <code desc="then">
+                <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:16:33:16:35" name="loop">
+                  <code desc="init">
+                    <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:16:33:16:35" name="vardecl">
+                      <expression>
+                        <literal type="string" value="i"/>
+                      </expression>
+                      <expression desc="init">
+                        <literal type="int" value="0"/>
+                      </expression>
+                    </statement>
+                  </code>
+                  <expression desc="condition">
+                    <op name="LT">
+                      <id name="i"/>
+                      <property>
+                        <id name="loopranks"/>
+                        <literal type="string" value="length"/>
+                      </property>
+                    </op>
+                  </expression>
+                  <code desc="body">
+                    <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:18:46:18:105" name="vardecl">
+                      <expression>
+                        <literal type="string" value="optimizerUnroll_larac_call_var_0"/>
+                      </expression>
+                      <expression desc="init">
+                        <op name="NEW">
+                          <call>
+                            <method>
+                              <id name="optimizerUnroll"/>
+                            </method>
+                          </call>
+                        </op>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:18:46:18:105" name="expr">
+                      <expression>
+                        <call>
+                          <method>
+                            <property>
+                              <id name="optimizerUnroll_larac_call_var_0"/>
+                              <literal type="string" value="call"/>
+                            </property>
+                          </method>
+                          <argument>
+                            <id name="optimization"/>
+                          </argument>
+                          <argument>
+                            <property>
+                              <id name="loopranks"/>
+                              <id name="i"/>
+                            </property>
+                          </argument>
+                          <argument>
+                            <property>
+                              <id name="loopfactors"/>
+                              <id name="i"/>
+                            </property>
+                          </argument>
+                        </call>
+                      </expression>
+                    </statement>
+                  </code>
+                  <expression desc="next-iterator">
+                    <op name="INCS">
+                      <id name="i"/>
+                    </op>
+                  </expression>
+                </statement>
+              </code>
+              <code desc="else"/>
+            </statement>
+            <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:21:25:21:26" name="if">
+              <expression desc="condition">
+                <op name="EQ">
+                  <id name="optimization"/>
+                  <literal type="string" value="nooptim"/>
+                </op>
+              </expression>
+              <code desc="then"/>
+              <code desc="else">
+                <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:26:38:26:61" name="vardecl">
+                  <expression>
+                    <literal type="string" value="optimizer_larac_call_var_0"/>
+                  </expression>
+                  <expression desc="init">
+                    <op name="NEW">
+                      <call>
+                        <method>
+                          <id name="optimizer"/>
+                        </method>
+                      </call>
+                    </op>
+                  </expression>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:26:38:26:61" name="expr">
+                  <expression>
+                    <call>
+                      <method>
+                        <property>
+                          <id name="optimizer_larac_call_var_0"/>
+                          <literal type="string" value="call"/>
+                        </property>
+                      </method>
+                      <argument>
+                        <id name="optimization"/>
+                      </argument>
+                    </call>
+                  </expression>
+                </statement>
+              </code>
+            </statement>
+          </code>
+          <expression desc="next-iterator">
+            <op name="INCS">
+              <id name="j"/>
+            </op>
+          </expression>
+        </statement>
+      </code>
+      <code desc="after"/>
+    </statement>
+  </aspect>
+  <aspect name="optimizer">
+    <parameters>
+      <input>
+        <parameter name="optimization" type="string">
+          <literal type="string" value=""/>
+        </parameter>
+      </input>
+    </parameters>
+    <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:36:9:36:23" label="optimizer_select_0" name="select">
+      <expression>
+        <literal type="string" value="file"/>
+      </expression>
+      <expression>
+        <literal type="string" value="file"/>
+      </expression>
+      <expression/>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:37:9:39:11" label="optimizer_apply_0_0" name="apply">
+      <expression>
+        <id name="optimizer_select_0"/>
+      </expression>
+      <expression/>
+      <code desc="before"/>
+      <code desc="do">
+        <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:38:17:38:24" name="expr">
+          <expression>
+            <call>
+              <method>
+                <id name="optimize"/>
+              </method>
+              <argument>
+                <id name="optimization"/>
+              </argument>
+              <argument>
+                <literal type="int" value="0"/>
+              </argument>
+              <argument>
+                <literal type="int" value="0"/>
+              </argument>
+              <argument>
+                <literal type="int" value="0"/>
+              </argument>
+            </call>
+          </expression>
+        </statement>
+      </code>
+      <code desc="after"/>
+    </statement>
+  </aspect>
+  <aspect name="optimizerUnroll">
+    <parameters>
+      <input>
+        <parameter name="optimization" type="string">
+          <literal type="string" value=""/>
+        </parameter>
+        <parameter name="looprank" type="string">
+          <literal type="string" value=""/>
+        </parameter>
+        <parameter name="loopfactor" type="string">
+          <literal type="string" value=""/>
+        </parameter>
+      </input>
+    </parameters>
+    <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:45:9:45:32" label="optimizerUnroll_select_0" name="select">
+      <expression>
+        <literal type="string" value="file"/>
+      </expression>
+      <expression>
+        <literal type="string" value="file_hidden_0"/>
+      </expression>
+      <expression/>
+      <expression>
+        <literal type="string" value="function"/>
+      </expression>
+      <expression>
+        <literal type="string" value="function"/>
+      </expression>
+      <expression/>
+      <expression>
+        <literal type="string" value="body"/>
+      </expression>
+      <expression>
+        <literal type="string" value="body_hidden_1"/>
+      </expression>
+      <expression/>
+      <expression>
+        <literal type="string" value="loop"/>
+      </expression>
+      <expression>
+        <literal type="string" value="loop"/>
+      </expression>
+      <expression/>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:46:9:48:11" label="optimizerUnroll_apply_0_0" name="apply">
+      <expression>
+        <id name="optimizerUnroll_select_0"/>
+      </expression>
+      <expression desc="_condition">
+        <op name="EQ">
+          <property>
+            <id name="$loop"/>
+            <literal type="string" value="rank"/>
+          </property>
+          <id name="looprank"/>
+        </op>
+      </expression>
+      <code desc="before"/>
+      <code desc="do">
+        <statement coord="/opt/lara-tools/larad/reflectc_runoptims.lara:47:17:47:24" name="expr">
+          <expression>
+            <call>
+              <method>
+                <id name="optimize"/>
+              </method>
+              <argument>
+                <id name="optimization"/>
+              </argument>
+              <argument>
+                <call>
+                  <method>
+                    <id name="parseInt"/>
+                  </method>
+                  <argument>
+                    <id name="loopfactor"/>
+                  </argument>
+                  <argument>
+                    <literal type="int" value="10"/>
+                  </argument>
+                </call>
+              </argument>
+              <argument>
+                <literal type="int" value="0"/>
+              </argument>
+              <argument>
+                <literal type="int" value="0"/>
+              </argument>
+            </call>
+          </expression>
+        </statement>
+      </code>
+      <code desc="after"/>
+    </statement>
+  </aspect>
+</aspects>

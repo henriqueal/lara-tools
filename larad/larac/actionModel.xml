@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<actions>
+    <!-- Actions available within the REFLECT flow -->
+	<optimize stage="cosy">
+			<parameter name="kind" type="string"/>
+			<parameter name="k" type="int" default="0"/>
+			<parameter name="l" type="int" default="0"/>
+			<parameter name="m" type="int" default="0"/>
+	</optimize>
+	<map stage="harmonic">
+		<parameter name="to" type="string"/>
+		<parameter name="instance" type="string" default="0"/>
+		<parameter name="mode" type="string" default="default"/>
+	</map>
+	<insert stage="harmonic">
+			<parameter name="position" type="string"/>
+			<parameter name="code" type="template"/>
+			<!--parameter name="lang" type="string" default = "C"   (parameter to be used when we start to think about meta-code/native-code)-->   
+	</insert>
+	<output stage="harmonic">
+			<parameter name="code" type="template"/>
+			<!--parameter name="lang" type="string" default = "C"   (parameter to be used when we start to think about meta-code/native-code)-->   
+	</output>
+	<wlot stage="harmonic">
+      <parameter name="var" type="string"/>
+      <parameter name="error" type="number"/>      
+	</wlot>
+   <def>
+      <parameter name="attribute" type="string"/>
+      <parameter name="value" type="Object"/>
+   </def>
+</actions>

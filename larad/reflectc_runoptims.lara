@@ -1,0 +1,51 @@
+aspectdef reflectc_runoptims
+        //input optimsString = ""; end
+	
+	input optimizationsArray = [], loopranks = [], loopfactors = []; end
+	//optimiZationsArray = ("" + optimsString).split(",");
+
+		select function end
+		apply
+        	for(var j=0; j < optimizationsArray.length; j++) {
+			
+                	
+			var optimization = "" + optimizationsArray[j];
+			//print("optimization " + optimization + "performed");
+			if(optimization == "unroll") {
+	
+			        for(var i=0; i < loopranks.length; i++) {
+
+	                        	call optimizerUnroll(optimization, loopranks[i], loopfactors[i]);
+				}
+			}
+                        if(optimization == "nooptim") {
+				// Does nothing...
+			}
+
+			else {
+                		call optimizer(optimization);
+             		}
+
+		}
+		end
+
+end
+
+aspectdef optimizer
+	input optimization = ""; end
+	select file end
+        apply
+             	optimize(kind:optimization);
+	end
+end
+
+// unrolls all loops
+aspectdef optimizerUnroll
+        input optimization = "", looprank = "", loopfactor = ""; end
+        select function.loop end
+	apply
+        	optimize(kind:optimization, k: parseInt(loopfactor, 10));
+        end
+        condition ($loop.rank == looprank)  end
+end
+

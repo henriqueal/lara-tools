@@ -1,0 +1,106 @@
+/*      Ricardo Nobre                                   *
+ *      Departamento de Engenharia Informática          *
+ *      FEUP, Porto, Portugal                           * 
+ *      ricardo.nobre@fe.up.pt                          */
+
+aspectdef dse_algo
+
+        input
+                exploreParams = [], frontend, compile, execute, compile_and_execute, report_latency, check_sequence_is_valid, add_timing, cleanall, nexecutions = 1, minimumLat = 100, sequences, iterations, maxwidth, optimLevelsLatency, nr;
+        end
+
+        output
+                bestSeq, bestSeqLatency, total_steps;
+        end
+
+
+
+    sequences = [
+	  ["-instcombine", "-simplifycfg", "-gvn", "-indvars", "-loop-rotate", "-unroll-allow-partial", "-loop-unroll", "-loop-rotate", "-loop-unroll", "-gvn", "-inline", "-early-cse", "-basicaa", "-reassociate", "-instcombine"]
+	, ["-simplify-libcalls", "-simplifycfg", "-unroll-allow-partial", "-internalize", "-gvn", "-instcombine", "-inline", "-globalopt", "-scalarrepl", "-loop-rotate", "-loop-unroll", "-loop-instsimplify"]
+	, ["-gvn", "-loop-rotate", "-internalize", "-inline", "-licm", "-tailcallelim", "-instcombine", "-basicaa", "-indvars"]
+	, ["-codegenprepare", "-loop-rotate", "-loop-idiom", "-loop-deletion", "-gvn"]
+	, ["-loop-rotate", "-inline", "-simplify-libcalls", "-basicaa", "-licm", "-constmerge", "-indvars", "-unroll-allow-partial", "-loop-unroll", "-reassociate", "-gvn"]
+	, ["-simplifycfg", "-tailcallelim", "-early-cse", "-loop-rotate", "-internalize", "-partial-inliner", "-instcombine", "-inline", "-ipsccp"]
+	, ["-internalize", "-inline", "-globalopt", "-early-cse", "-licm", "-basicaa", "-indvars", "-loop-reduce"]
+	, ["-codegenprepare", "-gvn", "-tailcallelim", "-reassociate", "-basicaa", "-inline", "-loop-rotate", "-indvars", "-reassociate"]
+	, ["-simplifycfg", "-tailcallelim", "-instcombine", "-early-cse"]
+	, ["-early-cse", "-simplifycfg", "-gvn", "-inline", "-loop-reduce", "-licm", "-instcombine", "-gvn", "-reassociate"]
+	];
+
+
+
+	function isnooptim(x){
+		if(x !== "NOOPTIM") {
+    			return true;
+		}
+	}
+
+	// The unroll factors are not being used right now. Consider using in future or remove from code.
+	//var loopranks = [];
+        //var loopfactors = [];
+
+	var i, i0, l_x;
+	var inputstring = ""; 
+
+	/*
+        var latencyRef = Number.MAX_VALUE;
+	var optimLevel = "";
+        for(var i=0; i<nexecutions; i++) {
+                compile_and_execute(optimLevel);
+                var latencyRefTest = report_latency();
+                if(latencyRefTest == undefined) {
+                        throw "ERROR: Latency not set!";
+                }
+                else {
+                        if(latencyRefTest < latencyRef) {
+                                latencyRef = latencyRefTest;
+                        }
+                }
+        }
+	*/
+
+	var latencyRef = optimLevelsLatency[0];
+        if(latencyRef == 0) {
+                for(var i=0; i<optimLevelsLatency.length; i++) {
+                        if(optimLevelsLatency[i] > 0) {
+                                latencyRef = optimLevelsLatency[i];
+                        }
+                }
+        }
+
+	bestSeq = new Array();
+	bestSeqLatency = Number.MAX_VALUE;
+	total_steps = 0;
+
+	println("\nExploring " + iterations + " compiler pass sequences using Graph while considering a maximum of " + maxwidth + " compiler passes per sequence...");
+
+	for(var i=0; i<sequences.length; i++) {
+
+		total_steps = total_steps + 1;
+		var newConfig = sequences[i];
+		var optimLevel = newConfig.filter(isnooptim).join(" ");
+
+		compile_and_execute(optimLevel);
+		var newLatency = report_latency();
+
+		if(check_sequence_is_valid(newLatency, optimLevel, total_steps) == false) {
+			continue;       // goes to the next iteration ignoring previous configuration
+		}
+
+		if(newLatency <= bestSeqLatency) {
+			bestSeqLatency = newLatency;
+			bestSeq = newConfig;	// TODO: maybe needed to do slice(0)
+			println("\t" + total_steps + " (O)\t : " + bestSeqLatency + "\t : " + bestSeq.filter(isnooptim).join(" ") + "");
+
+			bestSeq = newConfig.filter(isnooptim);
+			
+		}
+		else {
+			// println("WORST SOLUTION NOT ACCEPTED");
+			println("\t" + total_steps + " (X)\t : " + newLatency + "\t : " + newConfig.filter(isnooptim).join(" ") + "");
+
+		}
+	}
+	println("\t" + "BEST SEQUENCE\t : " + bestSeqLatency + "\t : " + bestSeq.filter(isnooptim).join(" ") + "");
+end

@@ -1,0 +1,10 @@
+aspectdef compiler_optimlevels
+
+	output
+		optimlevelsName = [], optimlevelsSwitch = [];
+	end
+
+        optimlevelsName = ["Reference"];
+	optimlevelsSwitch = [""];
+
+end

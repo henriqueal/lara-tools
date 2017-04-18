@@ -1,0 +1,11 @@
+aspectdef compiler_optimlevels
+
+	output
+		optimlevelsName = [], optimlevelsSwitch = [];
+	end
+
+
+        optimlevelsName = ["-O0", "-O1", "-O2", "-O3"];
+        optimlevelsSwitch = ["", "-O1", "-O2", "-O3"];
+
+end

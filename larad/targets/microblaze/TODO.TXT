@@ -1,0 +1,4 @@
+Change the scripts to adapt to new format of main() separated from function to optimize.
+
+Can that be done for the REFLECTC backend?
+We had a limitation about having to have all code in a single file.

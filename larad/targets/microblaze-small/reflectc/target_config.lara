@@ -1,0 +1,353 @@
+/*      Ricardo Nobre                                   *
+ *      Departamento de Engenharia Informática          *
+ *      FEUP, Porto, Portugal                           *
+ *      ricardo.nobre@fe.up.pt                          */
+
+aspectdef target_config
+
+	output
+		targetName, exporterName, exploreParams, sequences;
+	end
+	targetName = "microblaze";
+	exporterName = "microblazeexporter";	
+
+        // O3 Optimizations used by REFLECTC ordered by frequency count on sequences found for TI (non extra) with SA and INSERT with between 10 and 1000 iterations
+	// http://www.writewords.org.uk/word_count.asp
+	exploreParams =     [
+				// ALL ENGINES
+                                "alias"
+                                ,"algebraic"
+                                ,"blockmerge"
+                                ,"cache"
+                                ,"chainflow"
+                                ,"ckfstrength"
+                                ,"condassigncreate"
+                                ,"conevun"
+                                ,"constprop"
+                                ,"copyprop"
+                                ,"cse"
+                                ,"demote"
+                                ,"dismemun"
+                                ,"domorder"
+                                ,"exprprop"
+                                ,"funceval"
+                                ,"globcse"
+                                ,"hwloopcreate"
+                                ,"ifconvert"
+                                ,"loopbcount"
+                                ,"loopcanon"
+                                ,"loopfuse"
+                                ,"loopguard"
+                                ,"loophoist"
+                                ,"loopinvariant"
+                                ,"loopive"
+                                ,"loopremove"
+                                ,"looprev"
+                                ,"loopscalar"
+                                ,"loopstrength"
+                                ,"lowerbitfield"
+                                ,"lowerboolval"
+                                ,"lowerpfc"
+                                ,"lrrename"
+                                ,"markconvert"
+                                ,"misc"
+                                ,"mvpostop"
+                                ,"noreturn"
+                                ,"promote"
+                                ,"rodata"
+                                ,"scalarreplace"
+                                ,"setpurity"
+                                ,"setrefobj"
+                                ,"strength"
+                                ,"tailmerge"
+                                ,"tailrec"
+                                ,"vprop"
+                                ,"vshrink"
+                                ,"vstrength"
+				// ,"unroll"
+	];
+
+	sequences = [
+
+	// DSP_autocor
+	["copyprop", "loopinvariant", "loopguard"],
+	["exprprop", "loopguard", "loopinvariant"],
+	["loopinvariant", "copyprop", "loopguard"],
+	["copyprop", "loopguard", "loopinvariant"],
+	["copyprop", "loopinvariant", "loopguard"],
+
+	// DSP_bexp
+	["loopguard", "loopcanon", "loopguard", "loopcanon", "loopguard", "cse", "constprop"],
+	["loopcanon", "cse", "loopguard", "constprop"],
+	["loopguard", "loopcanon", "cse", "loopguard", "vprop"],
+	["cse", "loopguard", "loopcanon", "loopguard", "vprop"],
+	["loopcanon", "loopguard", "cse", "loopcanon", "loopguard", "constprop"],
+
+	// DSP_blk_eswap16
+	["algebraic", "misc", "loopguard", "loopbcount", "exprprop", "cse"],
+	["conevun", "cse", "exprprop", "loopguard", "blockmerge"],
+	["loopguard", "cse", "conevun", "copyprop", "exprprop"],
+	["loopguard", "exprprop", "conevun", "cse"],
+	["cse", "conevun", "copyprop", "loopguard", "exprprop"],
+
+	// DSP_blk_eswap32
+	["algebraic", "misc", "loopguard", "loopbcount", "exprprop", "cse"],
+	["algebraic", "cse", "loopguard", "exprprop"],
+	["algebraic", "loopfuse", "loopguard", "exprprop", "cse"],
+	["conevun", "loopguard", "exprprop", "vprop", "cse"],
+	["loopguard", "copyprop", "cse", "exprprop", "algebraic"],
+
+	// DSP_blk_eswap64
+	["algebraic", "misc", "loopguard", "loopbcount", "exprprop", "cse"],
+	["loopguard", "algebraic", "cse", "exprprop"],
+	["exprprop", "loopguard", "algebraic", "cse"],
+	["algebraic", "loopfuse", "exprprop", "loopguard", "cse"],
+	["loopscalar", "conevun", "cse", "loopguard", "exprprop"],
+
+	// DSP_blk_move
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+	["tailmerge", "loopstrength", "cse", "loopguard", "constprop"],
+	["cse", "loopguard"],
+
+	// DSP_dotprod
+	["loopguard", "cse"],
+	["loopguard", "cse"],
+	["loopguard", "cse"],
+	["cse", "loopguard"],
+	["loopguard", "cse"],
+
+	// DSP_dotp_sqr
+	["loopguard", "cse"],
+	["loopguard", "cse"],
+	["loopguard", "cse"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+
+	// DSP_fir_cplx
+	["copyprop", "loopinvariant", "loopguard", "cse"],
+	["vprop", "cse", "copyprop", "demote", "loopinvariant", "loopguard"],
+	["loopinvariant", "cse", "demote", "conevun", "loopguard", "loopcanon", "loopguard", "loopcanon", "loopbcount", "loophoist", "vprop"],
+	["loopcanon", "demote", "exprprop", "loopguard", "loopinvariant", "vprop", "cse"],
+	["loopcanon", "loopinvariant", "demote", "loopguard", "loophoist", "vprop", "cse"],
+
+	// DSP_fltoq15
+	["chainflow"],
+	["chainflow", "loopguard", "loopbcount"],
+	["loopbcount", "chainflow", "loopguard"],
+	["chainflow", "loopguard", "loopbcount", "vprop"],
+	["chainflow", "loopguard", "loopbcount"],
+
+	// DSP_mat_trans
+	["copyprop", "vprop", "loopstrength", "loopinvariant", "loopguard"],
+	["copyprop", "vprop", "loopguard", "loopstrength", "loopinvariant"],
+	["loopguard", "loopstrength", "algebraic", "loopinvariant", "copyprop"],
+	["loopstrength", "loopguard", "copyprop", "loopinvariant", "vprop"],
+	["loopguard", "loopstrength", "exprprop", "loopinvariant", "algebraic", "copyprop"],
+
+	// DSP_maxidx
+	["loopbcount", "cse"],
+	["funceval", "ifconvert", "setpurity", "vprop"],
+	["funceval", "setpurity", "vprop", "misc"],
+	["setpurity", "funceval", "vprop", "ifconvert"],
+	["ifconvert", "setpurity", "funceval", "constprop", "conevun"],
+
+	// DSP_maxval
+	["loopbcount", "cse"],
+	["setpurity", "funceval", "misc", "vprop"],
+	["setpurity", "ifconvert", "funceval", "vprop"],
+	["funceval", "vprop", "ifconvert", "setpurity"],
+	["setpurity", "funceval", "vprop", "ifconvert"],
+
+	// DSP_minerror
+	["loopinvariant", "loopguard"],
+	["cse", "loopguard", "loophoist"],
+	["cse", "loophoist", "loopguard"],
+	["loopinvariant", "loopguard"],
+	["loopguard", "cse", "loophoist"],
+
+	// DSP_minval
+	["loopbcount", "cse"],
+	["setpurity", "vprop", "ifconvert", "funceval"],
+	["vprop", "setpurity", "ifconvert", "funceval"],
+	["setpurity", "vprop", "misc", "funceval"],
+	["setpurity", "funceval", "ifconvert", "vprop"],
+
+	// DSP_mul32
+	["loopguard", "cse"],
+	["loopguard", "cse"],
+	["loopguard", "vprop", "cse"],
+	["loopguard", "cse"],
+	["loopguard", "cse"],
+
+	// DSP_neg32
+	["loopguard", "cse"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+	["loopguard", "cse"],
+
+	// DSP_recip16
+	["misc", "condassigncreate", "loopguard", "tailmerge", "loopcanon", "loopguard", "exprprop", "loopbcount", "blockmerge"],
+	["loopguard", "exprprop", "loopcanon", "loopbcount"],
+	["loopguard", "exprprop", "loopbcount", "loopcanon"],
+	["exprprop", "loopguard", "loopbcount", "loopcanon"],
+	["loopguard", "loopcanon", "vprop", "tailmerge"],
+
+	// DSP_vecsum
+	["loopguard", "cse"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+	["loopguard", "cse"],
+
+	// DSP_w_vec
+	["loopguard", "cse"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+
+	// IMG_boundary
+	["mvpostop", "loopinvariant", "loopguard", "loopbcount", "exprprop"],
+	["dismemun", "exprprop", "loopinvariant", "cse", "loopguard", "mvpostop"],
+	["exprprop", "mvpostop", "loopinvariant", "dismemun", "cse", "loopguard"],
+	["exprprop", "cse", "loopinvariant", "dismemun", "mvpostop", "loopguard"],
+	["cse", "loopguard", "exprprop", "dismemun", "loopinvariant", "mvpostop"],
+
+	// IMG_corr_gen
+	["loopinvariant", "loopguard"],
+	["loopinvariant", "loopguard"],
+	["loopinvariant", "loopguard"],
+	["loopguard", "cse", "loopinvariant", "loophoist"],
+	["loopinvariant", "loopguard"],
+
+	// IMG_DILATE_BIN
+	["misc", "vprop", "loopinvariant", "loopguard", "loopbcount", "ifconvert", "exprprop", "demote", "cse", "copyprop", "algebraic"],
+	["copyprop", "loopbcount", "ifconvert", "exprprop", "cse", "loopinvariant", "demote", "conevun", "vprop"],
+	["ifconvert", "cse", "conevun", "exprprop", "demote", "loopbcount", "constprop", "loopinvariant", "loopguard", "copyprop"],
+	["loopguard", "vprop", "exprprop", "loopinvariant", "demote", "ifconvert", "cse", "vstrength"],
+	["demote", "exprprop", "misc", "ifconvert", "loopinvariant", "cse", "copyprop", "loopguard", "loopbcount", "vprop", "algebraic"],
+
+	// IMG_erode_bin
+	["constprop"],
+	["constprop"],
+	["exprprop"],
+	["vprop"],
+	["exprprop"],
+
+	// IMG_fdct_8x8
+	["looprev", "dismemun", "loopguard", "loopbcount", "exprprop", "cse", "copyprop", "loopinvariant", "lrrename", "loopstrength", "constprop", "chainflow"],
+	["loopguard", "lrrename", "demote", "vprop", "exprprop", "tailmerge", "loopstrength", "cse", "algebraic", "loopinvariant", "loopbcount", "looprev"],
+	["loopstrength", "demote", "cse", "algebraic", "looprev", "loopinvariant", "chainflow", "lrrename", "loopguard", "exprprop", "loopbcount", "constprop"],
+	["constprop", "cse", "lrrename", "loopguard", "loopinvariant", "tailmerge", "demote", "exprprop", "algebraic", "loopbcount"],
+	["cse", "lrrename", "loopguard", "tailmerge", "algebraic", "loopinvariant", "demote", "exprprop", "loopbcount", "vprop"],
+
+	// IMG_idct_8x8_12q4
+	["loopstrength", "exprprop", "cse"],
+	["constprop", "cse", "exprprop", "loopinvariant", "lrrename", "loopstrength", "loopbcount", "demote", "algebraic", "chainflow", "copyprop"],
+	["loophoist", "lrrename", "exprprop", "looprev", "loopstrength", "demote", "vprop", "loopbcount", "loopguard", "algebraic", "cse"],
+	["loopstrength", "dismemun", "tailmerge", "algebraic", "looprev", "exprprop", "cse", "demote", "loopbcount", "constprop", "lrrename", "loophoist"],
+	["exprprop", "loopbcount", "lrrename", "loopstrength", "loopguard", "tailmerge", "chainflow", "loopinvariant", "looprev", "vprop", "cse"],
+
+	// IMG_mad_8x8
+	["loopinvariant", "loopguard", "loopbcount"],
+	["loopinvariant", "loopbcount", "loopguard"],
+	["loopinvariant", "loopguard", "loopbcount"],
+	["loopbcount", "loopguard", "loopinvariant"],
+	["loopinvariant", "loopguard", "loopbcount"],
+
+	// IMG_median_3x3
+	["loopinvariant", "loopbcount"],
+	["loopbcount", "loopinvariant"],
+	["loopinvariant", "loopbcount"],
+	["loopbcount", "loopinvariant"],
+	["loopbcount", "loopinvariant"],
+
+	// IMG_perimeter
+	["cse", "constprop", "condassigncreate", "cache", "blockmerge"],
+	["condassigncreate", "loopbcount", "cache", "exprprop", "constprop", "cse"],
+	["vprop", "condassigncreate", "cse", "loopbcount", "cache", "exprprop"],
+	["loopbcount", "exprprop", "cse", "condassigncreate"],
+	["cache", "cse", "loopbcount", "constprop", "condassigncreate", "exprprop"],
+
+	// IMG_pix_expand
+	["loopguard"],
+	["loopguard"],
+	["loopguard"],
+	["loopguard"],
+	["loopguard"],
+
+	// IMG_pix_sat
+	["constprop", "blockmerge"],
+	["loopbcount", "constprop", "loopguard"],
+	["loopguard", "loopbcount", "tailmerge", "constprop"],
+	["loopguard", "exprprop", "tailmerge"],
+	["loopguard", "exprprop", "loopbcount", "tailmerge"],
+
+	// IMG_quantize
+	["loopguard", "cse", "chainflow"],
+	["cse", "chainflow", "loopguard"],
+	["chainflow", "cse", "loopguard"],
+	["cse", "tailmerge", "misc", "loopguard"],
+	["chainflow", "loopguard", "cse"],
+
+	// IMG_sad_16x16
+	["loopinvariant", "loopguard"],
+	["loopguard", "loopinvariant"],
+	["loopguard", "loopinvariant"],
+	["loopinvariant", "loopguard"],
+	["loopguard", "loopinvariant"],
+
+	// IMG_sad_8x8
+	["loopinvariant", "loopguard"],
+	["loopguard", "loopinvariant"],
+	["loopguard", "loopinvariant"],
+	["loopinvariant", "loopguard"],
+	["loopguard", "loopinvariant"],
+
+	// IMG_sobel
+	["loopinvariant", "loopguard", "loopbcount", "ifconvert", "cse", "constprop"],
+	["cse", "loopbcount", "loopinvariant", "exprprop"],
+	["cse", "loopinvariant", "vprop", "loopbcount"],
+	["loopinvariant", "exprprop", "cse", "loopbcount"],
+	["loopinvariant", "cse", "exprprop", "loopbcount"],
+
+	// IMG_wave_horz
+	["strength", "loopinvariant", "loopguard"],
+	["loopguard", "loopinvariant", "strength"],
+	["loopinvariant", "strength", "loopguard"],
+	["strength", "loopguard", "loopinvariant"],
+	["strength", "loopguard", "loopinvariant"],
+
+	// IMG_wave_vert
+	["loopstrength", "loopguard"],
+	["loopguard", "loopstrength"],
+	["loopstrength", "loopguard"],
+	["loopguard", "loopstrength"],
+	["loopstrength", "loopguard"],
+
+	// IMG_ycbcr422p_rgb565
+	["vprop", "lrrename", "mvpostop", "exprprop", "hwloopcreate"],
+	["exprprop", "vprop", "lrrename", "mvpostop", "loopguard", "mvpostop", "tailmerge"],
+	["lrrename", "vprop", "mvpostop", "loopive", "exprprop"],
+	["exprprop", "vprop", "loopbcount", "mvpostop", "lrrename", "loopguard"],
+	["loopbcount", "exprprop", "lrrename", "mvpostop", "vprop", "loopguard"],
+
+	// IMG_yc_demux_be16
+	["loopguard", "cse"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+	["loopguard", "cse"],
+
+	// IMG_yc_demux_le16
+	["loopguard", "cse"],
+	["cse", "loopguard"],
+	["cse", "loopguard"],
+	["loopguard", "cse"],
+	["loopguard", "cse"]
+
+	];
+	end

@@ -1,0 +1,265 @@
+<aspects main="dse_algo">
+  <aspect coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:1:1:54:3" name="dse_algo">
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:4:9:4:23" name="vardecl">
+      <expression>
+        <literal type="string" value="array"/>
+      </expression>
+      <expression desc="init">
+        <literal type="array"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:6:9:6:13" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <property>
+            <id name="array"/>
+            <literal type="int" value="0"/>
+          </property>
+          <literal type="int" value="30"/>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:8:9:8:13" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <property>
+            <id name="array"/>
+            <literal type="int" value="1"/>
+          </property>
+          <literal type="int" value="100"/>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:10:9:10:13" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <property>
+            <id name="array"/>
+            <literal type="int" value="2"/>
+          </property>
+          <literal type="int" value="70"/>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:12:9:12:13" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <property>
+            <id name="array"/>
+            <literal type="int" value="3"/>
+          </property>
+          <literal type="int" value="50"/>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:16:9:16:15" name="expr">
+      <expression>
+        <call>
+          <method>
+            <id name="println"/>
+          </method>
+          <argument>
+            <property>
+              <id name="array"/>
+              <literal type="string" value="length"/>
+            </property>
+          </argument>
+        </call>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:17:9:17:15" name="expr">
+      <expression>
+        <call>
+          <method>
+            <id name="println"/>
+          </method>
+          <argument>
+            <literal type="string" value="teste"/>
+          </argument>
+        </call>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:23:9:23:25" name="vardecl">
+      <expression>
+        <literal type="string" value="max_roulette"/>
+      </expression>
+      <expression desc="init"/>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:24:3:24:20" name="vardecl">
+      <expression>
+        <literal type="string" value="roulette"/>
+      </expression>
+      <expression desc="init">
+        <literal type="array"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:25:9:25:15" name="vardecl">
+      <expression>
+        <literal type="string" value="id"/>
+      </expression>
+      <expression desc="init"/>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:26:3:26:20" name="vardecl">
+      <expression>
+        <literal type="string" value="random_number"/>
+      </expression>
+      <expression desc="init"/>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:28:3:28:10" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <property>
+            <id name="roulette"/>
+            <literal type="int" value="0"/>
+          </property>
+          <property>
+            <id name="array"/>
+            <literal type="int" value="0"/>
+          </property>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:29:3:29:5" name="loop">
+      <code desc="init">
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:29:3:29:5" name="expr">
+          <expression>
+            <op name="ASSIGN">
+              <id name="i"/>
+              <literal type="int" value="1"/>
+            </op>
+          </expression>
+        </statement>
+      </code>
+      <expression desc="condition">
+        <op name="LT">
+          <id name="i"/>
+          <property>
+            <id name="array"/>
+            <literal type="string" value="length"/>
+          </property>
+        </op>
+      </expression>
+      <code desc="body">
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:30:17:30:24" name="expr">
+          <expression>
+            <op name="ASSIGN">
+              <property>
+                <id name="roulette"/>
+                <id name="i"/>
+              </property>
+              <op name="ADD">
+                <property>
+                  <id name="roulette"/>
+                  <op name="SUB">
+                    <id name="i"/>
+                    <literal type="int" value="1"/>
+                  </op>
+                </property>
+                <property>
+                  <id name="array"/>
+                  <id name="i"/>
+                </property>
+              </op>
+            </op>
+          </expression>
+        </statement>
+      </code>
+      <expression>
+        <op name="INCS">
+          <id name="i"/>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:34:3:34:15" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <id name="random_number"/>
+          <op name="MULT">
+            <call>
+              <method>
+                <property>
+                  <id name="Math"/>
+                  <literal type="string" value="random"/>
+                </property>
+              </method>
+            </call>
+            <property>
+              <id name="roulette"/>
+              <op name="SUB">
+                <property>
+                  <id name="roulette"/>
+                  <literal type="string" value="length"/>
+                </property>
+                <literal type="int" value="1"/>
+              </op>
+            </property>
+          </op>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:35:3:35:9" name="expr">
+      <expression>
+        <call>
+          <method>
+            <id name="println"/>
+          </method>
+          <argument>
+            <id name="random_number"/>
+          </argument>
+        </call>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:37:3:37:4" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <id name="id"/>
+          <literal type="int" value="0"/>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:39:3:39:7" name="loop">
+      <expression desc="condition">
+        <op name="GTE">
+          <id name="random_number"/>
+          <property>
+            <id name="roulette"/>
+            <id name="id"/>
+          </property>
+        </op>
+      </expression>
+      <code desc="body">
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:40:17:40:18" name="expr">
+          <expression>
+            <op name="INCS">
+              <id name="id"/>
+            </op>
+          </expression>
+        </statement>
+      </code>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:44:3:44:9" name="expr">
+      <expression>
+        <call>
+          <method>
+            <id name="println"/>
+          </method>
+          <argument>
+            <literal type="string" value="id"/>
+          </argument>
+        </call>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/teste.lara:50:3:50:9" name="expr">
+      <expression>
+        <call>
+          <method>
+            <id name="println"/>
+          </method>
+          <argument>
+            <id name="id"/>
+          </argument>
+        </call>
+      </expression>
+    </statement>
+  </aspect>
+</aspects>

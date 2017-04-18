@@ -1,0 +1,185 @@
+ -==================================================-
+  1. Setting up LARA
+ -==================================================-
+Concerning language: C
+XML input files: /opt/lara-tools/larad/larai/resources/
+Output directory: ./
+Path included for import: [/opt/lara-tools/larad/larai/]
+Running on: Linux
+Reading file: dse.lara
+Creating ArrayLiteral
+Parse Successful!
+ -==================================================-
+  2. Organizing Aspects
+ -==================================================-
+     -==================================================-
+    Importing compiler_setup.lara
+     -==================================================-
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+    Importing: Parse Successful!
+    Organizing Imported aspects from compiler_setup.laracompiler_setup.lara
+         -==================================================-
+        Importing compiler_optimlevels.lara
+         -==================================================-
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+        Importing: Parse Successful!
+        Organizing Imported aspects from compiler_optimlevels.laracompiler_optimlevels.lara
+        Organized Imported aspects!
+
+Organized Imported aspects!
+
+     -==================================================-
+    Importing target_config.lara
+     -==================================================-
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+Creating ArrayLiteral
+    Importing: Parse Successful!
+    Organizing Imported aspects from target_config.laratarget_config.lara
+    Organized Imported aspects!
+
+     -==================================================-
+    Importing dse_algo.lara
+     -==================================================-
+Creating ArrayLiteral
+    Importing: Parse Successful!
+    Organizing Imported aspects from dse_algo.laradse_algo.lara
+    Organized Imported aspects!
+
+     -==================================================-
+    Importing cleanseq.lara
+     -==================================================-
+    Importing: Parse Successful!
+    Organizing Imported aspects from cleanseq.laracleanseq.lara
+    Organized Imported aspects!
+
+Organized!
+ -==================================================-
+  3. Creating Aspect-IR
+ -==================================================-
+Writing to file: ./dse.xml
+Created!
+ -==================================================-
+  1. Reading Aspect-IR
+ -==================================================-
+Reading file: dse.xml
+ -==================================================-
+  2. Interpreting
+ -==================================================-
+ -==================================================-
+  3. Executing Main Aspect
+ -==================================================-
+Collecting Clang/LLVM Optimization Levels Performance (in µseconds)...
+	-O0: 25284
+	-O1: 10069
+	-O2: 10069
+	-O3: 10081
+
+Tuning Simulated Annealing Paramenters...
+	T_max	: 36477.10141383655
+	T_min	: 0.0549035084022091
+	α 	: 0.8745321860486915
+
+Performing 100 DSE iterations using Simulated Annealing considering a maximum of 128 compiler passes per sequence...
+	1 (O)	 : 25284	 : -globaldce
+	2 (O)	 : 25284	 : -loop-unroll -globaldce
+	3 (O)	 : 25284	 : -ipsccp -loop-unroll -globaldce
+	4 (O)	 : 25284	 : -block-freq -ipsccp -loop-unroll -globaldce
+	5 (O)	 : 23948	 : -block-freq -instcombine -ipsccp -loop-unroll -globaldce
+	6 (O)	 : 23948	 : -block-freq -instcombine -ipsccp -ipsccp -loop-unroll -globaldce
+	7 (O)	 : 23948	 : -block-freq -instcombine -ipsccp -ipsccp -ipsccp -loop-unroll -globaldce
+	8 (O)	 : 23948	 : -block-freq -instcombine -indvars -ipsccp -ipsccp -ipsccp -loop-unroll -globaldce
+	9 (O)	 : 23948	 : -block-freq -instcombine -assumption-cache-tracker -indvars -ipsccp -ipsccp -ipsccp -loop-unroll -globaldce
+	10 (O)	 : 23948	 : -block-freq -instcombine -correlated-propagation -assumption-cache-tracker -indvars -ipsccp -ipsccp -ipsccp -loop-unroll -globaldce
+	11 (O)	 : 23948	 : -block-freq -instcombine -correlated-propagation -assumption-cache-tracker -indvars -ipsccp -ipsccp -barrier -ipsccp -loop-unroll -globaldce
+	12 (O)	 : 23948	 : -block-freq -instcombine -correlated-propagation -assumption-cache-tracker -indvars -loop-idiom -ipsccp -ipsccp -barrier -ipsccp -loop-unroll -globaldce
+	13 (O)	 : 23948	 : -globalopt -block-freq -instcombine -correlated-propagation -assumption-cache-tracker -indvars -loop-idiom -ipsccp -ipsccp -barrier -ipsccp -loop-unroll -globaldce
+	14 (O)	 : 23948	 : -lcssa -globalopt -block-freq -instcombine -correlated-propagation -assumption-cache-tracker -indvars -loop-idiom -ipsccp -ipsccp -barrier -ipsccp -loop-unroll -globaldce
+	15 (O)	 : 23948	 : -lcssa -globalopt -block-freq -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -ipsccp -ipsccp -barrier -ipsccp -loop-unroll -globaldce
+	16 (O)	 : 23948	 : -lcssa -globalopt -block-freq -dse -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -ipsccp -ipsccp -barrier -ipsccp -loop-unroll -globaldce
+	17 (O)	 : 23948	 : -lcssa -globalopt -block-freq -dse -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -barrier -ipsccp -ipsccp -barrier -ipsccp -loop-unroll -globaldce
+	18 (O)	 : 23948	 : -lcssa -globalopt -block-freq -dse -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -barrier -ipsccp -ipsccp -barrier -ipsccp -loop-unroll -no-aa -globaldce
+	19 (O)	 : 23948	 : -lcssa -globalopt -loop-deletion -block-freq -dse -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -barrier -ipsccp -ipsccp -barrier -ipsccp -loop-unroll -no-aa -globaldce
+	20 (O)	 : 23948	 : -lcssa -globalopt -loop-deletion -block-freq -dse -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -no-aa -globaldce
+	21 (O)	 : 23948	 : -lcssa -globalopt -loop-deletion -block-freq -dse -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -no-aa -globaldce
+	22 (O)	 : 23948	 : -lcssa -globalopt -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -no-aa -globaldce
+	23 (O)	 : 12053	 : -lcssa -globalopt -sroa -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -no-aa -globaldce
+	24 (O)	 : 12053	 : -lcssa -globalopt -sroa -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -no-aa -globalopt -globaldce
+	25 (O)	 : 12053	 : -lcssa -globalopt -sroa -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -no-aa -globalopt -globaldce
+	26 (O)	 : 12053	 : -loop-unroll -lcssa -globalopt -sroa -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -no-aa -globalopt -globaldce
+	27 (O)	 : 12053	 : -loop-unroll -lcssa -globalopt -sroa -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -no-aa -globalopt -lazy-value-info -globaldce
+	28 (O)	 : 12053	 : -loop-unroll -lcssa -globalopt -sroa -inline-cost -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -no-aa -globalopt -lazy-value-info -globaldce
+	29 (O)	 : 12053	 : -loop-unroll -lcssa -globalopt -sroa -inline-cost -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -lazy-value-info -globaldce
+	30 (O)	 : 12053	 : -loop-unroll -lcssa -globalopt -float2int -sroa -inline-cost -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -lazy-value-info -globaldce
+	31 (O)	 : 12053	 : -loop-unroll -lcssa -loop-unswitch -globalopt -float2int -sroa -inline-cost -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -lazy-value-info -globaldce
+	32 (O)	 : 12053	 : -loop-unroll -lcssa -loop-unswitch -globalopt -float2int -sroa -inline-cost -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	33 (O)	 : 12053	 : -loop-unroll -lcssa -loop-unswitch -globalopt -float2int -sroa -inline-cost -loop-deletion -block-freq -dse -argpromotion -instcombine -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	34 (O)	 : 12053	 : -loop-unroll -lcssa -loop-unswitch -globalopt -float2int -sroa -inline-cost -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	35 (O)	 : 12053	 : -loop-unroll -mldst-motion -lcssa -loop-unswitch -globalopt -float2int -sroa -inline-cost -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -barrier -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	36 (O)	 : 12053	 : -loop-unroll -mldst-motion -lcssa -loop-unswitch -globalopt -float2int -sroa -inline-cost -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	37 (O)	 : 12053	 : -loop-unroll -mldst-motion -lcssa -loop-unswitch -globalopt -float2int -block-freq -sroa -inline-cost -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	38 (O)	 : 12053	 : -loop-unroll -mldst-motion -lcssa -loop-unswitch -globalopt -float2int -block-freq -sroa -inline-cost -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	39 (O)	 : 12053	 : -loop-unroll -mldst-motion -lcssa -loop-unswitch -globalopt -float2int -block-freq -sroa -inline-cost -ipsccp -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	40 (O)	 : 12053	 : -loop-unroll -mldst-motion -loop-vectorize -lcssa -loop-unswitch -globalopt -float2int -block-freq -sroa -inline-cost -ipsccp -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	41 (O)	 : 12053	 : -memdep -loop-unroll -mldst-motion -loop-vectorize -lcssa -loop-unswitch -globalopt -float2int -block-freq -sroa -inline-cost -ipsccp -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	42 (O)	 : 12053	 : -memdep -loop-unroll -mldst-motion -loop-vectorize -lcssa -loop-unswitch -globalopt -float2int -block-freq -sroa -inline-cost -ipsccp -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -tti -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	43 (O)	 : 12053	 : -memdep -loop-unroll -mldst-motion -loop-vectorize -lcssa -loop-unswitch -sroa -globalopt -float2int -block-freq -sroa -inline-cost -ipsccp -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -tti -assumption-cache-tracker -indvars -block-freq -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	44 (O)	 : 12053	 : -memdep -loop-unroll -mldst-motion -loop-vectorize -lcssa -loop-unswitch -sroa -globalopt -float2int -block-freq -sroa -inline-cost -ipsccp -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -tti -assumption-cache-tracker -indvars -block-freq -early-cse -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	45 (O)	 : 12053	 : -memdep -loop-unroll -mldst-motion -loop-vectorize -lcssa -loop-unswitch -sroa -globalopt -float2int -block-freq -sroa -inline-cost -scoped-noalias -ipsccp -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -tti -assumption-cache-tracker -indvars -block-freq -early-cse -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	46 (O)	 : 12053	 : -memdep -loop-unroll -mldst-motion -loop-vectorize -memdep -lcssa -loop-unswitch -sroa -globalopt -float2int -block-freq -sroa -inline-cost -scoped-noalias -ipsccp -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -tti -assumption-cache-tracker -indvars -block-freq -early-cse -loop-idiom -loop-idiom -lazy-value-info -indvars -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	47 (O)	 : 12053	 : -memdep -loop-unroll -mldst-motion -loop-vectorize -memdep -lcssa -loop-unswitch -sroa -globalopt -float2int -block-freq -sroa -inline-cost -scoped-noalias -ipsccp -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -tti -assumption-cache-tracker -indvars -block-freq -early-cse -loop-idiom -loop-idiom -lazy-value-info -indvars -memdep -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	48 (O)	 : 12053	 : -memdep -loop-unroll -mldst-motion -loop-vectorize -memdep -lcssa -loop-unswitch -globalopt -sroa -globalopt -float2int -block-freq -sroa -inline-cost -scoped-noalias -ipsccp -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -tti -assumption-cache-tracker -indvars -block-freq -early-cse -loop-idiom -loop-idiom -lazy-value-info -indvars -memdep -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	49 (O)	 : 12053	 : -memdep -loop-unroll -mldst-motion -barrier -loop-vectorize -memdep -lcssa -loop-unswitch -globalopt -sroa -globalopt -float2int -block-freq -sroa -inline-cost -scoped-noalias -ipsccp -loop-deletion -block-freq -dse -argpromotion -instcombine -barrier -correlated-propagation -tti -assumption-cache-tracker -indvars -block-freq -early-cse -loop-idiom -loop-idiom -lazy-value-info -indvars -memdep -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
+	50 (O)	 : 12053	 : -memdep -loop-unroll -mldst-motion -barrier -loop-vectorize -memdep -lcssa -loop-unswitch -globalopt -sroa -globalopt -float2int -block-freq -sroa -inline-cost -scoped-noalias -ipsccp -loop-deletion -block-freq -dse -functionattrs -argpromotion -instcombine -barrier -correlated-propagation -tti -assumption-cache-tracker -indvars -block-freq -early-cse -loop-idiom -loop-idiom -lazy-value-info -indvars -memdep -barrier -ipsccp -lcssa -ipsccp -simplifycfg -barrier -globaldce -ipsccp -loop-unroll -functionattrs -no-aa -globalopt -globalopt -lazy-value-info -globaldce
