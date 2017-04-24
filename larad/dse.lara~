@@ -1,0 +1,106 @@
+/*      Ricardo Nobre                                   *
+ *      Departamento de Engenharia Informática          *
+ *      FEUP, Porto, Portugal                           *
+ *      ricardo.nobre@fe.up.pt                          */
+
+import compiler_setup;
+import target_config;
+import dse_algo;
+import cleanseq;
+
+aspectdef dse
+	input
+		cfile="", maxwidth=64, nexecutions=1, iterations=1000, compilerName="", nr=-1, aditionalflags="";
+	end
+
+	// Sets random seed so that experiments are reproducible
+	Math.seedrandom('specs');
+
+	// Should this two be parametters for the command line tool?
+	var minimumLat = 1;	// This is not being used anymore, althougt it will stay because it may be usefull in future
+
+        // output: exploreParams[];
+        call llvm_config : target_config();
+
+
+        // output: frontend(), compile(), execute(optimLevel), report_latency(), add_timing(), cleanall()
+        call llvm_setup : compiler_setup(cfile, llvm_config.targetName, llvm_config.exporterName, compilerName, nexecutions, aditionalflags);
+
+
+        // INSERT DELTA TIME REPORTING CODE AND GENERATE LLVM IR
+        llvm_setup.cleanall();
+        llvm_setup.add_timing();
+        llvm_setup.frontend();
+
+
+        println("Collecting Clang/LLVM Optimization Levels Performance (in µseconds)...");
+
+	var optimLevelsName = llvm_setup.optimlevelsName; // ["-O0", "-O1", "-O2", "-O3"];
+        var optimLevelsSwitch = llvm_setup.optimlevelsSwitch; // ["", "-O1", "-O2", "-O3"];
+
+	var optimLevelsLatency = [];
+
+	var i, j;
+
+	for(i=0; i < optimLevelsName.length; i++) {
+		var optimLevel = optimLevelsSwitch[i];
+		optimLevelsLatency[i] = llvm_setup.compile_execute_and_report(optimLevel);
+		println("\t" + optimLevelsName[i] + ": " + optimLevelsLatency[i]);
+	}
+
+
+
+        var startTime = (new Date()).getTime() / 1000.0;   // 'getTime()' gets time in miliseconds, so conversion to seconds is needed
+
+	// output: bestSeq, bestSeqLatency[];
+	call llvm_algorithm : dse_algo(llvm_config.exploreParams, llvm_setup.frontend, llvm_setup.compile, llvm_setup.execute_and_report, llvm_setup.compile_execute_and_report, llvm_setup.check_sequence_is_valid, llvm_setup.add_timing, llvm_setup.cleanall, minimumLat, llvm_config.sequences, iterations, maxwidth, optimLevelsLatency, nr);
+
+        var totalTime = ((new Date()).getTime() / 1000.0) - startTime;
+	
+        call cleanseq : cleanseq(llvm_algorithm.bestSeq, llvm_algorithm.bestSeqLatency, llvm_setup.compile, llvm_setup.execute_and_report, minimumLat);
+
+        llvm_setup.cleanall();
+
+        println("\nBest Solution Found...");
+        println("\tSequence : " + cleanseq.bestSeq.join(" "));
+        println("\tLatency  : " + cleanseq.bestSeqLatency.toFixed(0));
+
+        println("\nSpeedup Over Clang/LLVM Optimization Levels...");
+
+	// Determine best latency of all, including latencies from -Ox flags
+        //var bestOfAll = cleanseq.bestSeqLatency;
+        for(i=0; i < optimLevelsName.length; i++) {
+                if(optimLevelsLatency[i] < bestOfAll) {
+                        bestOfAll = optimLevelsLatency[i];
+                }
+        }
+
+	var overBestOptimLevel = Number.MAX_VALUE;
+	var bestOfAllOverBestOptimLevel = Number.MAX_VALUE;
+        for(i=0; i < optimLevelsName.length; i++) {
+		println("\tOver " + optimLevelsName[i] + " : " + (optimLevelsLatency[i] / cleanseq.bestSeqLatency).toFixed(3));
+		println("\tOver " + optimLevelsName[i] + " [including optim levels] : " + (optimLevelsLatency[i] / bestOfAll).toFixed(3));
+		if(((optimLevelsLatency[i] / cleanseq.bestSeqLatency).toFixed(3)) < overBestOptimLevel) {
+			overBestOptimLevel = (optimLevelsLatency[i] / cleanseq.bestSeqLatency).toFixed(3);
+		}
+		if(((optimLevelsLatency[i] / bestOfAll).toFixed(3)) < bestOfAllOverBestOptimLevel) {
+                        bestOfAllOverBestOptimLevel = (optimLevelsLatency[i] / bestOfAll).toFixed(3);
+                }
+
+	}
+
+	println("\tOver -OX : " + overBestOptimLevel);
+        println("\tOver -OX [including optim levels] : " + bestOfAllOverBestOptimLevel);
+
+
+        println("\nDesign Space Exploration Execution Stats...");
+        println("\tNumber Of Iterations : " + llvm_algorithm.total_steps);
+        println("\tExploration Time (in seconds) : " + totalTime.toFixed(3));
+
+
+	// APAGAR ISTO DEPOIS DE ENVIAR OS RESULTADOS AO GUSTAVO
+//	writeFile("./"+cfile+".seq", cleanseq.bestSeq.join(", "));	// Save the best sequence
+//	writeFile("./"+cfile+".speed", (cleanseq.bestSeqLatency.toFixed(0) * overBestOptimLevel) + ";" + cleanseq.bestSeqLatency.toFixed(0) + ";" + overBestOptimLevel.toFixed(6)); // Save fitness result
+//	writeFile("./"+cfile+".temp", totalTime.toFixed(3)); // Save exploration time
+
+end

@@ -82,9 +82,12 @@ aspectdef dse_algo
 
   // ***************************************************************************************************************
   // Create other individuals of initial population
+
+  //println(teste());
+
   var transformSubsetSize = Math.ceil(popSize/maxwidth); // Increment interval of the optimizations number
   var geneMax = 1;
-  for (popId = pop.length; popId < popSize; popId++){
+  /*for (popId = pop.length; popId < popSize; popId++){
     // Create the popId-th individual
     pop[popId] = indiv_maker();
     // pop[popId].loopFactors = Array.init(looprankSize, loopfactors[0]);
@@ -133,7 +136,9 @@ aspectdef dse_algo
     // Debug code
     //println(pop[popId].fitness + ";" + pop[popId].chromosomeSize + ";" + pop[popId].chromosome.join(","));
     //-------------------------------------------------------------------
-  }
+  }*/
+
+  pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, transformSubsetSize, isnooptim, compile_execute_and_report);
   
   // Sort the population by fitness and size of the transformations size
   pop.sort(by('fitness', by('chromosomeSize')));
@@ -157,10 +162,10 @@ aspectdef dse_algo
 
   maxGen=5;
   for (counterGen = 0; counterGen < maxGen; counterGen++) {
-    println("iterations");
-    println (iterations);
-    println("total_steps");
-    println (total_steps);
+    //println("iterations");
+    //println (iterations);
+    //println("total_steps");
+    //println (total_steps);
 
     /*if(total_steps >= iterations) {
       println("breaks from external loop");
@@ -173,7 +178,8 @@ aspectdef dse_algo
     println("--------------------------------------------------------------------------------------------");
     println("Generation " + counterGen + ":");
     println(pop[0].fitness + ";" + pop[0].chromosomeSize + ";" + pop[0].chromosome.join(","));
-    //    println(pop[0].loopFactors.join(",") + ";" + loopranks.join(","));
+	println("");
+        println(pop[0].loopFactors.join(",") + ";" + loopranks.join(","));
     println("--------------------------------------------------------------------------------------------");
 
     // Crossover operator
@@ -187,10 +193,10 @@ aspectdef dse_algo
       // Chose parents
       //var parent1, parent2 = tournament(pop, popSize, tour);
       var parent1, parent2 = roulette(pop, popSize);
-      println("antes do while???????????????????????????????????????????????????????????????????????????/");
+      //println("antes do while???????????????????????????????????????????????????????????????????????????/");
       do {
         //parent1 = tournament(pop, popSize, tour);
-        println("entrou aqui????????????????????????????????????????????????????????????????????????");
+        //println("entrou aqui????????????????????????????????????????????????????????????????????????");
         parent1 = roulette(pop, popSize);  
       } while (parent1 == parent2);
 
@@ -279,7 +285,7 @@ aspectdef dse_algo
       if (vezes < vezesTot) {
 
         if(total_steps >= iterations) {
-          println("Breaks from Generation");
+          //println("Breaks from Generation");
           break;
         }
 
