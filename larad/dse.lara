@@ -14,7 +14,7 @@ aspectdef dse
 	end
 
 	// Sets random seed so that experiments are reproducible
-	Math.seedrandom('specs');
+	//Math.seedrandom('specs');
 
 	// Should this two be parametters for the command line tool?
 	var minimumLat = 1;	// This is not being used anymore, althougt it will stay because it may be usefull in future
@@ -32,6 +32,8 @@ aspectdef dse
         llvm_setup.add_timing();
         llvm_setup.frontend();
 
+
+        println(Math.random());
 
         println("Collecting Clang/LLVM Optimization Levels Performance (in µseconds)...");
 

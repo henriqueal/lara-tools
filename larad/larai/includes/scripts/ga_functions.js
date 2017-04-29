@@ -27,10 +27,10 @@
     for (gene=0; gene < geneMax; gene++) {
 
       var pos = (Math.floor(Math.random()*(exploreParamSize-0.1)));
-      print(pos + " ");
+      //print(pos + " ");
       pop[popId].chromosome[gene] = exploreParams[pos];
     }
-    println("");
+    //println("");
 
     // Increase geneMax
     if (popId == (geneMax * transformSubsetSize)) {
@@ -52,9 +52,9 @@
 
     //ISSO AQUI IMPRIME NA TELA...
     // Debug code
-    println("popId:: " + popId );
-    println(pop[popId].fitness + ";" + pop[popId].chromosomeSize + ";" + pop[popId].chromosome.join(","));
-    println("");
+    //println("popId:: " + popId );
+    //println(pop[popId].fitness + ";" + pop[popId].chromosomeSize + ";" + pop[popId].chromosome.join(","));
+    //println("");
     //-------------------------------------------------------------------
     }
     return pop;
