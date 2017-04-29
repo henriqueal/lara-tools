@@ -41,12 +41,13 @@ aspectdef dse_algo
 	}; 
 
 
-  println("id");
+  println("id");/*
   if(id==0){
   	println (id);
   } else {
 		println( --id);
-	};
+	};*/
+  println(id);
 
 
 

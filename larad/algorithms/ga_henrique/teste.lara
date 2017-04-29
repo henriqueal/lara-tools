@@ -1,7 +1,7 @@
 aspectdef dse_algo
 
 
-	var array = [];
+	/*var array = [];
 
 	array[0] = 30;
 
@@ -46,9 +46,11 @@ aspectdef dse_algo
   	println (id);
   } else {
 		println( --id);
-	};*/
-  println(id);
+	};
+  println(id);*/
 
+
+  println(Math.random());
 
 
 end

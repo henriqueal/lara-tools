@@ -13,49 +13,37 @@
 
 
   var generateInitialPopulation = function(popSize, exploreParams, exploreParamSize, transformSubsetSize, isnooptim, compile_execute_and_report){
+
+    random = 30001;
+
     var pop = [];
     var popId; 
     var geneMax =1;
     for (popId = pop.length; popId < popSize; popId++){
-    // Create the popId-th individual
     pop[popId] = indiv_maker();
-    // pop[popId].loopFactors = Array.init(looprankSize, loopfactors[0]);
 
-    // Mount chromosome of the code transformations
     var gene;
     for (gene=0; gene < geneMax; gene++) {
-      pop[popId].chromosome[gene] = exploreParams[(Math.floor(Math.random()*(exploreParamSize-0.1)))];
-//      println(pop[popId].chromosome[gene]);
+
+      var pos = (Math.floor(Math.random()*(exploreParamSize-0.1)));
+      print(pos + " ");
+      pop[popId].chromosome[gene] = exploreParams[pos];
     }
-//    println("another individual");
+    println("");
 
     // Increase geneMax
     if (popId == (geneMax * transformSubsetSize)) {
       geneMax++;
     }
 
-    //pop[popId].chromosome = pop[popId].chromosome.reverse();
-
-
     // Individual's evaluation
     //-------------------------------------------------------------------
     // Apply code transformations and simulate
     optimLevel = pop[popId].chromosome.filter(isnooptim).join(" ");
     pop[popId].fitness = compile_execute_and_report(optimLevel);
-    //println("fiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiit::");
-    //println(pop[popId].fitness);
-    //println("endfit");
 
-
-    if(check_sequence_is_valid(pop[popId].fitness, optimLevel, total_steps) == false) {
-      pop[popId].fitness = Number.MAX_VALUE;
-      pop[popId].chromosomeSize = maxwidth;
-    } else {
-      // Tranformations quantification (secundary cost function)
-      pop[popId].chromosomeSize = pop[popId].chromosome.length;
-    }
-
-    //total_steps++;
+    //antigamente tinha um check_sequence is valid
+    pop[popId].chromosomeSize = pop[popId].chromosome.length;
   
     // Store individual in historical array
     //histPop[histSize] = indiv_copy(pop[popId]);
@@ -63,7 +51,9 @@
 
     //ISSO AQUI IMPRIME NA TELA...
     // Debug code
-    //println(pop[popId].fitness + ";" + pop[popId].chromosomeSize + ";" + pop[popId].chromosome.join(","));
+    println("popId:: " + popId );
+    println(pop[popId].fitness + ";" + pop[popId].chromosomeSize + ";" + pop[popId].chromosome.join(","));
+    println("");
     //-------------------------------------------------------------------
     }
     return pop;

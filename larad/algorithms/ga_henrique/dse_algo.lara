@@ -35,7 +35,7 @@ aspectdef dse_algo
   var applyunroll = "0";  // Não posso activar isto, pois isto está feito para o REFLECTC
   var maxGen="1000000"; // estava 30, mas isto estava a limitar o numero de iteraçoes
   var maxCount = "25";
-  var popSize="300"; // "300";
+  var popSize="30"; // "300";
   var crossRate="60";
   var mutationRate="40";
   var tour="3";
@@ -88,10 +88,18 @@ aspectdef dse_algo
   var transformSubsetSize = Math.ceil(popSize/maxwidth); // Increment interval of the optimizations number
   var geneMax = 1;
 
+  println("explore");
+  println(exploreParamSize);
+
+  //GERA A POPULACAO INICIAL
   pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, transformSubsetSize, isnooptim, compile_execute_and_report);
   
   // Sort the population by fitness and size of the transformations size
+
+  println("The best is: ");
   pop.sort(by('fitness', by('chromosomeSize')));
+  println(pop[0].fitness + ";" + pop[0].chromosomeSize + ";" + pop[0].chromosome.join(","));
+	println("");
   var bestlatency = pop[0].fitness; // Store the best latency
   // ***************************************************************************************************************
   println(bestlatency);
@@ -125,13 +133,13 @@ aspectdef dse_algo
     var randNumber;
 
     // Debug code
-    println("--------------------------------------------------------------------------------------------");
+    /*println("--------------------------------------------------------------------------------------------");
     println("Generation " + counterGen + ":");
     println(pop[0].fitness + ";" + pop[0].chromosomeSize + ";" + pop[0].chromosome.join(","));
 	println("");
         println(pop[0].loopFactors.join(",") + ";" + loopranks.join(","));
     println("--------------------------------------------------------------------------------------------");
-
+    */
     // Crossover operator
     //var novo = 0;
     var child1;
