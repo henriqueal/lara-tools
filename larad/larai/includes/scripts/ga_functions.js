@@ -199,8 +199,8 @@
     return -1;
   };
   
-  // Tournament function (Sorted Array Version)
-  var tournament = function (indiv, size, qty) {
+  // Tournment function (Sorted Array Version)
+  var tournment = function (indiv, size, qty) {
     println("--------------------------------------------------------------------------------------------------------");
     var counter;
     var bestId = Math.floor(Math.random()*(size-0.1));
@@ -215,26 +215,21 @@
     return (bestId);
   };
 
-  var roulette = function (indiv, size) {
-    
-    //println("##########################################################################################################");
+  var roulette = function (population, size) {
+
     var roulette = [];
-    var id;
+    var id=0;
     var random_number;
-    //println("fit");
-    roulette[0] = indiv[0].fitness;
+
+    roulette[0] = population[0].fitness;
     for(i=1; i< size; i++) {
-      roulette[i] = roulette[i-1] + indiv[i].fitness;
-      //println(indiv[i].fitness);
+      roulette[i] = roulette[i-1] + population[i].fitness;
     };
+
     random_number = Math.random() * roulette[size - 1];
-    id = 0;
     while(random_number > roulette[id]){
       id++;
     };
-
-    //println("id");
-    //println(id);
     return (id);
 
   };
