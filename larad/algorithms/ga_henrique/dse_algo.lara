@@ -96,6 +96,14 @@ aspectdef dse_algo
   //GERA A POPULACAO INICIAL
   pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, transformSubsetSize, isnooptim, compile_execute_and_report);
   
+  // Store individual in historical array
+  //histPop[histSize] = indiv_copy(pop[id]);
+  //histSize++;
+
+  //println("id:: " + id );
+  //println(population[id].fitness + ";" + population[id].chromosomeSize + ";" + population[id].chromosome.join(","));
+  //println("");
+
   // Sort the population by fitness and size of the transformations size
 
   //println("The best is: ");

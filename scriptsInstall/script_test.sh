@@ -23,5 +23,5 @@ larad
 /opt/lara-tools/larad/targets/leon3/llvm371/scripts/test.sh /home/henrique/Benchmarks/TEXAS_42_LEON3/DSP_autocor_c/DSP_autocor_c.c
 
 # DSE
-larad -compiler=llvm371 -target=leon3 -algo=sa -nsteps=100 -seqlen=128 -nexec=1 ~/Benchmarks/TEXAS_42_LEON3/DSP_autocor_c/DSP_autocor_c.c
-
+#larad -compiler=llvm371 -target=leon3 -algo=sa -nsteps=100 -seqlen=128 -nexec=1 ~/Benchmarks/TEXAS_42_LEON3/DSP_autocor_c/DSP_autocor_c.c
+cd /tmp; larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -nsteps=100 -seqlen=128 -nexec=1 ~/Benchmarks/TEXAS_42_LEON3/DSP_autocor_c/DSP_autocor_c.c

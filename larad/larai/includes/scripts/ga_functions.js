@@ -14,50 +14,45 @@
 
   var generateInitialPopulation = function(popSize, exploreParams, exploreParamSize, transformSubsetSize, isnooptim, compile_execute_and_report){
 
-    random = 30001;
+    var vet_dist_prob = [];
+    var population = [];
+    var id;
+    var gene; 
+    var lengthChromossome;
+    var sortChromossomeLength;
+    var i;
 
-    var pop = [];
-    var popId; 
-    var geneMax =1;
-    for (popId = pop.length; popId < popSize; popId++){
-    pop[popId] = indiv_maker();
-
-		Math.random();
-    var gene;
-    for (gene=0; gene < geneMax; gene++) {
-
-      var pos = (Math.floor(Math.random()*(exploreParamSize-0.1)));
-      //print(pos + " ");
-      pop[popId].chromosome[gene] = exploreParams[pos];
-    }
-    //println("");
-
-    // Increase geneMax
-    if (popId == (geneMax * transformSubsetSize)) {
-      geneMax++;
+    vet_dist_prob[0]=0;
+    //generating chromossome probability by function: f(i)=i*10
+    for (i=1; i<=exploreParamSize;i++){
+      vet_dist_prob[i] = vet_dist_prob[i-1] + (i*10); 
     }
 
-    // Individual's evaluation
-    //-------------------------------------------------------------------
-    // Apply code transformations and simulate
-    optimLevel = pop[popId].chromosome.filter(isnooptim).join(" ");
-    pop[popId].fitness = compile_execute_and_report(optimLevel);
+    for (id = population.length; id < popSize; id++){
+      
+      population[id] = indiv_maker();
+      sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[exploreParamSize]);
+      
+      for(i = 1; i <= exploreParamSize; i++){
+        if(sortChromossomeLength <= vet_dist_prob[i]){
+          lengthChromossome = i;
+          break;
+        }
+      }
+		  
+      for (gene=0; gene < lengthChromossome; gene++) {
+        var pos = Math.floor(Math.random()*exploreParamSize);  
+        population[id].chromosome[gene] = exploreParams[pos];
+      }
+      
+      // Apply code transformations and simulate
+      optimLevel = population[id].chromosome.filter(isnooptim).join(" ");
+      population[id].fitness = compile_execute_and_report(optimLevel);
 
-    //antigamente tinha um check_sequence is valid
-    pop[popId].chromosomeSize = pop[popId].chromosome.length;
-  
-    // Store individual in historical array
-    //histPop[histSize] = indiv_copy(pop[popId]);
-    //histSize++;
-
-    //ISSO AQUI IMPRIME NA TELA...
-    // Debug code
-    //println("popId:: " + popId );
-    //println(pop[popId].fitness + ";" + pop[popId].chromosomeSize + ";" + pop[popId].chromosome.join(","));
-    //println("");
-    //-------------------------------------------------------------------
+      //antigamente tinha um check_sequence is valid
+      population[id].chromosomeSize = population[id].chromosome.length;  
     }
-    return pop;
+    return population;
   };
 
   // Argument of object.sort() - extended version for minimization
