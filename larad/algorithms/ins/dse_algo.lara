@@ -1,0 +1,126 @@
+/*	Ricardo Nobre					*
+ *	Departamento de Engenharia Informática		*
+ *	FEUP, Porto, Portugal				*
+ *	ricardo.nobre@fe.up.pt				*/
+
+aspectdef dse_algo
+
+        input
+                exploreParams = [], frontend, compile, execute_and_report, compile_execute_and_report, check_sequence_is_valid, add_timing, cleanall, minimumLat = 100, sequences, iterations, maxwidth, optimLevelsLatency, nr;
+        end
+        output
+                bestSeq, bestSeqLatency, total_steps;
+        end
+
+
+
+	function isnooptim(x){
+		if(x !== "NOOPTIM") {
+    			return true;
+		}
+	}
+
+        var optimLevel = ""; //"-O0";   // No optimization
+        var latencyRef = optimLevelsLatency[0];
+
+	if(latencyRef == 0) {
+		for(var i=0; i<optimLevelsLatency.length; i++) {
+			if(optimLevelsLatency[i] > 0) {
+				latencyRef = optimLevelsLatency[i];
+			}
+		}
+	}
+
+	// Candidate compiler sequence starts as an empty list
+	var currentConfig = new Array();
+
+	// starting latency	
+	var currentLatency = latencyRef; // Number.MAX_VALUE;	
+		
+	var num_steps = 1;	// Number of steps per temperature // changed from 1 to 10 in 11 may 2013
+	var k;
+
+	// TODO: use time limit to limit amount of time used for DSE
+	//var timeLimit = 2 * 60;	// 2 minutes
+
+	total_steps = 0;
+
+	println("\nPerforming DSE iterations using Insertion");
+
+	var changed = true;
+
+	outerloop:
+	while(changed == true) {
+		changed = false;
+
+		for(i=0; i < exploreParams.length; i++) {
+			// println("considering: " + exploreParams[i]);
+			var candidateConfig = currentConfig.slice(0);
+			var candidateLatency = currentLatency;
+
+			for(j=0; j < (currentConfig.length + 1); j++) {
+
+				if(total_steps >= iterations) {
+					currentConfig = candidateConfig.slice(0);
+					currentLatency = candidateLatency;
+					break outerloop;
+				}
+				
+				// println("considering position: " + j);
+
+				var newPass = exploreParams[i];
+
+				newConfig = currentConfig.slice(0,j);
+				newConfig.push(newPass);
+				newConfig = newConfig.concat(currentConfig.slice(j)) ;
+
+
+				// DO NOT RESTRICT THE NUMBER OF PASSES
+				/*
+                        	// Trim sequence to MAX SEQUENCE LENGTH
+				if(newConfig.length > maxwidth) {
+                        		if(Math.random() < 0.5) {
+                                		newConfig = newConfig.slice(0, maxwidth);
+                        		}
+                        	else {
+                                	newConfig = newConfig.slice(1, maxwidth + 1);
+                        		}
+				}
+				*/
+
+				optimLevel = newConfig.filter(isnooptim).join(" ");
+				newLatency = compile_execute_and_report(optimLevel);
+
+				total_steps = total_steps + 1;
+
+                                println("\t" + total_steps + "\t : " + newLatency + "\t : " + newConfig.filter(isnooptim).join(" ") + "");
+
+				if(check_sequence_is_valid(newLatency, optimLevel, total_steps) == false) {
+					continue;       // goes to the next iteration ignoring previous configuration
+				}
+
+				if(newLatency < candidateLatency) {	// TODO: Consider '<' instead of '<=' because it will make the sequences smaller
+					candidateLatency = newLatency;
+					candidateConfig = newConfig;      // TODO: maybe needed to do slice(0)
+					changed = true;
+	                                // println("\t" + total_steps + "\t : " + newLatency + "\t : " + newConfig.filter(isnooptim).join(" ") + "");
+
+				}
+			}
+
+
+			currentConfig = candidateConfig.slice(0);
+			currentLatency = candidateLatency;
+		}
+
+	}
+
+
+
+
+
+	bestSeq = currentConfig.filter(isnooptim);
+	bestSeqLatency = currentLatency;
+
+
+end

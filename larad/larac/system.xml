@@ -1,0 +1,28 @@
+<System>
+	 <Objects>
+			<Math/>
+			<System/>
+			<project/>
+			<attributes/>
+			<sel/>
+			<undefined/>
+	 </Objects>
+	 <Functions>
+			<print/>
+			<fprint/>
+			<fclose/>									
+			<show/>
+			<eval/>
+			<parseInt/>
+			<parseFloat/>
+			<escape/>
+			<unescape/> 
+	 </Functions>
+	 <Constructors>
+			<Object/>
+			<Array/>
+			<Date/>
+			<String/> 
+			<RegExp/>
+	 </Constructors>
+</System>

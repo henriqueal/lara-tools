@@ -1,0 +1,11 @@
+ -==================================================-
+  1. Setting up LARA
+ -==================================================-
+Concerning language: C
+XML input files: /opt/lara-tools/larad/larai/resources/
+Output directory: ./
+Path included for import: [/opt/lara-tools/larad/larai/]
+Running on: Linux
+Reading file: dse.lara
+Error: Could not parse
+	/opt/lara-tools/larad/bin/dse.lara (Arquivo ou diretório não encontrado)

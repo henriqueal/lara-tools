@@ -1,0 +1,60 @@
+aspectdef dse_algo
+
+
+	/*var array = [];
+
+	array[0] = 30;
+
+	array[1] = 100;
+
+	array[2] = 70;
+
+	array[3] = 50;
+
+
+
+	println(array.length);
+	println("teste");
+
+
+
+
+	//var roulette = function (indiv, size) {
+	var max_roulette;
+  var roulette = [];
+	var id;
+  var random_number;
+
+  roulette[0] = array[0];
+  for(i=1; i < array.length; i++) {
+		roulette[i] = roulette[i-1] + array[i];
+    			
+	};
+
+  random_number = Math.random() * roulette[roulette.length - 1];	
+  println(random_number);
+  
+  id=0;
+          
+  while(random_number >= roulette[id]){
+		id++;
+	}; 
+
+
+  println("id");/*
+  if(id==0){
+  	println (id);
+  } else {
+		println( --id);
+	};
+  println(id);*/
+
+
+  println(Math.random());
+
+
+end
+
+
+
+

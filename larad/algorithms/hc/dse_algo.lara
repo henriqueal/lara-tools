@@ -1,0 +1,107 @@
+/*      Ricardo Nobre                                   *
+ *      Departamento de Engenharia Informática          *
+ *      FEUP, Porto, Portugal                           * 
+ *      ricardo.nobre@fe.up.pt                          *
+ *							*
+ *	Algorithm: Hill Climber				*
+ *							*/
+
+
+aspectdef dse_algo
+
+        input
+                exploreParams = [], frontend, compile, execute_and_report, compile_execute_and_report, check_sequence_is_valid, add_timing, cleanall, minimumLat = 100, sequences, iterations, maxwidth, optimLevelsLatency, nr;
+        end
+
+        output
+                bestSeq, bestSeqLatency, total_steps;
+        end
+
+
+	function isnooptim(x){
+		if(x !== "NOOPTIM") {
+    			return true;
+		}
+	}
+
+	var i, i0, l_x;
+	var inputstring = ""; 
+
+	// Candidate compiler sequence starts as an empty list
+	var currentConfig = new Array();
+
+	// starting latency	
+	var currentLatency = Number.MAX_VALUE;	
+	
+
+	var latencyRef = optimLevelsLatency[0];
+	var optimLevel = "";
+
+        if(latencyRef == 0) {
+                for(var i=0; i<optimLevelsLatency.length; i++) {
+                        if(optimLevelsLatency[i] > 0) {
+                                latencyRef = optimLevelsLatency[i];
+                        }
+                }
+        }
+
+	var k;
+
+	bestSeq = new Array();
+	bestSeqLatency = Number.MAX_VALUE;
+
+	total_steps = 0;
+
+	println("\nPerforming " + iterations + " DSE iterations using Hill Climber considering a maximum of " + maxwidth + " compiler passes per sequence...");
+
+	for(var iter=0; iter < iterations; iter = iter + 1) {
+
+		total_steps = total_steps + 1;
+
+		var newConfig = new Array();
+		newConfig = currentConfig.slice(0);
+
+
+		if(newConfig.length < maxwidth) {
+
+			var rand_posConfigList = Math.floor(Math.random()*(currentConfig.length + 1));    // Calculates index of random compiler pass in the candidate compiler sequence
+			// println(rand_posConfigList);
+			var newPass = exploreParams[Math.floor((Math.random() * exploreParams.length) + 0)];
+			newConfig = currentConfig.slice(0,rand_posConfigList);
+			newConfig.push(newPass);
+			newConfig = newConfig.concat(currentConfig.slice(rand_posConfigList)) ;
+		}
+		else {
+			var rand_posConfigList = Math.floor(Math.random()*currentConfig.length);
+			var newPass = exploreParams[Math.floor((Math.random() * exploreParams.length) + 0)];
+			newConfig[rand_posConfigList] = newPass;
+		}
+
+
+		optimLevel = newConfig.filter(isnooptim).join(" ");
+
+		newLatency = compile_execute_and_report(optimLevel);
+
+		if(check_sequence_is_valid(newLatency, optimLevel, total_steps) == false) {
+			continue;       // goes to the next iteration ignoring previous configuration
+		}
+
+		if(newLatency <= currentLatency) {
+			currentLatency = newLatency;
+			currentConfig = newConfig;	// TODO: maybe needed to do slice(0)
+			// println("BETTER SOLUTION ACCEPTED");
+			println("\t" + total_steps + " (O)\t : " + currentLatency + "\t : " + currentConfig.filter(isnooptim).join(" ") + "");
+
+			if(newLatency <= bestSeqLatency) {
+				bestSeqLatency = newLatency;
+				bestSeq = newConfig.filter(isnooptim);
+			}
+		}
+		else {
+			// println("WORST SOLUTION NOT ACCEPTED");
+			println("\t" + total_steps + " (X)\t : " + newLatency + "\t : " + newConfig.filter(isnooptim).join(" ") + "");
+
+		}
+	}
+
+end

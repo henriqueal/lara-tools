@@ -1,0 +1,2481 @@
+<aspects main="dse_algo">
+  <aspect coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:1:1:366:3" name="dse_algo">
+    <parameters>
+      <input>
+        <parameter name="exploreParams" type="array">
+          <literal type="array"/>
+        </parameter>
+        <parameter name="frontend" type="undefined"/>
+        <parameter name="compile" type="undefined"/>
+        <parameter name="execute_and_report" type="undefined"/>
+        <parameter name="compile_execute_and_report" type="undefined"/>
+        <parameter name="check_sequence_is_valid" type="undefined"/>
+        <parameter name="add_timing" type="undefined"/>
+        <parameter name="cleanall" type="undefined"/>
+        <parameter name="minimumLat" type="int">
+          <literal type="int" value="100"/>
+        </parameter>
+        <parameter name="sequences" type="undefined"/>
+        <parameter name="iterations" type="undefined"/>
+        <parameter name="maxwidth" type="undefined"/>
+        <parameter name="optimLevelsLatency" type="undefined"/>
+        <parameter name="nr" type="undefined"/>
+      </input>
+      <output>
+        <parameter name="bestSeq" type="undefined"/>
+        <parameter name="bestSeqLatency" type="undefined"/>
+        <parameter name="total_steps" type="undefined"/>
+      </output>
+    </parameters>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:16:9:16:16" name="fndecl">
+      <expression>
+        <op name="FN">
+          <literal type="string" value="isnooptim"/>
+          <literal type="string" value="x"/>
+          <body>
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:17:17:17:18" name="if">
+              <expression desc="condition">
+                <op name="NSEQ">
+                  <id name="x"/>
+                  <literal type="string" value="NOOPTIM"/>
+                </op>
+              </expression>
+              <code desc="then">
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:17:37:19:17" name="return">
+                  <expression>
+                    <literal type="boolean" value="true"/>
+                  </expression>
+                </statement>
+              </code>
+              <code desc="else"/>
+            </statement>
+          </body>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:22:9:22:28" name="vardecl">
+      <expression>
+        <literal type="string" value="optimLevel"/>
+      </expression>
+      <expression desc="init">
+        <literal type="string" value=""/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:23:9:23:47" name="vardecl">
+      <expression>
+        <literal type="string" value="latencyRef"/>
+      </expression>
+      <expression desc="init">
+        <property>
+          <id name="optimLevelsLatency"/>
+          <literal type="int" value="0"/>
+        </property>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:26:9:26:10" name="if">
+      <expression desc="condition">
+        <op name="EQ">
+          <id name="latencyRef"/>
+          <literal type="int" value="0"/>
+        </op>
+      </expression>
+      <code desc="then">
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:27:17:27:19" name="loop">
+          <code desc="init">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:27:17:27:19" name="vardecl">
+              <expression>
+                <literal type="string" value="i"/>
+              </expression>
+              <expression desc="init">
+                <literal type="int" value="0"/>
+              </expression>
+            </statement>
+          </code>
+          <expression desc="condition">
+            <op name="LT">
+              <id name="i"/>
+              <property>
+                <id name="optimLevelsLatency"/>
+                <literal type="string" value="length"/>
+              </property>
+            </op>
+          </expression>
+          <code desc="body">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:28:25:28:26" name="if">
+              <expression desc="condition">
+                <op name="GT">
+                  <property>
+                    <id name="optimLevelsLatency"/>
+                    <id name="i"/>
+                  </property>
+                  <literal type="int" value="0"/>
+                </op>
+              </expression>
+              <code desc="then">
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:29:33:29:42" name="expr">
+                  <expression>
+                    <op name="ASSIGN">
+                      <id name="latencyRef"/>
+                      <property>
+                        <id name="optimLevelsLatency"/>
+                        <id name="i"/>
+                      </property>
+                    </op>
+                  </expression>
+                </statement>
+              </code>
+              <code desc="else"/>
+            </statement>
+          </code>
+          <expression desc="next-iterator">
+            <op name="INCS">
+              <id name="i"/>
+            </op>
+          </expression>
+        </statement>
+      </code>
+      <code desc="else"/>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:35:9:35:30" name="vardecl">
+      <expression>
+        <literal type="string" value="applyunroll"/>
+      </expression>
+      <expression desc="init">
+        <literal type="string" value="0"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:36:9:36:29" name="vardecl">
+      <expression>
+        <literal type="string" value="maxGen"/>
+      </expression>
+      <expression desc="init">
+        <literal type="string" value="1000000"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:37:9:37:28" name="vardecl">
+      <expression>
+        <literal type="string" value="maxCount"/>
+      </expression>
+      <expression desc="init">
+        <literal type="string" value="25"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:38:9:38:26" name="vardecl">
+      <expression>
+        <literal type="string" value="popSize"/>
+      </expression>
+      <expression desc="init">
+        <literal type="string" value="300"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:39:9:39:27" name="vardecl">
+      <expression>
+        <literal type="string" value="crossRate"/>
+      </expression>
+      <expression desc="init">
+        <literal type="string" value="60"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:40:9:40:30" name="vardecl">
+      <expression>
+        <literal type="string" value="mutationRate"/>
+      </expression>
+      <expression desc="init">
+        <literal type="string" value="40"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:41:9:41:21" name="vardecl">
+      <expression>
+        <literal type="string" value="tour"/>
+      </expression>
+      <expression desc="init">
+        <literal type="string" value="3"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:43:9:43:19" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <id name="total_steps"/>
+          <literal type="int" value="0"/>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:46:9:46:25" name="vardecl">
+      <expression>
+        <literal type="string" value="deltaMin"/>
+      </expression>
+      <expression desc="init">
+        <literal type="int" value="1"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:49:9:49:25" name="vardecl">
+      <expression>
+        <literal type="string" value="vezesTot"/>
+      </expression>
+      <expression desc="init">
+        <literal type="int" value="4"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:56:9:56:52" name="vardecl">
+      <expression>
+        <literal type="string" value="exploreParamSize"/>
+      </expression>
+      <expression desc="init">
+        <property>
+          <id name="exploreParams"/>
+          <literal type="string" value="length"/>
+        </property>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:59:9:59:17" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <id name="crossRate"/>
+          <op name="DIV">
+            <id name="crossRate"/>
+            <literal type="int" value="100"/>
+          </op>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:60:9:60:20" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <id name="mutationRate"/>
+          <op name="DIV">
+            <id name="mutationRate"/>
+            <literal type="int" value="100"/>
+          </op>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:63:9:63:27" name="vardecl">
+      <expression>
+        <literal type="string" value="loopranks"/>
+      </expression>
+      <expression desc="init">
+        <literal type="array"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:64:9:64:29" name="vardecl">
+      <expression>
+        <literal type="string" value="looprankSize"/>
+      </expression>
+      <expression desc="init">
+        <literal type="int" value="0"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:65:9:65:29" name="vardecl">
+      <expression>
+        <literal type="string" value="loopfactors"/>
+      </expression>
+      <expression desc="init">
+        <literal type="array"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:73:9:73:20" name="vardecl">
+      <expression>
+        <literal type="string" value="speedup"/>
+      </expression>
+      <expression desc="init"/>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:76:9:76:25" name="vardecl">
+      <expression>
+        <literal type="string" value="histPop"/>
+      </expression>
+      <expression desc="init">
+        <literal type="array"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:77:9:77:25" name="vardecl">
+      <expression>
+        <literal type="string" value="histSize"/>
+      </expression>
+      <expression desc="init">
+        <literal type="int" value="0"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:78:9:78:21" name="vardecl">
+      <expression>
+        <literal type="string" value="pop"/>
+      </expression>
+      <expression desc="init">
+        <literal type="array"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:79:9:79:18" name="vardecl">
+      <expression>
+        <literal type="string" value="popId"/>
+      </expression>
+      <expression desc="init"/>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:82:9:82:59" name="vardecl">
+      <expression>
+        <literal type="string" value="popTotal"/>
+      </expression>
+      <expression desc="init">
+        <call>
+          <method>
+            <property>
+              <id name="Math"/>
+              <literal type="string" value="round"/>
+            </property>
+          </method>
+          <argument>
+            <op name="MULT">
+              <id name="popSize"/>
+              <op name="ADD">
+                <literal type="int" value="1"/>
+                <id name="crossRate"/>
+              </op>
+            </op>
+          </argument>
+        </call>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:83:9:83:10" name="if">
+      <expression desc="condition">
+        <op name="EQ">
+          <op name="MOD">
+            <id name="popTotal"/>
+            <literal type="int" value="2"/>
+          </op>
+          <literal type="int" value="1"/>
+        </op>
+      </expression>
+      <code desc="then">
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:84:17:84:24" name="expr">
+          <expression>
+            <op name="INCS">
+              <id name="popTotal"/>
+            </op>
+          </expression>
+        </statement>
+      </code>
+      <code desc="else"/>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:97:9:97:62" name="vardecl">
+      <expression>
+        <literal type="string" value="transformSubsetSize"/>
+      </expression>
+      <expression desc="init">
+        <call>
+          <method>
+            <property>
+              <id name="Math"/>
+              <literal type="string" value="ceil"/>
+            </property>
+          </method>
+          <argument>
+            <op name="DIV">
+              <id name="popSize"/>
+              <id name="maxwidth"/>
+            </op>
+          </argument>
+        </call>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:98:9:98:24" name="vardecl">
+      <expression>
+        <literal type="string" value="geneMax"/>
+      </expression>
+      <expression desc="init">
+        <literal type="int" value="1"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:99:9:99:11" name="loop">
+      <code desc="init">
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:99:9:99:11" name="expr">
+          <expression>
+            <op name="ASSIGN">
+              <id name="popId"/>
+              <property>
+                <id name="pop"/>
+                <literal type="string" value="length"/>
+              </property>
+            </op>
+          </expression>
+        </statement>
+      </code>
+      <expression desc="condition">
+        <op name="LT">
+          <id name="popId"/>
+          <id name="popSize"/>
+        </op>
+      </expression>
+      <code desc="body">
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:101:17:101:19" name="expr">
+          <expression>
+            <op name="ASSIGN">
+              <property>
+                <id name="pop"/>
+                <id name="popId"/>
+              </property>
+              <call>
+                <method>
+                  <id name="indiv_maker"/>
+                </method>
+              </call>
+            </op>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:105:17:105:25" name="vardecl">
+          <expression>
+            <literal type="string" value="gene"/>
+          </expression>
+          <expression desc="init"/>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:106:17:106:19" name="loop">
+          <code desc="init">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:106:17:106:19" name="expr">
+              <expression>
+                <op name="ASSIGN">
+                  <id name="gene"/>
+                  <literal type="int" value="0"/>
+                </op>
+              </expression>
+            </statement>
+          </code>
+          <expression desc="condition">
+            <op name="LT">
+              <id name="gene"/>
+              <id name="geneMax"/>
+            </op>
+          </expression>
+          <code desc="body">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:107:25:107:27" name="expr">
+              <expression>
+                <op name="ASSIGN">
+                  <property>
+                    <property>
+                      <property>
+                        <id name="pop"/>
+                        <id name="popId"/>
+                      </property>
+                      <literal type="string" value="chromosome"/>
+                    </property>
+                    <id name="gene"/>
+                  </property>
+                  <property>
+                    <id name="exploreParams"/>
+                    <call>
+                      <method>
+                        <property>
+                          <id name="Math"/>
+                          <literal type="string" value="floor"/>
+                        </property>
+                      </method>
+                      <argument>
+                        <op name="MULT">
+                          <call>
+                            <method>
+                              <property>
+                                <id name="Math"/>
+                                <literal type="string" value="random"/>
+                              </property>
+                            </method>
+                          </call>
+                          <op name="SUB">
+                            <id name="exploreParamSize"/>
+                            <literal type="float" value="0.1"/>
+                          </op>
+                        </op>
+                      </argument>
+                    </call>
+                  </property>
+                </op>
+              </expression>
+            </statement>
+          </code>
+          <expression>
+            <op name="INCS">
+              <id name="gene"/>
+            </op>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:111:17:111:18" name="if">
+          <expression desc="condition">
+            <op name="EQ">
+              <id name="popId"/>
+              <op name="MULT">
+                <id name="geneMax"/>
+                <id name="transformSubsetSize"/>
+              </op>
+            </op>
+          </expression>
+          <code desc="then">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:112:25:112:31" name="expr">
+              <expression>
+                <op name="INCS">
+                  <id name="geneMax"/>
+                </op>
+              </expression>
+            </statement>
+          </code>
+          <code desc="else"/>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:121:17:121:26" name="expr">
+          <expression>
+            <op name="ASSIGN">
+              <id name="optimLevel"/>
+              <call>
+                <method>
+                  <property>
+                    <call>
+                      <method>
+                        <property>
+                          <property>
+                            <property>
+                              <id name="pop"/>
+                              <id name="popId"/>
+                            </property>
+                            <literal type="string" value="chromosome"/>
+                          </property>
+                          <literal type="string" value="filter"/>
+                        </property>
+                      </method>
+                      <argument>
+                        <id name="isnooptim"/>
+                      </argument>
+                    </call>
+                    <literal type="string" value="join"/>
+                  </property>
+                </method>
+                <argument>
+                  <literal type="string" value=" "/>
+                </argument>
+              </call>
+            </op>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:122:17:122:19" name="expr">
+          <expression>
+            <op name="ASSIGN">
+              <property>
+                <property>
+                  <id name="pop"/>
+                  <id name="popId"/>
+                </property>
+                <literal type="string" value="fitness"/>
+              </property>
+              <call>
+                <method>
+                  <id name="compile_execute_and_report"/>
+                </method>
+                <argument>
+                  <id name="optimLevel"/>
+                </argument>
+              </call>
+            </op>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:124:17:124:18" name="if">
+          <expression desc="condition">
+            <op name="EQ">
+              <call>
+                <method>
+                  <id name="check_sequence_is_valid"/>
+                </method>
+                <argument>
+                  <property>
+                    <property>
+                      <id name="pop"/>
+                      <id name="popId"/>
+                    </property>
+                    <literal type="string" value="fitness"/>
+                  </property>
+                </argument>
+                <argument>
+                  <id name="optimLevel"/>
+                </argument>
+                <argument>
+                  <id name="total_steps"/>
+                </argument>
+              </call>
+              <literal type="boolean" value="false"/>
+            </op>
+          </expression>
+          <code desc="then">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:125:25:125:27" name="expr">
+              <expression>
+                <op name="ASSIGN">
+                  <property>
+                    <property>
+                      <id name="pop"/>
+                      <id name="popId"/>
+                    </property>
+                    <literal type="string" value="fitness"/>
+                  </property>
+                  <property>
+                    <id name="Number"/>
+                    <literal type="string" value="MAX_VALUE"/>
+                  </property>
+                </op>
+              </expression>
+            </statement>
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:126:25:126:27" name="expr">
+              <expression>
+                <op name="ASSIGN">
+                  <property>
+                    <property>
+                      <id name="pop"/>
+                      <id name="popId"/>
+                    </property>
+                    <literal type="string" value="chromosomeSize"/>
+                  </property>
+                  <id name="maxwidth"/>
+                </op>
+              </expression>
+            </statement>
+          </code>
+          <code desc="else">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:131:25:131:27" name="expr">
+              <expression>
+                <op name="ASSIGN">
+                  <property>
+                    <property>
+                      <id name="pop"/>
+                      <id name="popId"/>
+                    </property>
+                    <literal type="string" value="chromosomeSize"/>
+                  </property>
+                  <property>
+                    <property>
+                      <property>
+                        <id name="pop"/>
+                        <id name="popId"/>
+                      </property>
+                      <literal type="string" value="chromosome"/>
+                    </property>
+                    <literal type="string" value="length"/>
+                  </property>
+                </op>
+              </expression>
+            </statement>
+          </code>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:134:17:134:27" name="expr">
+          <expression>
+            <op name="INCS">
+              <id name="total_steps"/>
+            </op>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:137:17:137:23" name="expr">
+          <expression>
+            <op name="ASSIGN">
+              <property>
+                <id name="histPop"/>
+                <id name="histSize"/>
+              </property>
+              <call>
+                <method>
+                  <id name="indiv_copy"/>
+                </method>
+                <argument>
+                  <property>
+                    <id name="pop"/>
+                    <id name="popId"/>
+                  </property>
+                </argument>
+              </call>
+            </op>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:138:17:138:24" name="expr">
+          <expression>
+            <op name="INCS">
+              <id name="histSize"/>
+            </op>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:141:17:141:23" name="expr">
+          <expression>
+            <call>
+              <method>
+                <id name="println"/>
+              </method>
+              <argument>
+                <op name="ADD">
+                  <op name="ADD">
+                    <op name="ADD">
+                      <op name="ADD">
+                        <property>
+                          <property>
+                            <id name="pop"/>
+                            <id name="popId"/>
+                          </property>
+                          <literal type="string" value="fitness"/>
+                        </property>
+                        <literal type="string" value=";"/>
+                      </op>
+                      <property>
+                        <property>
+                          <id name="pop"/>
+                          <id name="popId"/>
+                        </property>
+                        <literal type="string" value="chromosomeSize"/>
+                      </property>
+                    </op>
+                    <literal type="string" value=";"/>
+                  </op>
+                  <call>
+                    <method>
+                      <property>
+                        <property>
+                          <property>
+                            <id name="pop"/>
+                            <id name="popId"/>
+                          </property>
+                          <literal type="string" value="chromosome"/>
+                        </property>
+                        <literal type="string" value="join"/>
+                      </property>
+                    </method>
+                    <argument>
+                      <literal type="string" value=","/>
+                    </argument>
+                  </call>
+                </op>
+              </argument>
+            </call>
+          </expression>
+        </statement>
+      </code>
+      <expression>
+        <op name="INCS">
+          <id name="popId"/>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:146:9:146:11" name="expr">
+      <expression>
+        <call>
+          <method>
+            <property>
+              <id name="pop"/>
+              <literal type="string" value="sort"/>
+            </property>
+          </method>
+          <argument>
+            <call>
+              <method>
+                <id name="by"/>
+              </method>
+              <argument>
+                <literal type="string" value="fitness"/>
+              </argument>
+              <argument>
+                <call>
+                  <method>
+                    <id name="by"/>
+                  </method>
+                  <argument>
+                    <literal type="string" value="chromosomeSize"/>
+                  </argument>
+                </call>
+              </argument>
+            </call>
+          </argument>
+        </call>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:147:9:147:41" name="vardecl">
+      <expression>
+        <literal type="string" value="bestlatency"/>
+      </expression>
+      <expression desc="init">
+        <property>
+          <property>
+            <id name="pop"/>
+            <literal type="int" value="0"/>
+          </property>
+          <literal type="string" value="fitness"/>
+        </property>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:151:9:151:15" name="expr">
+      <expression>
+        <call>
+          <method>
+            <id name="println"/>
+          </method>
+          <argument>
+            <op name="ADD">
+              <literal type="string" value="pop size: "/>
+              <property>
+                <id name="pop"/>
+                <literal type="string" value="length"/>
+              </property>
+            </op>
+          </argument>
+        </call>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:154:9:154:11" name="loop">
+      <code desc="init">
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:154:9:154:11" name="expr">
+          <expression>
+            <op name="ASSIGN">
+              <id name="popId"/>
+              <id name="popSize"/>
+            </op>
+          </expression>
+        </statement>
+      </code>
+      <expression desc="condition">
+        <op name="LT">
+          <id name="popId"/>
+          <id name="popTotal"/>
+        </op>
+      </expression>
+      <code desc="body">
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:155:17:155:19" name="expr">
+          <expression>
+            <op name="ASSIGN">
+              <property>
+                <id name="pop"/>
+                <id name="popId"/>
+              </property>
+              <call>
+                <method>
+                  <id name="indiv_maker"/>
+                </method>
+              </call>
+            </op>
+          </expression>
+        </statement>
+      </code>
+      <expression>
+        <op name="INCS">
+          <id name="popId"/>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:162:9:162:31" name="vardecl">
+      <expression>
+        <literal type="string" value="counterSpeedup"/>
+      </expression>
+      <expression desc="init">
+        <literal type="int" value="1"/>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:163:9:163:23" name="vardecl">
+      <expression>
+        <literal type="string" value="counterGen"/>
+      </expression>
+      <expression desc="init"/>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:166:9:166:11" name="loop">
+      <code desc="init">
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:166:9:166:11" name="expr">
+          <expression>
+            <op name="ASSIGN">
+              <id name="counterGen"/>
+              <literal type="int" value="0"/>
+            </op>
+          </expression>
+        </statement>
+      </code>
+      <expression desc="condition">
+        <op name="LT">
+          <id name="counterGen"/>
+          <id name="maxGen"/>
+        </op>
+      </expression>
+      <code desc="body">
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:168:17:168:18" name="if">
+          <expression desc="condition">
+            <op name="GTE">
+              <id name="total_steps"/>
+              <id name="iterations"/>
+            </op>
+          </expression>
+          <code desc="then">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:169:25:169:31" name="expr">
+              <expression>
+                <call>
+                  <method>
+                    <id name="println"/>
+                  </method>
+                  <argument>
+                    <literal type="string" value="breaks from external loop"/>
+                  </argument>
+                </call>
+              </expression>
+            </statement>
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:170:25:170:29" name="break">
+              <expression/>
+            </statement>
+          </code>
+          <code desc="else"/>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:173:17:173:31" name="vardecl">
+          <expression>
+            <literal type="string" value="randNumber"/>
+          </expression>
+          <expression desc="init"/>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:176:17:176:23" name="expr">
+          <expression>
+            <call>
+              <method>
+                <id name="println"/>
+              </method>
+              <argument>
+                <literal type="string" value="--------------------------------------------------------------------------------------------"/>
+              </argument>
+            </call>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:177:17:177:23" name="expr">
+          <expression>
+            <call>
+              <method>
+                <id name="println"/>
+              </method>
+              <argument>
+                <op name="ADD">
+                  <op name="ADD">
+                    <literal type="string" value="Generation "/>
+                    <id name="counterGen"/>
+                  </op>
+                  <literal type="string" value=":"/>
+                </op>
+              </argument>
+            </call>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:178:17:178:23" name="expr">
+          <expression>
+            <call>
+              <method>
+                <id name="println"/>
+              </method>
+              <argument>
+                <op name="ADD">
+                  <op name="ADD">
+                    <op name="ADD">
+                      <op name="ADD">
+                        <property>
+                          <property>
+                            <id name="pop"/>
+                            <literal type="int" value="0"/>
+                          </property>
+                          <literal type="string" value="fitness"/>
+                        </property>
+                        <literal type="string" value=";"/>
+                      </op>
+                      <property>
+                        <property>
+                          <id name="pop"/>
+                          <literal type="int" value="0"/>
+                        </property>
+                        <literal type="string" value="chromosomeSize"/>
+                      </property>
+                    </op>
+                    <literal type="string" value=";"/>
+                  </op>
+                  <call>
+                    <method>
+                      <property>
+                        <property>
+                          <property>
+                            <id name="pop"/>
+                            <literal type="int" value="0"/>
+                          </property>
+                          <literal type="string" value="chromosome"/>
+                        </property>
+                        <literal type="string" value="join"/>
+                      </property>
+                    </method>
+                    <argument>
+                      <literal type="string" value=","/>
+                    </argument>
+                  </call>
+                </op>
+              </argument>
+            </call>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:180:17:180:23" name="expr">
+          <expression>
+            <call>
+              <method>
+                <id name="println"/>
+              </method>
+              <argument>
+                <literal type="string" value="--------------------------------------------------------------------------------------------"/>
+              </argument>
+            </call>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:190:17:190:27" name="vardecl">
+          <expression>
+            <literal type="string" value="child1"/>
+          </expression>
+          <expression desc="init"/>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:191:17:191:19" name="loop">
+          <code desc="init">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:191:17:191:19" name="expr">
+              <expression>
+                <op name="ASSIGN">
+                  <id name="child1"/>
+                  <id name="popSize"/>
+                </op>
+              </expression>
+            </statement>
+          </code>
+          <expression desc="condition">
+            <op name="LT">
+              <id name="child1"/>
+              <id name="popTotal"/>
+            </op>
+          </expression>
+          <code desc="body">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:193:25:193:46" name="vardecl">
+              <expression>
+                <literal type="string" value="child2"/>
+              </expression>
+              <expression desc="init">
+                <op name="INCS">
+                  <id name="child1"/>
+                </op>
+              </expression>
+            </statement>
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:197:25:197:78" name="vardecl">
+              <expression>
+                <literal type="string" value="parent1"/>
+              </expression>
+              <expression desc="init"/>
+              <expression>
+                <literal type="string" value="parent2"/>
+              </expression>
+              <expression desc="init">
+                <call>
+                  <method>
+                    <id name="tournament"/>
+                  </method>
+                  <argument>
+                    <id name="pop"/>
+                  </argument>
+                  <argument>
+                    <id name="popSize"/>
+                  </argument>
+                  <argument>
+                    <id name="tour"/>
+                  </argument>
+                </call>
+              </expression>
+            </statement>
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:198:25:198:26" name="loop">
+              <code desc="body">
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:199:33:199:39" name="expr">
+                  <expression>
+                    <op name="ASSIGN">
+                      <id name="parent1"/>
+                      <call>
+                        <method>
+                          <id name="tournament"/>
+                        </method>
+                        <argument>
+                          <id name="pop"/>
+                        </argument>
+                        <argument>
+                          <id name="popSize"/>
+                        </argument>
+                        <argument>
+                          <id name="tour"/>
+                        </argument>
+                      </call>
+                    </op>
+                  </expression>
+                </statement>
+              </code>
+              <expression desc="condition">
+                <op name="EQ">
+                  <id name="parent1"/>
+                  <id name="parent2"/>
+                </op>
+              </expression>
+            </statement>
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:202:25:202:34" name="expr">
+              <expression>
+                <op name="ASSIGN">
+                  <id name="randNumber"/>
+                  <literal type="int" value="0"/>
+                </op>
+              </expression>
+            </statement>
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:205:25:205:26" name="if">
+              <expression desc="condition">
+                <op name="LTE">
+                  <id name="randNumber"/>
+                  <literal type="float" value="0.8"/>
+                </op>
+              </expression>
+              <code desc="then">
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:206:33:206:43" name="vardecl">
+                  <expression>
+                    <literal type="string" value="p1Size"/>
+                  </expression>
+                  <expression desc="init"/>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:207:33:207:43" name="vardecl">
+                  <expression>
+                    <literal type="string" value="p2Size"/>
+                  </expression>
+                  <expression desc="init"/>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:208:33:208:35" name="try">
+                  <code desc="body">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:209:41:209:46" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <id name="p1Size"/>
+                          <property>
+                            <property>
+                              <property>
+                                <id name="pop"/>
+                                <id name="parent1"/>
+                              </property>
+                              <literal type="string" value="chromosome"/>
+                            </property>
+                            <literal type="string" value="length"/>
+                          </property>
+                        </op>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:210:41:210:46" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <id name="p2Size"/>
+                          <property>
+                            <property>
+                              <property>
+                                <id name="pop"/>
+                                <id name="parent2"/>
+                              </property>
+                              <literal type="string" value="chromosome"/>
+                            </property>
+                            <literal type="string" value="length"/>
+                          </property>
+                        </op>
+                      </expression>
+                    </statement>
+                  </code>
+                  <expression desc="catch_id">
+                    <id name="err"/>
+                  </expression>
+                  <code desc="catch">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:213:41:213:47" name="expr">
+                      <expression>
+                        <call>
+                          <method>
+                            <id name="println"/>
+                          </method>
+                          <argument>
+                            <literal type="string" value="MERDA 1"/>
+                          </argument>
+                        </call>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:214:41:214:47" name="expr">
+                      <expression>
+                        <call>
+                          <method>
+                            <id name="println"/>
+                          </method>
+                          <argument>
+                            <property>
+                              <id name="err"/>
+                              <literal type="string" value="message"/>
+                            </property>
+                          </argument>
+                        </call>
+                      </expression>
+                    </statement>
+                  </code>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:216:33:216:45" name="vardecl">
+                  <expression>
+                    <literal type="string" value="pt1"/>
+                  </expression>
+                  <expression desc="init"/>
+                  <expression>
+                    <literal type="string" value="pt2"/>
+                  </expression>
+                  <expression desc="init"/>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:217:33:217:34" name="if">
+                  <expression desc="condition">
+                    <op name="LT">
+                      <id name="p1Size"/>
+                      <id name="p2Size"/>
+                    </op>
+                  </expression>
+                  <code desc="then">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:218:41:218:43" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <id name="pt1"/>
+                          <call>
+                            <method>
+                              <property>
+                                <id name="Math"/>
+                                <literal type="string" value="floor"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <op name="MULT">
+                                <call>
+                                  <method>
+                                    <property>
+                                      <id name="Math"/>
+                                      <literal type="string" value="random"/>
+                                    </property>
+                                  </method>
+                                </call>
+                                <op name="SUB">
+                                  <id name="p1Size"/>
+                                  <literal type="float" value="0.1"/>
+                                </op>
+                              </op>
+                            </argument>
+                          </call>
+                        </op>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:219:41:219:43" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <id name="pt2"/>
+                          <op name="ADD">
+                            <call>
+                              <method>
+                                <property>
+                                  <id name="Math"/>
+                                  <literal type="string" value="floor"/>
+                                </property>
+                              </method>
+                              <argument>
+                                <op name="MULT">
+                                  <call>
+                                    <method>
+                                      <property>
+                                        <id name="Math"/>
+                                        <literal type="string" value="random"/>
+                                      </property>
+                                    </method>
+                                  </call>
+                                  <op name="SUB">
+                                    <id name="p2Size"/>
+                                    <id name="p1Size"/>
+                                  </op>
+                                </op>
+                              </argument>
+                            </call>
+                            <id name="pt1"/>
+                          </op>
+                        </op>
+                      </expression>
+                    </statement>
+                  </code>
+                  <code desc="else">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:222:41:222:43" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <id name="pt2"/>
+                          <call>
+                            <method>
+                              <property>
+                                <id name="Math"/>
+                                <literal type="string" value="floor"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <op name="MULT">
+                                <call>
+                                  <method>
+                                    <property>
+                                      <id name="Math"/>
+                                      <literal type="string" value="random"/>
+                                    </property>
+                                  </method>
+                                </call>
+                                <op name="SUB">
+                                  <id name="p2Size"/>
+                                  <literal type="float" value="0.1"/>
+                                </op>
+                              </op>
+                            </argument>
+                          </call>
+                        </op>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:223:41:223:43" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <id name="pt1"/>
+                          <op name="ADD">
+                            <call>
+                              <method>
+                                <property>
+                                  <id name="Math"/>
+                                  <literal type="string" value="floor"/>
+                                </property>
+                              </method>
+                              <argument>
+                                <op name="MULT">
+                                  <call>
+                                    <method>
+                                      <property>
+                                        <id name="Math"/>
+                                        <literal type="string" value="random"/>
+                                      </property>
+                                    </method>
+                                  </call>
+                                  <op name="SUB">
+                                    <id name="p1Size"/>
+                                    <id name="p2Size"/>
+                                  </op>
+                                </op>
+                              </argument>
+                            </call>
+                            <id name="pt2"/>
+                          </op>
+                        </op>
+                      </expression>
+                    </statement>
+                  </code>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:227:33:227:41" name="vardecl">
+                  <expression>
+                    <literal type="string" value="a"/>
+                  </expression>
+                  <expression desc="init"/>
+                  <expression>
+                    <literal type="string" value="b"/>
+                  </expression>
+                  <expression desc="init"/>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:228:33:228:35" name="try">
+                  <code desc="body">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:229:41:229:41" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <id name="a"/>
+                          <call>
+                            <method>
+                              <property>
+                                <property>
+                                  <property>
+                                    <id name="pop"/>
+                                    <id name="parent1"/>
+                                  </property>
+                                  <literal type="string" value="chromosome"/>
+                                </property>
+                                <literal type="string" value="slice"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <literal type="int" value="0"/>
+                            </argument>
+                            <argument>
+                              <id name="pt1"/>
+                            </argument>
+                          </call>
+                        </op>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:230:41:230:41" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <id name="b"/>
+                          <call>
+                            <method>
+                              <property>
+                                <property>
+                                  <property>
+                                    <id name="pop"/>
+                                    <id name="parent2"/>
+                                  </property>
+                                  <literal type="string" value="chromosome"/>
+                                </property>
+                                <literal type="string" value="slice"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <id name="pt2"/>
+                            </argument>
+                          </call>
+                        </op>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:231:41:231:43" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <property>
+                            <property>
+                              <id name="pop"/>
+                              <id name="child1"/>
+                            </property>
+                            <literal type="string" value="chromosome"/>
+                          </property>
+                          <call>
+                            <method>
+                              <property>
+                                <id name="a"/>
+                                <literal type="string" value="concat"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <id name="b"/>
+                            </argument>
+                          </call>
+                        </op>
+                      </expression>
+                    </statement>
+                  </code>
+                  <expression desc="catch_id">
+                    <id name="err"/>
+                  </expression>
+                  <code desc="catch">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:234:41:234:47" name="expr">
+                      <expression>
+                        <call>
+                          <method>
+                            <id name="println"/>
+                          </method>
+                          <argument>
+                            <literal type="string" value="MERDA 2"/>
+                          </argument>
+                        </call>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:235:41:235:47" name="expr">
+                      <expression>
+                        <call>
+                          <method>
+                            <id name="println"/>
+                          </method>
+                          <argument>
+                            <property>
+                              <id name="err"/>
+                              <literal type="string" value="message"/>
+                            </property>
+                          </argument>
+                        </call>
+                      </expression>
+                    </statement>
+                  </code>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:238:33:238:35" name="try">
+                  <code desc="body">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:239:41:239:41" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <id name="a"/>
+                          <call>
+                            <method>
+                              <property>
+                                <property>
+                                  <property>
+                                    <id name="pop"/>
+                                    <id name="parent2"/>
+                                  </property>
+                                  <literal type="string" value="chromosome"/>
+                                </property>
+                                <literal type="string" value="slice"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <literal type="int" value="0"/>
+                            </argument>
+                            <argument>
+                              <id name="pt2"/>
+                            </argument>
+                          </call>
+                        </op>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:240:41:240:41" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <id name="b"/>
+                          <call>
+                            <method>
+                              <property>
+                                <property>
+                                  <property>
+                                    <id name="pop"/>
+                                    <id name="parent1"/>
+                                  </property>
+                                  <literal type="string" value="chromosome"/>
+                                </property>
+                                <literal type="string" value="slice"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <id name="pt1"/>
+                            </argument>
+                          </call>
+                        </op>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:241:41:241:43" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <property>
+                            <property>
+                              <id name="pop"/>
+                              <id name="child2"/>
+                            </property>
+                            <literal type="string" value="chromosome"/>
+                          </property>
+                          <call>
+                            <method>
+                              <property>
+                                <id name="a"/>
+                                <literal type="string" value="concat"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <id name="b"/>
+                            </argument>
+                          </call>
+                        </op>
+                      </expression>
+                    </statement>
+                  </code>
+                  <expression desc="catch_id">
+                    <id name="err"/>
+                  </expression>
+                  <code desc="catch">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:244:41:244:47" name="expr">
+                      <expression>
+                        <call>
+                          <method>
+                            <id name="println"/>
+                          </method>
+                          <argument>
+                            <literal type="string" value="MERDA 3"/>
+                          </argument>
+                        </call>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:245:41:245:47" name="expr">
+                      <expression>
+                        <call>
+                          <method>
+                            <id name="println"/>
+                          </method>
+                          <argument>
+                            <property>
+                              <id name="err"/>
+                              <literal type="string" value="message"/>
+                            </property>
+                          </argument>
+                        </call>
+                      </expression>
+                    </statement>
+                  </code>
+                </statement>
+              </code>
+              <code desc="else">
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:250:33:250:35" name="try">
+                  <code desc="body">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:251:41:251:43" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <property>
+                            <property>
+                              <id name="pop"/>
+                              <id name="child1"/>
+                            </property>
+                            <literal type="string" value="chromosome"/>
+                          </property>
+                          <call>
+                            <method>
+                              <property>
+                                <property>
+                                  <property>
+                                    <id name="pop"/>
+                                    <id name="parent1"/>
+                                  </property>
+                                  <literal type="string" value="chromosome"/>
+                                </property>
+                                <literal type="string" value="slice"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <literal type="int" value="0"/>
+                            </argument>
+                          </call>
+                        </op>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:252:41:252:43" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <property>
+                            <property>
+                              <id name="pop"/>
+                              <id name="child2"/>
+                            </property>
+                            <literal type="string" value="chromosome"/>
+                          </property>
+                          <call>
+                            <method>
+                              <property>
+                                <property>
+                                  <property>
+                                    <id name="pop"/>
+                                    <id name="parent2"/>
+                                  </property>
+                                  <literal type="string" value="chromosome"/>
+                                </property>
+                                <literal type="string" value="slice"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <literal type="int" value="0"/>
+                            </argument>
+                          </call>
+                        </op>
+                      </expression>
+                    </statement>
+                  </code>
+                  <expression desc="catch_id">
+                    <id name="err"/>
+                  </expression>
+                  <code desc="catch">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:255:41:255:47" name="expr">
+                      <expression>
+                        <call>
+                          <method>
+                            <id name="println"/>
+                          </method>
+                          <argument>
+                            <literal type="string" value="MERDA 4"/>
+                          </argument>
+                        </call>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:256:41:256:47" name="expr">
+                      <expression>
+                        <call>
+                          <method>
+                            <id name="println"/>
+                          </method>
+                          <argument>
+                            <property>
+                              <id name="err"/>
+                              <literal type="string" value="message"/>
+                            </property>
+                          </argument>
+                        </call>
+                      </expression>
+                    </statement>
+                  </code>
+                </statement>
+              </code>
+            </statement>
+          </code>
+          <expression>
+            <op name="ASSIGN">
+              <id name="child1"/>
+              <op name="ADD">
+                <id name="child1"/>
+                <literal type="int" value="2"/>
+              </op>
+            </op>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:265:17:265:29" name="vardecl">
+          <expression>
+            <literal type="string" value="novo"/>
+          </expression>
+          <expression desc="init">
+            <literal type="int" value="0"/>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:266:17:266:19" name="loop">
+          <code desc="init">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:266:17:266:19" name="expr">
+              <expression>
+                <op name="ASSIGN">
+                  <id name="popId"/>
+                  <id name="popSize"/>
+                </op>
+              </expression>
+            </statement>
+          </code>
+          <expression desc="condition">
+            <op name="LT">
+              <id name="popId"/>
+              <id name="popTotal"/>
+            </op>
+          </expression>
+          <code desc="body">
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:268:25:268:26" name="if">
+              <expression desc="condition">
+                <op name="LTE">
+                  <call>
+                    <method>
+                      <property>
+                        <id name="Math"/>
+                        <literal type="string" value="random"/>
+                      </property>
+                    </method>
+                  </call>
+                  <id name="mutationRate"/>
+                </op>
+              </expression>
+              <code desc="then">
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:269:33:269:40" name="expr">
+                  <expression>
+                    <call>
+                      <method>
+                        <id name="mutation"/>
+                      </method>
+                      <argument>
+                        <id name="looprankSize"/>
+                      </argument>
+                      <argument>
+                        <id name="loopfactors"/>
+                      </argument>
+                      <argument>
+                        <property>
+                          <id name="exploreParams"/>
+                          <call>
+                            <method>
+                              <property>
+                                <id name="Math"/>
+                                <literal type="string" value="floor"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <op name="MULT">
+                                <call>
+                                  <method>
+                                    <property>
+                                      <id name="Math"/>
+                                      <literal type="string" value="random"/>
+                                    </property>
+                                  </method>
+                                </call>
+                                <op name="SUB">
+                                  <id name="exploreParamSize"/>
+                                  <literal type="float" value="0.1"/>
+                                </op>
+                              </op>
+                            </argument>
+                          </call>
+                        </property>
+                      </argument>
+                      <argument>
+                        <property>
+                          <id name="pop"/>
+                          <id name="popId"/>
+                        </property>
+                      </argument>
+                      <argument>
+                        <property>
+                          <property>
+                            <property>
+                              <id name="pop"/>
+                              <id name="popId"/>
+                            </property>
+                            <literal type="string" value="chromosome"/>
+                          </property>
+                          <literal type="string" value="length"/>
+                        </property>
+                      </argument>
+                      <argument>
+                        <id name="applyunroll"/>
+                      </argument>
+                      <argument>
+                        <id name="maxwidth"/>
+                      </argument>
+                    </call>
+                  </expression>
+                </statement>
+              </code>
+              <code desc="else"/>
+            </statement>
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:273:25:273:38" name="vardecl">
+              <expression>
+                <literal type="string" value="vezes"/>
+              </expression>
+              <expression desc="init">
+                <literal type="int" value="0"/>
+              </expression>
+            </statement>
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:274:25:274:26" name="loop">
+              <code desc="body">
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:275:33:275:34" name="if">
+                  <expression desc="condition">
+                    <op name="GT">
+                      <call>
+                        <method>
+                          <id name="indiv_finder"/>
+                        </method>
+                        <argument>
+                          <id name="histPop"/>
+                        </argument>
+                        <argument>
+                          <property>
+                            <id name="pop"/>
+                            <id name="popId"/>
+                          </property>
+                        </argument>
+                      </call>
+                      <op name="NEG" type="int">
+                        <literal type="int" value="1"/>
+                      </op>
+                    </op>
+                  </expression>
+                  <code desc="then">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:276:41:276:46" name="vardecl">
+                      <expression>
+                        <literal type="string" value="x"/>
+                      </expression>
+                      <expression desc="init"/>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:277:41:277:43" name="loop">
+                      <code desc="init">
+                        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:277:41:277:43" name="expr">
+                          <expression>
+                            <op name="ASSIGN">
+                              <id name="x"/>
+                              <literal type="int" value="0"/>
+                            </op>
+                          </expression>
+                        </statement>
+                      </code>
+                      <expression desc="condition">
+                        <op name="LT">
+                          <id name="x"/>
+                          <op name="ADD">
+                            <id name="vezes"/>
+                            <id name="counterSpeedup"/>
+                          </op>
+                        </op>
+                      </expression>
+                      <code desc="body">
+                        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:278:49:278:56" name="expr">
+                          <expression>
+                            <call>
+                              <method>
+                                <id name="mutation"/>
+                              </method>
+                              <argument>
+                                <id name="looprankSize"/>
+                              </argument>
+                              <argument>
+                                <id name="loopfactors"/>
+                              </argument>
+                              <argument>
+                                <property>
+                                  <id name="exploreParams"/>
+                                  <call>
+                                    <method>
+                                      <property>
+                                        <id name="Math"/>
+                                        <literal type="string" value="floor"/>
+                                      </property>
+                                    </method>
+                                    <argument>
+                                      <op name="MULT">
+                                        <call>
+                                          <method>
+                                            <property>
+                                              <id name="Math"/>
+                                              <literal type="string" value="random"/>
+                                            </property>
+                                          </method>
+                                        </call>
+                                        <op name="SUB">
+                                          <id name="exploreParamSize"/>
+                                          <literal type="float" value="0.1"/>
+                                        </op>
+                                      </op>
+                                    </argument>
+                                  </call>
+                                </property>
+                              </argument>
+                              <argument>
+                                <property>
+                                  <id name="pop"/>
+                                  <id name="popId"/>
+                                </property>
+                              </argument>
+                              <argument>
+                                <property>
+                                  <property>
+                                    <property>
+                                      <id name="pop"/>
+                                      <id name="popId"/>
+                                    </property>
+                                    <literal type="string" value="chromosome"/>
+                                  </property>
+                                  <literal type="string" value="length"/>
+                                </property>
+                              </argument>
+                              <argument>
+                                <id name="applyunroll"/>
+                              </argument>
+                              <argument>
+                                <id name="maxwidth"/>
+                              </argument>
+                            </call>
+                          </expression>
+                        </statement>
+                        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:279:49:279:56" name="expr">
+                          <expression>
+                            <call>
+                              <method>
+                                <id name="mutation"/>
+                              </method>
+                              <argument>
+                                <id name="looprankSize"/>
+                              </argument>
+                              <argument>
+                                <id name="loopfactors"/>
+                              </argument>
+                              <argument>
+                                <property>
+                                  <id name="exploreParams"/>
+                                  <call>
+                                    <method>
+                                      <property>
+                                        <id name="Math"/>
+                                        <literal type="string" value="floor"/>
+                                      </property>
+                                    </method>
+                                    <argument>
+                                      <op name="MULT">
+                                        <call>
+                                          <method>
+                                            <property>
+                                              <id name="Math"/>
+                                              <literal type="string" value="random"/>
+                                            </property>
+                                          </method>
+                                        </call>
+                                        <op name="SUB">
+                                          <id name="exploreParamSize"/>
+                                          <literal type="float" value="0.1"/>
+                                        </op>
+                                      </op>
+                                    </argument>
+                                  </call>
+                                </property>
+                              </argument>
+                              <argument>
+                                <property>
+                                  <id name="pop"/>
+                                  <id name="popId"/>
+                                </property>
+                              </argument>
+                              <argument>
+                                <property>
+                                  <property>
+                                    <property>
+                                      <id name="pop"/>
+                                      <id name="popId"/>
+                                    </property>
+                                    <literal type="string" value="chromosome"/>
+                                  </property>
+                                  <literal type="string" value="length"/>
+                                </property>
+                              </argument>
+                              <argument>
+                                <id name="applyunroll"/>
+                              </argument>
+                              <argument>
+                                <id name="maxwidth"/>
+                              </argument>
+                            </call>
+                          </expression>
+                        </statement>
+                        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:280:49:280:56" name="expr">
+                          <expression>
+                            <call>
+                              <method>
+                                <id name="mutation"/>
+                              </method>
+                              <argument>
+                                <id name="looprankSize"/>
+                              </argument>
+                              <argument>
+                                <id name="loopfactors"/>
+                              </argument>
+                              <argument>
+                                <property>
+                                  <id name="exploreParams"/>
+                                  <call>
+                                    <method>
+                                      <property>
+                                        <id name="Math"/>
+                                        <literal type="string" value="floor"/>
+                                      </property>
+                                    </method>
+                                    <argument>
+                                      <op name="MULT">
+                                        <call>
+                                          <method>
+                                            <property>
+                                              <id name="Math"/>
+                                              <literal type="string" value="random"/>
+                                            </property>
+                                          </method>
+                                        </call>
+                                        <op name="SUB">
+                                          <id name="exploreParamSize"/>
+                                          <literal type="float" value="0.1"/>
+                                        </op>
+                                      </op>
+                                    </argument>
+                                  </call>
+                                </property>
+                              </argument>
+                              <argument>
+                                <property>
+                                  <id name="pop"/>
+                                  <id name="popId"/>
+                                </property>
+                              </argument>
+                              <argument>
+                                <property>
+                                  <property>
+                                    <property>
+                                      <id name="pop"/>
+                                      <id name="popId"/>
+                                    </property>
+                                    <literal type="string" value="chromosome"/>
+                                  </property>
+                                  <literal type="string" value="length"/>
+                                </property>
+                              </argument>
+                              <argument>
+                                <id name="applyunroll"/>
+                              </argument>
+                              <argument>
+                                <id name="maxwidth"/>
+                              </argument>
+                            </call>
+                          </expression>
+                        </statement>
+                      </code>
+                      <expression>
+                        <op name="INCS">
+                          <id name="x"/>
+                        </op>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:282:41:282:45" name="expr">
+                      <expression>
+                        <op name="INCS">
+                          <id name="vezes"/>
+                        </op>
+                      </expression>
+                    </statement>
+                  </code>
+                  <code desc="else">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:285:41:285:45" name="break">
+                      <expression/>
+                    </statement>
+                  </code>
+                </statement>
+              </code>
+              <expression desc="condition">
+                <op name="LT">
+                  <id name="vezes"/>
+                  <id name="vezesTot"/>
+                </op>
+              </expression>
+            </statement>
+            <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:289:25:289:26" name="if">
+              <expression desc="condition">
+                <op name="LT">
+                  <id name="vezes"/>
+                  <id name="vezesTot"/>
+                </op>
+              </expression>
+              <code desc="then">
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:291:33:291:34" name="if">
+                  <expression desc="condition">
+                    <op name="GTE">
+                      <id name="total_steps"/>
+                      <id name="iterations"/>
+                    </op>
+                  </expression>
+                  <code desc="then">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:292:41:292:47" name="expr">
+                      <expression>
+                        <call>
+                          <method>
+                            <id name="println"/>
+                          </method>
+                          <argument>
+                            <literal type="string" value="Breaks from Generation"/>
+                          </argument>
+                        </call>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:293:41:293:45" name="break">
+                      <expression/>
+                    </statement>
+                  </code>
+                  <code desc="else"/>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:300:33:300:42" name="expr">
+                  <expression>
+                    <op name="ASSIGN">
+                      <id name="optimLevel"/>
+                      <call>
+                        <method>
+                          <property>
+                            <call>
+                              <method>
+                                <property>
+                                  <property>
+                                    <property>
+                                      <id name="pop"/>
+                                      <id name="popId"/>
+                                    </property>
+                                    <literal type="string" value="chromosome"/>
+                                  </property>
+                                  <literal type="string" value="filter"/>
+                                </property>
+                              </method>
+                              <argument>
+                                <id name="isnooptim"/>
+                              </argument>
+                            </call>
+                            <literal type="string" value="join"/>
+                          </property>
+                        </method>
+                        <argument>
+                          <literal type="string" value=" "/>
+                        </argument>
+                      </call>
+                    </op>
+                  </expression>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:301:33:301:35" name="expr">
+                  <expression>
+                    <op name="ASSIGN">
+                      <property>
+                        <property>
+                          <id name="pop"/>
+                          <id name="popId"/>
+                        </property>
+                        <literal type="string" value="fitness"/>
+                      </property>
+                      <call>
+                        <method>
+                          <id name="compile_execute_and_report"/>
+                        </method>
+                        <argument>
+                          <id name="optimLevel"/>
+                        </argument>
+                      </call>
+                    </op>
+                  </expression>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:303:33:303:34" name="if">
+                  <expression desc="condition">
+                    <op name="EQ">
+                      <call>
+                        <method>
+                          <id name="check_sequence_is_valid"/>
+                        </method>
+                        <argument>
+                          <property>
+                            <property>
+                              <id name="pop"/>
+                              <id name="popId"/>
+                            </property>
+                            <literal type="string" value="fitness"/>
+                          </property>
+                        </argument>
+                      </call>
+                      <literal type="boolean" value="false"/>
+                    </op>
+                  </expression>
+                  <code desc="then">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:304:41:304:43" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <property>
+                            <property>
+                              <id name="pop"/>
+                              <id name="popId"/>
+                            </property>
+                            <literal type="string" value="fitness"/>
+                          </property>
+                          <property>
+                            <id name="Number"/>
+                            <literal type="string" value="MAX_VALUE"/>
+                          </property>
+                        </op>
+                      </expression>
+                    </statement>
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:305:41:305:43" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <property>
+                            <property>
+                              <id name="pop"/>
+                              <id name="popId"/>
+                            </property>
+                            <literal type="string" value="chromosomeSize"/>
+                          </property>
+                          <id name="maxwidth"/>
+                        </op>
+                      </expression>
+                    </statement>
+                  </code>
+                  <code desc="else">
+                    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:309:41:309:43" name="expr">
+                      <expression>
+                        <op name="ASSIGN">
+                          <property>
+                            <property>
+                              <id name="pop"/>
+                              <id name="popId"/>
+                            </property>
+                            <literal type="string" value="chromosomeSize"/>
+                          </property>
+                          <property>
+                            <property>
+                              <property>
+                                <id name="pop"/>
+                                <id name="popId"/>
+                              </property>
+                              <literal type="string" value="chromosome"/>
+                            </property>
+                            <literal type="string" value="length"/>
+                          </property>
+                        </op>
+                      </expression>
+                    </statement>
+                  </code>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:312:33:312:43" name="expr">
+                  <expression>
+                    <op name="INCS">
+                      <id name="total_steps"/>
+                    </op>
+                  </expression>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:315:33:315:39" name="expr">
+                  <expression>
+                    <op name="ASSIGN">
+                      <property>
+                        <id name="histPop"/>
+                        <id name="histSize"/>
+                      </property>
+                      <call>
+                        <method>
+                          <id name="indiv_copy"/>
+                        </method>
+                        <argument>
+                          <property>
+                            <id name="pop"/>
+                            <id name="popId"/>
+                          </property>
+                        </argument>
+                      </call>
+                    </op>
+                  </expression>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:316:33:316:40" name="expr">
+                  <expression>
+                    <op name="INCS">
+                      <id name="histSize"/>
+                    </op>
+                  </expression>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:317:33:317:36" name="expr">
+                  <expression>
+                    <op name="INCS">
+                      <id name="novo"/>
+                    </op>
+                  </expression>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:320:33:320:39" name="expr">
+                  <expression>
+                    <call>
+                      <method>
+                        <id name="println"/>
+                      </method>
+                      <argument>
+                        <op name="ADD">
+                          <op name="ADD">
+                            <op name="ADD">
+                              <op name="ADD">
+                                <property>
+                                  <property>
+                                    <id name="pop"/>
+                                    <id name="popId"/>
+                                  </property>
+                                  <literal type="string" value="fitness"/>
+                                </property>
+                                <literal type="string" value=";"/>
+                              </op>
+                              <property>
+                                <property>
+                                  <id name="pop"/>
+                                  <id name="popId"/>
+                                </property>
+                                <literal type="string" value="chromosomeSize"/>
+                              </property>
+                            </op>
+                            <literal type="string" value=";"/>
+                          </op>
+                          <call>
+                            <method>
+                              <property>
+                                <property>
+                                  <property>
+                                    <id name="pop"/>
+                                    <id name="popId"/>
+                                  </property>
+                                  <literal type="string" value="chromosome"/>
+                                </property>
+                                <literal type="string" value="join"/>
+                              </property>
+                            </method>
+                            <argument>
+                              <literal type="string" value=","/>
+                            </argument>
+                          </call>
+                        </op>
+                      </argument>
+                    </call>
+                  </expression>
+                </statement>
+              </code>
+              <code desc="else">
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:327:33:327:35" name="expr">
+                  <expression>
+                    <op name="ASSIGN">
+                      <property>
+                        <property>
+                          <id name="pop"/>
+                          <id name="popId"/>
+                        </property>
+                        <literal type="string" value="fitness"/>
+                      </property>
+                      <property>
+                        <id name="Number"/>
+                        <literal type="string" value="MAX_VALUE"/>
+                      </property>
+                    </op>
+                  </expression>
+                </statement>
+                <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:328:33:328:35" name="expr">
+                  <expression>
+                    <op name="ASSIGN">
+                      <property>
+                        <property>
+                          <id name="pop"/>
+                          <id name="popId"/>
+                        </property>
+                        <literal type="string" value="chromosomeSize"/>
+                      </property>
+                      <id name="maxwidth"/>
+                    </op>
+                  </expression>
+                </statement>
+              </code>
+            </statement>
+          </code>
+          <expression>
+            <op name="INCS">
+              <id name="popId"/>
+            </op>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:333:17:333:19" name="expr">
+          <expression>
+            <call>
+              <method>
+                <property>
+                  <id name="pop"/>
+                  <literal type="string" value="sort"/>
+                </property>
+              </method>
+              <argument>
+                <call>
+                  <method>
+                    <id name="by"/>
+                  </method>
+                  <argument>
+                    <literal type="string" value="fitness"/>
+                  </argument>
+                  <argument>
+                    <call>
+                      <method>
+                        <id name="by"/>
+                      </method>
+                      <argument>
+                        <literal type="string" value="chromosomeSize"/>
+                      </argument>
+                    </call>
+                  </argument>
+                </call>
+              </argument>
+            </call>
+          </expression>
+        </statement>
+        <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:335:17:335:27" name="expr">
+          <expression>
+            <op name="ASSIGN">
+              <id name="bestlatency"/>
+              <property>
+                <property>
+                  <id name="pop"/>
+                  <literal type="int" value="0"/>
+                </property>
+                <literal type="string" value="fitness"/>
+              </property>
+            </op>
+          </expression>
+        </statement>
+      </code>
+      <expression>
+        <op name="INCS">
+          <id name="counterGen"/>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:362:9:362:22" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <id name="bestSeqLatency"/>
+          <id name="bestlatency"/>
+        </op>
+      </expression>
+    </statement>
+    <statement coord="/opt/lara-tools/larad/algorithms/ga_henrique/dse_algo.lara:363:9:363:15" name="expr">
+      <expression>
+        <op name="ASSIGN">
+          <id name="bestSeq"/>
+          <property>
+            <property>
+              <id name="pop"/>
+              <literal type="int" value="0"/>
+            </property>
+            <literal type="string" value="chromosome"/>
+          </property>
+        </op>
+      </expression>
+    </statement>
+  </aspect>
+</aspects>

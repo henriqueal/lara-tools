@@ -1,0 +1,6 @@
+prof 1 1
+run
+perf
+prof
+reg
+quit

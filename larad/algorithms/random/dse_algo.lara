@@ -1,0 +1,103 @@
+/*      Ricardo Nobre                                   *
+ *      Departamento de Engenharia Informática          *
+ *      FEUP, Porto, Portugal                           * 
+ *      ricardo.nobre@fe.up.pt                          */
+
+aspectdef dse_algo
+
+        input
+                exploreParams = [], frontend, compile, execute_and_report, compile_execute_and_report, check_sequence_is_valid, add_timing, cleanall, minimumLat = 100, sequences, iterations, maxwidth, optimLevelsLatency, nr;
+        end
+
+        output
+                bestSeq, bestSeqLatency, total_steps;
+        end
+
+
+
+    sequences = [
+	];
+
+
+
+	function isnooptim(x){
+		if(x !== "NOOPTIM") {
+    			return true;
+		}
+	}
+
+	// The unroll factors are not being used right now. Consider using in future or remove from code.
+	//var loopranks = [];
+        //var loopfactors = [];
+
+	var i, i0, l_x;
+	var inputstring = ""; 
+
+
+	var latencyRef = optimLevelsLatency[0];
+        if(latencyRef == 0) {
+                for(var i=0; i<optimLevelsLatency.length; i++) {
+                        if(optimLevelsLatency[i] > 0) {
+                                latencyRef = optimLevelsLatency[i];
+                        }
+                }
+        }
+
+	var sequences_generated = new Array();
+
+	bestSeq = new Array();
+	bestSeqLatency = Number.MAX_VALUE;
+	total_steps = 0;
+
+	println("\nExploring " + iterations + " compiler pass sequences using Random algorithm while considering a maximum of " + maxwidth + " compiler passes per sequence...");
+
+	for(var i=0; i<iterations; i++) {
+
+                var newConfig = [];
+                for(var j=0; j<maxwidth; j++) {
+
+                        newConfig[j] = exploreParams[Math.floor(Math.random() * exploreParams.length)];
+                }
+
+		var optimLevel = newConfig.filter(isnooptim).join(" ");
+
+		var compressed = LZString.compress(optimLevel);
+
+		if(sequences_generated.indexOf(compressed) == -1) {
+			sequences_generated.push(compressed);
+		}
+		else {	// if exists
+//			println("IT EXISTS AND IT IS SEQUENCE NR. " + (sequences_generated.indexOf(compressed)+1));
+//			println(optimLevel);
+			i = i - 1;	// decrement iteration counter so the current iteration does not count
+			continue;	// start iteration from start so other sequence is generated
+		}
+
+                total_steps = total_steps + 1;
+
+		var newLatency = compile_execute_and_report(optimLevel);
+
+		if(check_sequence_is_valid(newLatency, optimLevel, total_steps) == false) {
+			continue;       // goes to the next iteration ignoring previous configuration
+		}
+
+		
+//		cmd("cp", ["function.optim.s", "function.optim.s." + total_steps]);
+//              cmd("cp", ["function.optim.ll", "function.optim.ll." + total_steps]);
+	
+		if(newLatency <= bestSeqLatency) {
+			bestSeqLatency = newLatency;
+			bestSeq = newConfig;	// TODO: maybe needed to do slice(0)
+			println("\t" + total_steps + " (O)\t : " + bestSeqLatency + "\t : " + bestSeq.filter(isnooptim).join(" ") + "");
+
+			bestSeq = newConfig.filter(isnooptim);
+			
+		}
+		else {
+			// println("WORST SOLUTION NOT ACCEPTED");
+			println("\t" + total_steps + " (X)\t : " + newLatency + "\t : " + newConfig.filter(isnooptim).join(" ") + "");
+
+		}
+	}
+	println("\t" + "BEST SEQUENCE\t : " + bestSeqLatency + "\t : " + bestSeq.filter(isnooptim).join(" ") + "");
+end

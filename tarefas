@@ -1,0 +1,9 @@
+- tirar as iterations e unrolling+loop
+- gerar a populacao inicial variando o tamanho (+- = a roleta) -- ok
+- testar ate a selecao ja com a parte da flag
+- fazer o crossover, primeiramente com sorteio de 2 pts...
+- definir o criterio de parada.
+
+
+-flag selecao
+-

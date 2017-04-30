@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<joinpoints>
+	<roots>
+    	<file/>
+	</roots>
+	<file type="file">
+		<sym type="sym"/>
+		<function type="function"/>
+		<label type="label"/>
+		<first type="statement"/>
+		<last type="statement"/>
+		<statement type="statement"/>		
+		<pragma value="label" type="label"/>
+	</file>
+	
+	<var type="var">
+		<index type="expr+"/> <!-- in the case of an array variable -->
+	</var>
+	
+	<function type="function">
+		<prototype type="prototype"/>
+		<body type="body"/>
+		<param type="sym*"/>
+		<ret_type type="type"/>
+   	<sym type="sym"/>
+	</function>
+	
+	<prototype type="prototype">
+		<args type="var"/>
+		<return type="type"/>
+	</prototype>
+	
+	<body type="section">
+	   <entry type="statement*"/>
+	   <exit type="statement*"/>	   
+		<begin type="{"/>
+		<end type="}"/>	
+		<sym type="sym"/>
+		<first type="statement"/>
+		<last type="statement"/>
+		<statement type="statement"/>
+		<return type="type"/>
+		<in type="var*"/>
+		<out type="var*"/>
+		<var type="var"/>
+		<loop type="loop"/>
+		<assignment type="assignment"/>
+		<call type="call"/>
+		<pragma value="label" type="label"/>
+		<section type="section"/>
+		<if type="if"/>
+		<switch type="switch"/><!-- (TBD) -->
+		<label type="label"/><!-- (TBD) -->
+	</body>
+	
+	<loop type="loop">
+		<init type="expr"/>
+		<cond type="statement"/>
+		<counter type="expr"/>
+		<body type="body"/>
+		<control type="var"/>
+	</loop>
+	
+	<assignment type="assignment">
+		<lhs type="var"/>
+		<rhs type="expr"/>
+	</assignment>
+	
+	<call type="call">
+		<arg type="expr"/>
+	</call>
+	
+	<if type="if">
+		<condition type="expr"/>
+		<then type="body"/>
+		<else type="body"/>
+		<body type="body"/>
+	</if>
+</joinpoints>
