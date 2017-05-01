@@ -201,7 +201,7 @@
   
   // Tournment function (Sorted Array Version)
   var tournment = function (indiv, size, qty) {
-    println("--------------------------------------------------------------------------------------------------------");
+    //println("--------------------------------------------------------------------------------------------------------");
     var counter;
     var bestId = Math.floor(Math.random()*(size-0.1));
     
@@ -231,6 +231,35 @@
       id++;
     };
     return (id);
+
+  };
+
+  var crossoverTwoPoints = function(population, parent1, parent2){
+    var childrens = [];
+    var point1 = Math.floor(Math.random()*population[parent1].chromosomeSize);
+    var point2 = Math.floor(Math.random()*population[parent2].chromosomeSize);
+
+    childrens[0] = indiv_maker();
+    childrens[1] = indiv_maker();
+
+    childrens[0].chromosome = population[parent1].chromosome.slice(0,point1).concat(population[parent2].chromosome.slice(point2));
+    childrens[1].chromosome = population[parent2].chromosome.slice(0,point2).concat(population[parent1].chromosome.slice(point1));
+    
+    /*println("Points = ("+ point1 + ", "+point2+")");
+    println("Fathers:\n");
+    println(population[parent1].fitness + ";" + population[parent1].chromosomeSize + ";" 
+      + population[parent1].chromosome.join(","));
+    println("");
+    println(population[parent2].fitness + ";" + population[parent2].chromosomeSize + ";" 
+      + population[parent2].chromosome.join(","));
+    println("----------------------------------------------------------------------------------------------------");
+    println("Childrens:\n");
+    println(childrens[0].chromosome.join(","));
+    println("");
+    println(childrens[1].chromosome.join(","));
+    */
+
+    return childrens;
 
   };
 
