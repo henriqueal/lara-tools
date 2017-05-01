@@ -142,7 +142,7 @@ aspectdef dse_algo
         parent2 = roulette(pop, popSize);
       }
 
-      parent1=indiv_copy(parent2);
+      parent1=parent2;
 
       do {
         if(selection == "tour"){
@@ -157,7 +157,7 @@ aspectdef dse_algo
       //03-beg Crossover --------------------------------------------------------------------------------
       
       var childrens = [];
-      childrens = crossoverTwoPoints(pop, parent1, parent2);
+      childrens = crossoverTwoPoints(pop, parent1, parent2, isnooptim, compile_execute_and_report);
       pop[child1] = indiv_copy(childrens[0]);
       pop[child2] = indiv_copy(childrens[1]);
       
