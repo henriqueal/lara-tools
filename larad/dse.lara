@@ -33,8 +33,6 @@ aspectdef dse
         llvm_setup.frontend();
 
 
-        println(Math.random());
-
         println("Collecting Clang/LLVM Optimization Levels Performance (in µseconds)...");
 
 	var optimLevelsName = llvm_setup.optimlevelsName; // ["-O0", "-O1", "-O2", "-O3"];
