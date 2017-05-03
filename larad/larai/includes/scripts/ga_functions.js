@@ -234,7 +234,7 @@
 
   };
 
-  var crossoverTwoPoints = function(population, parent1, parent2){
+  var crossoverTwoPoints = function(population, parent1, parent2, isnooptim, compile_execute_and_report){
     var childrens = [];
     var point1 = Math.floor(Math.random()*population[parent1].chromosomeSize);
     var point2 = Math.floor(Math.random()*population[parent2].chromosomeSize);
@@ -245,7 +245,17 @@
     childrens[0].chromosome = population[parent1].chromosome.slice(0,point1).concat(population[parent2].chromosome.slice(point2));
     childrens[1].chromosome = population[parent2].chromosome.slice(0,point2).concat(population[parent1].chromosome.slice(point1));
     
-    /*println("Points = ("+ point1 + ", "+point2+")");
+    childrens[0].chromosomeSize = childrens[0].chromosome.length;
+    childrens[1].chromosomeSize = childrens[1].chromosome.length;
+
+    optimLevel = childrens[0].chromosome.filter(isnooptim).join(" ");
+    childrens[0].fitness = compile_execute_and_report(optimLevel);
+
+    optimLevel = childrens[1].chromosome.filter(isnooptim).join(" ");
+    childrens[1].fitness = compile_execute_and_report(optimLevel);
+    
+    /*
+    println("Points = ("+ point1 + ", "+point2+")");
     println("Fathers:\n");
     println(population[parent1].fitness + ";" + population[parent1].chromosomeSize + ";" 
       + population[parent1].chromosome.join(","));
@@ -254,9 +264,11 @@
       + population[parent2].chromosome.join(","));
     println("----------------------------------------------------------------------------------------------------");
     println("Childrens:\n");
-    println(childrens[0].chromosome.join(","));
+    println(childrens[0].fitness + ";" + childrens[0].chromosomeSize + ";" 
+      + childrens[0].chromosome.join(","));
     println("");
-    println(childrens[1].chromosome.join(","));
+    println(childrens[1].fitness + ";" + childrens[1].chromosomeSize + ";" 
+      + childrens[1].chromosome.join(","));
     */
 
     return childrens;

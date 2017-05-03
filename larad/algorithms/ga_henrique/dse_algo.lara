@@ -31,8 +31,6 @@ aspectdef dse_algo
     }
   }
 
-
-  var applyunroll = "0";  // Não posso activar isto, pois isto está feito para o REFLECTC
   var maxGen="1000000"; // estava 30, mas isto estava a limitar o numero de iteraçoes
   var maxCount = "25";
   var popSize="30"; // "300";
@@ -57,11 +55,7 @@ aspectdef dse_algo
   crossRate = crossRate/100;
   mutationRate = mutationRate/100;
   
-  // Unrolling parameters
-  var loopranks = [];  // ["1","1:1","2","2:1"];  // FOR TEST ONLY
-  var looprankSize = 0;  // loopranks.length;
-  var loopfactors = [];  // ["1", "2", "4", "0"];
-
+  
   // ==================================================================
   // ********************** Genetic Algorithm Code ********************
   // ==================================================================
@@ -80,15 +74,8 @@ aspectdef dse_algo
     popTotal++;
   }
 
-  // ***************************************************************************************************************
-  // Create other individuals of initial population
-
-
   var transformSubsetSize = Math.ceil(popSize/maxwidth); // Increment interval of the optimizations number
   var geneMax = 1;
-
-  //println("explore");
-  //println(exploreParamSize);
 
   //GERA A POPULACAO INICIAL
   pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, transformSubsetSize, isnooptim, compile_execute_and_report);
@@ -97,21 +84,12 @@ aspectdef dse_algo
   //histPop[histSize] = indiv_copy(pop[id]);
   //histSize++;
 
-  //println("id:: " + id );
-  //println(population[id].fitness + ";" + population[id].chromosomeSize + ";" + population[id].chromosome.join(","));
-  //println("");
-
-  // Sort the population by fitness and size of the transformations size
-
   //println("The best is: ");
   //pop.sort(by('fitness', by('chromosomeSize')));
   //println(pop[0].fitness + ";" + pop[0].chromosomeSize + ";" + pop[0].chromosome.join(","));
 	//println("");
   var bestlatency = pop[0].fitness; // Store the best latency
-  // ***************************************************************************************************************
-  //println(bestlatency);
-  //println("populacao size");
-  //println("pop size: " + pop.length);
+
 
   // Create the population of childs
   for (popId = popSize; popId < popTotal; popId++){
@@ -124,7 +102,7 @@ aspectdef dse_algo
   var counterSpeedup = 1;
   var counterGen;
 
-  maxGen=5;
+  maxGen=100;
   for (counterGen = 0; counterGen < maxGen; counterGen++) {
     var randNumber;
 
@@ -142,7 +120,7 @@ aspectdef dse_algo
         parent2 = roulette(pop, popSize);
       }
 
-      parent1=indiv_copy(parent2);
+      parent1=parent2;
 
       do {
         if(selection == "tour"){
@@ -157,7 +135,7 @@ aspectdef dse_algo
       //03-beg Crossover --------------------------------------------------------------------------------
       
       var childrens = [];
-      childrens = crossoverTwoPoints(pop, parent1, parent2);
+      childrens = crossoverTwoPoints(pop, parent1, parent2, isnooptim, compile_execute_and_report);
       pop[child1] = indiv_copy(childrens[0]);
       pop[child2] = indiv_copy(childrens[1]);
       
@@ -165,7 +143,7 @@ aspectdef dse_algo
       
     }
     
-
+    /*
     // Mutation operator (only children individuals)
     var novo = 0;
     for (popId = popSize; popId < popTotal; popId++) {
@@ -230,12 +208,24 @@ aspectdef dse_algo
         pop[popId].fitness = Number.MAX_VALUE;
         pop[popId].chromosomeSize = maxwidth;
       }
-    }
+    }*/
 
     // Elitism reinsertion (sort and cut)
-    pop.sort(by('fitness', by('chromosomeSize')));
 
+    println("------------------------------------------------------------------------------------");
+    println("Geracao: " + counterGen);
+    println(pop[0].chromosome.join(","));
+    println("");
+    println(pop[popSize-1].chromosome.join(","));
+    println("");
+    pop.sort(by('fitness', by('chromosomeSize')));
+    println(pop[0].chromosome.join(","));
+    println("");
+    println(pop[popSize-1].chromosome.join(","));
+    println("");
+    
     bestlatency = pop[0].fitness;
+
 
     //******************  STOP CRITERION *******************
 /*
