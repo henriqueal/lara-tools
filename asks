@@ -2,3 +2,9 @@ Precisa colocar algum criterio ao gerar a populacao inicial:
 	-gerar cada ind com um tamanho diferente
 	-individudos totalmente diferentes
 	-individuos com fitness diferentes;
+
+Mutação, quais são os 4 tipos?
+
+Criterio de parada
+
+ExploreParamLength = 59
