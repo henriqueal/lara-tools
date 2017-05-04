@@ -50,7 +50,7 @@ aspectdef dse_algo
   // Design space coverage
   // ==================================================================
   var exploreParamSize = exploreParams.length;
-  
+  println(exploreParamSize);
   // Adjust parameters for percentage
   crossRate = crossRate/100;
   mutationRate = mutationRate/100;
