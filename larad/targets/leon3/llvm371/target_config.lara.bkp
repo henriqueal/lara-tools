@@ -72,8 +72,7 @@ aspectdef target_config
 "-targetlibinfo",
 "-tbaa",
 "-tti",
-"-verify",
-"-separate-const-offset-from-gep"
+"-verify"
 
 ];
 

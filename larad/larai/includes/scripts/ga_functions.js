@@ -11,50 +11,6 @@
     return a;
   };
 
-
-  var generateInitialPopulation = function(popSize, exploreParams, exploreParamSize, transformSubsetSize, isnooptim, compile_execute_and_report){
-
-    var vet_dist_prob = [];
-    var population = [];
-    var id;
-    var gene; 
-    var lengthChromossome;
-    var sortChromossomeLength;
-    var i;
-
-    vet_dist_prob[0]=0;
-    //generating chromossome probability by function: f(i)=i*10
-    for (i=1; i<=exploreParamSize;i++){
-      vet_dist_prob[i] = vet_dist_prob[i-1] + (i*10); 
-    }
-
-    for (id = population.length; id < popSize; id++){
-      
-      population[id] = indiv_maker();
-      sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[exploreParamSize]);
-      
-      for(i = 1; i <= exploreParamSize; i++){
-        if(sortChromossomeLength <= vet_dist_prob[i]){
-          lengthChromossome = i;
-          break;
-        }
-      }
-		  
-      for (gene=0; gene < lengthChromossome; gene++) {
-        var pos = Math.floor(Math.random()*exploreParamSize);  
-        population[id].chromosome[gene] = exploreParams[pos];
-      }
-      
-      // Apply code transformations and simulate
-      optimLevel = population[id].chromosome.filter(isnooptim).join(" ");
-      population[id].fitness = compile_execute_and_report(optimLevel);
-
-      //antigamente tinha um check_sequence is valid
-      population[id].chromosomeSize = population[id].chromosome.length;  
-    }
-    return population;
-  };
-
   // Argument of object.sort() - extended version for minimization
   var by = function (name, minor) {
     return function (o, p) {
@@ -118,14 +74,7 @@
     return counterElem;
   };
 
-/*  // Finder (recursive)
-  var find = function (chromo, pos, elem) {
-    if (pos >= chromo.length) {
-      return -1;
-    };
-    return (chromo[pos] == elem ? pos : find(chromo, pos+1, elem));
-  };
-/**/
+
   // Finder (interactive)
   var find = function (chromo, pos, elem) {
     var idx;
@@ -197,6 +146,49 @@
     };
     
     return -1;
+  };
+
+  var generateInitialPopulation = function(popSize, exploreParams, exploreParamSize, transformSubsetSize, isnooptim, compile_execute_and_report){
+
+    var vet_dist_prob = [];
+    var population = [];
+    var id;
+    var gene; 
+    var lengthChromossome;
+    var sortChromossomeLength;
+    var i;
+
+    vet_dist_prob[0]=0;
+    //generating chromossome probability by function: f(i)=i*10
+    for (i=1; i<=exploreParamSize;i++){
+      vet_dist_prob[i] = vet_dist_prob[i-1] + (i*10); 
+    }
+
+    for (id = population.length; id < popSize; id++){
+      
+      population[id] = indiv_maker();
+      sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[exploreParamSize]);
+      
+      for(i = 1; i <= exploreParamSize; i++){
+        if(sortChromossomeLength <= vet_dist_prob[i]){
+          lengthChromossome = i;
+          break;
+        }
+      }
+      
+      for (gene=0; gene < lengthChromossome; gene++) {
+        var pos = Math.floor(Math.random()*exploreParamSize);  
+        population[id].chromosome[gene] = exploreParams[pos];
+      }
+      
+      // Apply code transformations and simulate
+      optimLevel = population[id].chromosome.filter(isnooptim).join(" ");
+      population[id].fitness = compile_execute_and_report(optimLevel);
+
+      //antigamente tinha um check_sequence is valid
+      population[id].chromosomeSize = population[id].chromosome.length;  
+    }
+    return population;
   };
   
   // Tournment function (Sorted Array Version)
