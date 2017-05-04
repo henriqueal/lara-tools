@@ -1,0 +1,10 @@
+- flag selecao -- ok
+- gerar a populacao inicial variando o tamanho (+- = a roleta) -- ok
+- testar ate a selecao ja com a parte da flag ok
+- fazer o crossover, primeiramente com sorteio de 2 pts ok
+- tirar as iterations e unrolling+loop +-
+	*falta analistar o codigo no ga_functions
+- definir o criterio de parada +-
+	1- Atingir o número máximo de gerações ok
+	2- N gerações sem melhorar a solução (mudar o melhor indivíduo). Sendo N um parâmetro do AG ok
+	3- Além desses, é desejável incluir uma forma de verificar mudanças na população e evitar a convergência para soluções muitos parecidas. Talvez algo que avalie a variância entre os indivíduos da população.
