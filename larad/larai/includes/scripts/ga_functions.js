@@ -267,6 +267,60 @@
 
   };
 
+  var mutationX = function(individual, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report){
+
+    var qtyMutation = 4;
+    var selectMutation = Math.ceil(Math.random()*qtyMutation);
+
+    switch(selectMutation) {
+    case 1:
+        individual = mutation1(individual, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
+        break;
+    case 2:
+        individual = mutation2(individual);
+        break;
+    case 3:
+        individual = mutation3(individual);
+        break;
+    case 4:
+        individual = mutation4(individual);
+        break;
+    }
+
+    return individual;
+
+  };
+
+  var mutation1 = function(individual, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report){
+    //Inclusão de um novo passo de otimização
+    var sortedIndex = Math.floor(Math.random()*individual.chromosomeSize+1); //+1eh que posso adicionar no fim...
+    var sortedOptimizations = Math.floor(Math.random()*exploreParamSize); //sort an optimization
+
+    //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
+    individual.chromosome.splice(sortedIndex, 0, exploreParams[sortedOptimizations])
+    individual.chromosomeSize++;
+    optimLevel = individual.chromosome.filter(isnooptim).join(" ");
+    individual.fitness = compile_execute_and_report(optimLevel);
+    
+    //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
+    //println("---------------------------------------------------------------------------------------------------");
+    return individual;
+  };
+
+  var mutation2 = function(population){
+    return population;
+  };
+
+  var mutation3 = function(population){
+    return population;
+  };
+
+  var mutation4 = function(population){
+    return population;
+  };
+
+
+
   //------------------------------------------------------------------------------------------------------------
   // Mutation function for chromosome with fixed size
   var fixedmutation = function (loopranks_size, loopfactors, optimizations, indiv, flag_unroll) {
@@ -304,8 +358,8 @@
     var point;
 
     // Mutation over unrolling factor
-                if ((flag_unroll > 0) && (factor >= 0.6)) {
-                   var newPt = Math.floor(Math.random()*loopfactors_size);
+    if ((flag_unroll > 0) && (factor >= 0.6)) {
+      var newPt = Math.floor(Math.random()*loopfactors_size);
       point = Math.floor(Math.random()*loopranks_size);
       indiv.loopFactors[point] = loopfactors[newPt];
     }

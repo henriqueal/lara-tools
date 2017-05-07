@@ -50,7 +50,7 @@ aspectdef dse_algo
   // Design space coverage
   // ==================================================================
   var exploreParamSize = exploreParams.length;
-  println(exploreParamSize);
+  
   // Adjust parameters for percentage
   crossRate = crossRate/100;
   mutationRate = mutationRate/100;
@@ -67,6 +67,10 @@ aspectdef dse_algo
   var histSize = 0;
   var pop = [];
   var popId;    // Population index (individual location)
+
+  var bestFit=0;
+  var contRepeatedFit=0;
+  var maxRepeatedFit=3;
 
   // Define the maximum size of population
   var popTotal = Math.round(popSize * (1+crossRate));
@@ -140,9 +144,32 @@ aspectdef dse_algo
       pop[child2] = indiv_copy(childrens[1]);
       
       //03-end ------------------------------------------------------------------------------------------
+
+      //04-beg Mutation ---------------------------------------------------------------------------------
+
+
+      //println("exploreParamSize"+exploreParamSize);
+      mutationX(pop[0], exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
+      
+      //04-end ------------------------------------------------------------------------------------------
       
     }
-    
+
+    pop.sort(by('fitness', by('chromosomeSize')));
+
+    //05 - beg Stop criterions --------------------------------------------------------------------------
+    if(bestFit == pop[0].fitness){
+      contRepeatedFit++;
+    } else {
+      bestFit = pop[0].fitness;
+      contRepeatedFit=0;
+    }
+
+    if(contRepeatedFit >= maxRepeatedFit){
+      break;
+    }
+    //05-end ------------------------------------------------------------------------------------------
+  }  
     /*
     // Mutation operator (only children individuals)
     var novo = 0;
@@ -212,7 +239,7 @@ aspectdef dse_algo
 
     // Elitism reinsertion (sort and cut)
 
-    println("------------------------------------------------------------------------------------");
+    /*println("------------------------------------------------------------------------------------");
     println("Geracao: " + counterGen);
     println(pop[0].chromosome.join(","));
     println("");
@@ -222,7 +249,8 @@ aspectdef dse_algo
     println(pop[0].chromosome.join(","));
     println("");
     println(pop[popSize-1].chromosome.join(","));
-    println("");
+    println("");*;
+
     
     bestlatency = pop[0].fitness;
 
@@ -245,7 +273,7 @@ aspectdef dse_algo
 */
 
 
-  }
+  
 
   // Print historical array
 //  for (popId = 0; popId < histSize; popId++) {
