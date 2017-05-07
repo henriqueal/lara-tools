@@ -159,7 +159,7 @@
     var i;
 
     vet_dist_prob[0]=0;
-    //generating chromossome probability by function: f(i)=i*10
+    //generating chromosome probability by function: f(i)=i*10
     for (i=1; i<=exploreParamSize;i++){
       vet_dist_prob[i] = vet_dist_prob[i-1] + (i*10); 
     }
@@ -280,10 +280,10 @@
         individual = mutation2(individual, isnooptim, compile_execute_and_report);
         break;
     case 3:
-        individual = mutation3(individual);
+        individual = mutation3(individual, isnooptim, compile_execute_and_report);
         break;
     case 4:
-        individual = mutation4(individual);
+        individual = mutation4(individual, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
         break;
     }
 
@@ -325,12 +325,45 @@
     return individual;
   };
 
-  var mutation3 = function(population){
-    return population;
+  var mutation3 = function(individual, isnooptim, compile_execute_and_report){
+    //Cross two random genes
+
+    var sortedIndex1 = Math.floor(Math.random()*individual.chromosomeSize);
+    var sortedIndex2 = Math.floor(Math.random()*individual.chromosomeSize);
+
+    //println("index1: "+ sortedIndex1 + "; index2: "+ sortedIndex2);
+
+    //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
+
+    var aux = individual.chromosome[sortedIndex1];
+    individual.chromosome[sortedIndex1] = individual.chromosome[sortedIndex2];
+    individual.chromosome[sortedIndex2] = aux;
+    
+    optimLevel = individual.chromosome.filter(isnooptim).join(" ");
+    individual.fitness = compile_execute_and_report(optimLevel);
+
+    //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
+    //println("---------------------------------------------------------------------------------------------------");
+
+    return individual;
   };
 
-  var mutation4 = function(population){
-    return population;
+  var mutation4 = function(individual, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report){
+    //Select on gene and replace by another of exploreParams...
+
+    var sortedIndex = Math.floor(Math.random()*individual.chromosomeSize+1); //+1eh que posso adicionar no fim...
+    var sortedOptimizations = Math.floor(Math.random()*exploreParamSize); //sort an optimization
+
+    //println("sortedIndex: "+ sortedIndex + "sortedOptimizations: "+ exploreParams[sortedOptimizations]);
+
+    //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
+    individual.chromosome.splice(sortedIndex, 1, exploreParams[sortedOptimizations]);
+    optimLevel = individual.chromosome.filter(isnooptim).join(" ");
+    individual.fitness = compile_execute_and_report(optimLevel);
+    
+    //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
+    //println("---------------------------------------------------------------------------------------------------");
+    return individual;
   };
 
 
