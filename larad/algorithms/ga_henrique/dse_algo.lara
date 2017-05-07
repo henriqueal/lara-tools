@@ -144,11 +144,20 @@ aspectdef dse_algo
       pop[child2] = indiv_copy(childrens[1]);
       
       //03-end ------------------------------------------------------------------------------------------
+
+      //04-beg Mutation ---------------------------------------------------------------------------------
+
+
+      //println("exploreParamSize"+exploreParamSize);
+      mutationX(pop[0], exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
+      
+      //04-end ------------------------------------------------------------------------------------------
       
     }
 
     pop.sort(by('fitness', by('chromosomeSize')));
 
+    //05 - beg Stop criterions --------------------------------------------------------------------------
     if(bestFit == pop[0].fitness){
       contRepeatedFit++;
     } else {
@@ -157,12 +166,9 @@ aspectdef dse_algo
     }
 
     if(contRepeatedFit >= maxRepeatedFit){
-      println("parou pq atingiu o maximo de fitness repetidos");
-      println(counterGen);
       break;
     }
-
-
+    //05-end ------------------------------------------------------------------------------------------
   }  
     /*
     // Mutation operator (only children individuals)
