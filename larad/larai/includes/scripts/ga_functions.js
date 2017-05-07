@@ -277,7 +277,7 @@
         individual = mutation1(individual, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
         break;
     case 2:
-        individual = mutation2(individual);
+        individual = mutation2(individual, isnooptim, compile_execute_and_report);
         break;
     case 3:
         individual = mutation3(individual);
@@ -297,7 +297,7 @@
     var sortedOptimizations = Math.floor(Math.random()*exploreParamSize); //sort an optimization
 
     //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
-    individual.chromosome.splice(sortedIndex, 0, exploreParams[sortedOptimizations])
+    individual.chromosome.splice(sortedIndex, 0, exploreParams[sortedOptimizations]);
     individual.chromosomeSize++;
     optimLevel = individual.chromosome.filter(isnooptim).join(" ");
     individual.fitness = compile_execute_and_report(optimLevel);
@@ -307,8 +307,22 @@
     return individual;
   };
 
-  var mutation2 = function(population){
-    return population;
+  var mutation2 = function(individual, isnooptim, compile_execute_and_report){
+    //Remocao de um passo de otimização
+    var sortedIndex = Math.floor(Math.random()*individual.chromosomeSize);
+
+    //println("index: "+ sortedIndex);
+
+    //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
+    individual.chromosome.splice(sortedIndex, 1);
+    individual.chromosomeSize--;
+
+    optimLevel = individual.chromosome.filter(isnooptim).join(" ");
+    individual.fitness = compile_execute_and_report(optimLevel);
+
+    //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
+    //println("---------------------------------------------------------------------------------------------------");
+    return individual;
   };
 
   var mutation3 = function(population){
