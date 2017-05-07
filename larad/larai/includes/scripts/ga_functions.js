@@ -148,7 +148,7 @@
     return -1;
   };
 
-  var generateInitialPopulation = function(popSize, exploreParams, exploreParamSize, transformSubsetSize, isnooptim, compile_execute_and_report){
+  var generateInitialPopulation = function(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report){
 
     var vet_dist_prob = [];
     var population = [];
@@ -191,9 +191,7 @@
     return population;
   };
   
-  // Tournment function (Sorted Array Version)
   var tournment = function (indiv, size, qty) {
-    //println("--------------------------------------------------------------------------------------------------------");
     var counter;
     var bestId = Math.floor(Math.random()*(size-0.1));
     
@@ -286,7 +284,7 @@
         individual = mutation4(individual, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
         break;
     }
-
+    
     return individual;
 
   };
@@ -365,102 +363,3 @@
     //println("---------------------------------------------------------------------------------------------------");
     return individual;
   };
-
-
-
-  //------------------------------------------------------------------------------------------------------------
-  // Mutation function for chromosome with fixed size
-  var fixedmutation = function (loopranks_size, loopfactors, optimizations, indiv, flag_unroll) {
-    var factor = Math.random();
-    var loopfactors_size = loopfactors.length;
-    var point;
-
-    if (flag_unroll == 0) {
-      // Mutation over transformation
-      indiv.chromosome[optimizations] = !indiv.chromosome[optimizations];
-    }
-    else {
-      // Mutation over transformation
-      if (factor > 0.4) {
-        indiv.chromosome[optimizations] = !indiv.chromosome[optimizations];
-      };
-    
-      // Mutation over unrolling factor
-                  if (factor < 0.6) {
-                     var newPt = Math.floor(Math.random()*(loopfactors_size-0.1));
-        point = Math.floor(Math.random()*(loopranks_size-0.1));
-        indiv.loopFactors[point] = loopfactors[newPt];
-      };
-    };
-
-    return 1;
-  };
-  //------------------------------------------------------------------------------------------------------------
-  
-  //------------------------------------------------------------------------------------------------------------
-  // Mutation function for chromosome with variable size
-  var mutation = function (loopranks_size, loopfactors, optimizations, indiv, maxpoint, flag_unroll, maxwidth) {
-    var factor = Math.random();
-    var loopfactors_size = loopfactors.length;
-    var point;
-
-    // Mutation over unrolling factor
-    if ((flag_unroll > 0) && (factor >= 0.6)) {
-      var newPt = Math.floor(Math.random()*loopfactors_size);
-      point = Math.floor(Math.random()*loopranks_size);
-      indiv.loopFactors[point] = loopfactors[newPt];
-    }
-    else {
-      factor = factor * 0.85; // It limits the factor range from 0 to 0.85
-    };
-
-    // Mutation over transformation
-    if (factor <= 0.85) {
-      // Choose the gene for mutation
-      if (maxpoint > 1) {
-        point = Math.floor(Math.random()*(maxpoint-1.1));
-      }
-      else {
-        point = 0;
-      }
-
-      // Choose perturbation method randomly
-      if (factor <= 0.25) { // insert new optimization into individual chromosome
-        if (maxpoint < maxwidth) {
-          indiv.chromosome.splice(point,0,optimizations);
-        }
-        else {
-          indiv.chromosome[point] = optimizations; // Change an optimization randomly
-        };
-      }
-
-      else if (factor > 0.25 && factor <= 0.5) { // swap two array positions
-        if (maxpoint > 1) {
-          var newPt;
-                      newPt = Math.floor(Math.random()*(maxpoint-1.1));
-          if (point == newPt) {
-            newPt = (newPt+1)%maxpoint;
-          };
-            
-          var temporary = indiv.chromosome[point];
-          indiv.chromosome[point] = indiv.chromosome[newPt];
-          indiv.chromosome[newPt] = temporary;
-        }
-        else { // There is one or zero optimization in individual
-          indiv.chromosome[maxpoint] = optimizations; // insert new optimization
-        }
-      }
-
-      else if (factor > 0.5 && factor <= 0.75) { // Change an optimization randomly chosen in the array position
-                           indiv.chromosome[point] = optimizations;
-      }
-
-      else { // remove an individual's optimization
-            indiv.chromosome.splice(point,1);
-      };
-    };
-
-    return 1;
-  };
-  //------------------------------------------------------------------------------------------------------------
-

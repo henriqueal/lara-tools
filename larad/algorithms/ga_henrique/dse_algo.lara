@@ -1,9 +1,5 @@
 aspectdef dse_algo
 
-  // ==================================================================
-  // Input arguments
-  // ==================================================================
-
   input
     exploreParams = [], frontend, compile, execute_and_report, compile_execute_and_report, check_sequence_is_valid, add_timing, cleanall, minimumLat = 100, sequences, iterations, maxwidth, optimLevelsLatency, nr, selection;
   end
@@ -12,16 +8,34 @@ aspectdef dse_algo
     bestSeq, bestSeqLatency, total_steps;
   end
 
-
   function isnooptim(x){
     if(x !== "NOOPTIM") {
       return true;
     }
   }
 
-  var optimLevel = ""; //"-O0";   // No optimization
+  //-Ox variables
+  var optimLevel = ""; //"-O0"; // No optimization
   var latencyRef = optimLevelsLatency[0];
 
+  //Ag params
+  var maxGen ="30";
+  var popSize="30"; 
+  var crossRate="60";
+  var mutationRate="40";
+  var tour="3";  
+  var popTotal;
+
+  //stopcriterions
+  var bestFit=0;
+  var contRepeatedFit=0;
+  var maxRepeatedFit=3;
+
+  //variaveis do ag
+  var pop = [];
+  var popId;
+  var exploreParamSize = exploreParams.length;
+  var iGen;
 
   if(latencyRef == 0) {
     for(var i=0; i<optimLevelsLatency.length; i++) {
@@ -30,88 +44,29 @@ aspectdef dse_algo
       }
     }
   }
-
-  var maxGen="1000000"; // estava 30, mas isto estava a limitar o numero de iteraçoes
-  var maxCount = "25";
-  var popSize="30"; // "300";
-  var crossRate="60";
-  var mutationRate="40";
-  var tour="3";
-  
-  total_steps = 0;
-
-  // Stop criterion arguments
-  var deltaMin = 1;  // joined stop criterion
-
-  // Other arguments
-  var vezesTot = 4; // Number of tries to generate new individual
-
-  // ==================================================================
-  // Design space coverage
-  // ==================================================================
-  var exploreParamSize = exploreParams.length;
   
   // Adjust parameters for percentage
   crossRate = crossRate/100;
   mutationRate = mutationRate/100;
-  
-  
-  // ==================================================================
-  // ********************** Genetic Algorithm Code ********************
-  // ==================================================================
-
-  var speedup;   // Used to computation the speedup of an individual
-
-  // Population array variables
-  var histPop = [];
-  var histSize = 0;
-  var pop = [];
-  var popId;    // Population index (individual location)
-
-  var bestFit=0;
-  var contRepeatedFit=0;
-  var maxRepeatedFit=3;
 
   // Define the maximum size of population
-  var popTotal = Math.round(popSize * (1+crossRate));
+  popTotal = Math.round(popSize * (1+crossRate));
   if (popTotal%2 == 1) {
     popTotal++;
   }
 
-  var transformSubsetSize = Math.ceil(popSize/maxwidth); // Increment interval of the optimizations number
-  var geneMax = 1;
+  //01-beg Generate Initial Population ------------------------------------------------------------------
+  pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
+  //armazenar no vetor histórico?
 
-  //GERA A POPULACAO INICIAL
-  pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, transformSubsetSize, isnooptim, compile_execute_and_report);
-  
-  // Store individual in historical array
-  //histPop[histSize] = indiv_copy(pop[id]);
-  //histSize++;
-
-  //println("The best is: ");
-  //pop.sort(by('fitness', by('chromosomeSize')));
-  //println(pop[0].fitness + ";" + pop[0].chromosomeSize + ";" + pop[0].chromosome.join(","));
-	//println("");
-  var bestlatency = pop[0].fitness; // Store the best latency
-
-
-  // Create the population of childs
+  // childrens
   for (popId = popSize; popId < popTotal; popId++){
     pop[popId] = indiv_maker();
   }
+  //01-end -----------------------------------------------------------------------------------------------
 
-  // ==================================================================
-  // Interative step (generations)
-  // ==================================================================
-  var counterSpeedup = 1;
-  var counterGen;
+  for (iGen = 0; iGen < maxGen; iGen++) {
 
-  maxGen=100;
-  for (counterGen = 0; counterGen < maxGen; counterGen++) {
-    var randNumber;
-
-    // Crossover operator
-    //var novo = 0;
     var child1;
     for (child1 = popSize; child1 < popTotal; child1 = child1+2) {
       var child2 = child1++;
@@ -133,31 +88,26 @@ aspectdef dse_algo
           parent2 = roulette(pop, popSize);
         } 
       } while (parent1 == parent2);
-
       //02-end ------------------------------------------------------------------------------------------
 
       //03-beg Crossover --------------------------------------------------------------------------------
-      
       var childrens = [];
       childrens = crossoverTwoPoints(pop, parent1, parent2, isnooptim, compile_execute_and_report);
       pop[child1] = indiv_copy(childrens[0]);
       pop[child2] = indiv_copy(childrens[1]);
-      
       //03-end ------------------------------------------------------------------------------------------
 
       //04-beg Mutation ---------------------------------------------------------------------------------
-
-
-      //println("exploreParamSize"+exploreParamSize);
       mutationX(pop[0], exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
-      
       //04-end ------------------------------------------------------------------------------------------
       
     }
 
+    //05-beg Reinsertion --------------------------------------------------------------------------------
     pop.sort(by('fitness', by('chromosomeSize')));
-
-    //05 - beg Stop criterions --------------------------------------------------------------------------
+    //05-end --------------------------------------------------------------------------------------------
+    
+    //06 - beg Stop criterions --------------------------------------------------------------------------
     if(bestFit == pop[0].fitness){
       contRepeatedFit++;
     } else {
@@ -168,120 +118,10 @@ aspectdef dse_algo
     if(contRepeatedFit >= maxRepeatedFit){
       break;
     }
-    //05-end ------------------------------------------------------------------------------------------
-  }  
-    /*
-    // Mutation operator (only children individuals)
-    var novo = 0;
-    for (popId = popSize; popId < popTotal; popId++) {
-      // Mutation
-      if (Math.random() <= mutationRate) {
-        mutation(looprankSize, loopfactors, exploreParams[Math.floor(Math.random()*(exploreParamSize-0.1))], pop[popId], pop[popId].chromosome.length, applyunroll, maxwidth);
-      }
-
-      // Verify if individual already exists
-      var vezes = 0;
-      do {
-        if (indiv_finder(histPop, pop[popId]) > -1) {
-          var x;
-          for (x=0; x < (vezes+counterSpeedup); x++) {
-            mutation(looprankSize, loopfactors, exploreParams[Math.floor(Math.random()*(exploreParamSize-0.1))], pop[popId], pop[popId].chromosome.length, applyunroll, maxwidth);
-            mutation(looprankSize, loopfactors, exploreParams[Math.floor(Math.random()*(exploreParamSize-0.1))], pop[popId], pop[popId].chromosome.length, applyunroll, maxwidth);
-            mutation(looprankSize, loopfactors, exploreParams[Math.floor(Math.random()*(exploreParamSize-0.1))], pop[popId], pop[popId].chromosome.length, applyunroll, maxwidth);
-          }
-          vezes++;
-        }
-        else {
-          break;
-        }
-      } while (vezes < vezesTot);
-
-      if (vezes < vezesTot) {
-
-        if(total_steps >= iterations) {
-          //println("Breaks from Generation");
-          break;
-        }
-
-        // Individual's evaluation
-        //-------------------------------------------------------------------
+    //06-end ------------------------------------------------------------------------------------------
+  }     
     
-        // Apply code transformations
-        optimLevel = pop[popId].chromosome.filter(isnooptim).join(" ");
-        pop[popId].fitness = compile_execute_and_report(optimLevel);
-
-        if(check_sequence_is_valid(pop[popId].fitness) == false) {
-          pop[popId].fitness = Number.MAX_VALUE;
-          pop[popId].chromosomeSize = maxwidth;
-         } else {
-          // Tranformations quantification (secundary cost function)
-          pop[popId].chromosomeSize = pop[popId].chromosome.length;
-        }
-
-        total_steps++;
-  
-        // Store individual in historical array
-        histPop[histSize] = indiv_copy(pop[popId]);
-        histSize++;
-        novo++; // Determines novelty
-
-        // Debug code
-        //println(pop[popId].fitness + ";" + pop[popId].chromosomeSize + ";" + pop[popId].chromosome.join(","));
-        //-------------------------------------------------------------------
-
-      }
-      else {
-        // Force individual remove for next generation
-        pop[popId].fitness = Number.MAX_VALUE;
-        pop[popId].chromosomeSize = maxwidth;
-      }
-    }*/
-
-    // Elitism reinsertion (sort and cut)
-
-    /*println("------------------------------------------------------------------------------------");
-    println("Geracao: " + counterGen);
-    println(pop[0].chromosome.join(","));
-    println("");
-    println(pop[popSize-1].chromosome.join(","));
-    println("");
-    pop.sort(by('fitness', by('chromosomeSize')));
-    println(pop[0].chromosome.join(","));
-    println("");
-    println(pop[popSize-1].chromosome.join(","));
-    println("");*;
-
-    
-    bestlatency = pop[0].fitness;
-
-
-    //******************  STOP CRITERION *******************
-/*
-    // STOP CRITERION: Improvement between generations
-    if ((bestlatency - pop[0].fitness) <= deltaMin || novo == 0) {
-      //println("a diferenca eh: " + (bestlatency - pop[0].fitness) + " e o valor de novo eh: " + novo);
-      counterSpeedup++;
-    }
-    else {
-      counterSpeedup = 1;
-    }
-    
-    if (counterSpeedup == maxCount) {
-      //println("*** STOP CRITERION: " + maxCount + " evolutions without improvement ***");
-      break;
-    }
-*/
-
-
-  
-
-  // Print historical array
-//  for (popId = 0; popId < histSize; popId++) {
-//    //println(histPop[popId].fitness + ";" + histPop[popId].chromosomeSize + ";" + histPop[popId].chromosome.join(",") + ";" + histPop[popId].loopFactors.join(",") + ";" + loopranks.join(","));
-//  }
-
-  bestSeqLatency = bestlatency;
+  bestSeqLatency = pop[0].fitness;
   bestSeq = pop[0].chromosome;
-
 
 end
