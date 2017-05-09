@@ -5,7 +5,7 @@ aspectdef dse_algo
   end
 
   output
-    bestSeq, bestSeqLatency, total_steps;
+    bestSeq, bestSeqLatency;
   end
 
   function isnooptim(x){
@@ -96,12 +96,17 @@ aspectdef dse_algo
       pop[child1] = indiv_copy(childrens[0]);
       pop[child2] = indiv_copy(childrens[1]);
       //03-end ------------------------------------------------------------------------------------------
-
-      //04-beg Mutation ---------------------------------------------------------------------------------
-      mutationX(pop[0], exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
-      //04-end ------------------------------------------------------------------------------------------
       
     }
+
+    //04-beg Mutation -----------------------------------------------------------------------------------
+    var i;
+    for(i=0;i<Math.floor(mutationRate*popSize);i++){
+      var indexMutation = Math.floor((Math.random()*(popTotal - popSize)) + (popSize*1.0));
+      mutationX(pop[indexMutation], exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
+    }
+    //04-end --------------------------------------------------------------------------------------------
+
 
     //05-beg Reinsertion --------------------------------------------------------------------------------
     pop.sort(by('fitness', by('chromosomeSize')));
@@ -119,6 +124,7 @@ aspectdef dse_algo
       break;
     }
     //06-end ------------------------------------------------------------------------------------------
+    //println("iGen: "+iGen);
   }     
     
   bestSeqLatency = pop[0].fitness;
