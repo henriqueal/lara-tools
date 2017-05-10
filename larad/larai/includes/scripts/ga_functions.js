@@ -224,7 +224,7 @@
 
   };
 
-  var crossoverTwoPoints = function(population, parent1, parent2, isnooptim, compile_execute_and_report){
+  var crossoverTwoPoints = function(population, parent1, parent2){
     var childrens = [];
     var point1 = Math.floor(Math.random()*population[parent1].chromosomeSize);
     var point2 = Math.floor(Math.random()*population[parent2].chromosomeSize);
@@ -237,12 +237,6 @@
     
     childrens[0].chromosomeSize = childrens[0].chromosome.length;
     childrens[1].chromosomeSize = childrens[1].chromosome.length;
-
-    optimLevel = childrens[0].chromosome.filter(isnooptim).join(" ");
-    childrens[0].fitness = compile_execute_and_report(optimLevel);
-
-    optimLevel = childrens[1].chromosome.filter(isnooptim).join(" ");
-    childrens[1].fitness = compile_execute_and_report(optimLevel);
     
     /*
     println("Points = ("+ point1 + ", "+point2+")");
@@ -265,23 +259,23 @@
 
   };
 
-  var mutationX = function(individual, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report){
+  var mutationX = function(individual, exploreParams, exploreParamSize){
 
     var qtyMutation = 4;
     var selectMutation = Math.ceil(Math.random()*qtyMutation);
 
     switch(selectMutation) {
     case 1:
-        individual = mutation1(individual, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
+        individual = mutation1(individual, exploreParams, exploreParamSize);
         break;
     case 2:
-        individual = mutation2(individual, isnooptim, compile_execute_and_report);
+        individual = mutation2(individual);
         break;
     case 3:
-        individual = mutation3(individual, isnooptim, compile_execute_and_report);
+        individual = mutation3(individual);
         break;
     case 4:
-        individual = mutation4(individual, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
+        individual = mutation4(individual, exploreParams, exploreParamSize);
         break;
     }
     
@@ -297,8 +291,6 @@
     //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
     individual.chromosome.splice(sortedIndex, 0, exploreParams[sortedOptimizations]);
     individual.chromosomeSize++;
-    optimLevel = individual.chromosome.filter(isnooptim).join(" ");
-    individual.fitness = compile_execute_and_report(optimLevel);
     
     //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
     //println("---------------------------------------------------------------------------------------------------");
@@ -314,9 +306,6 @@
     //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
     individual.chromosome.splice(sortedIndex, 1);
     individual.chromosomeSize--;
-
-    optimLevel = individual.chromosome.filter(isnooptim).join(" ");
-    individual.fitness = compile_execute_and_report(optimLevel);
 
     //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
     //println("---------------------------------------------------------------------------------------------------");
@@ -336,10 +325,7 @@
     var aux = individual.chromosome[sortedIndex1];
     individual.chromosome[sortedIndex1] = individual.chromosome[sortedIndex2];
     individual.chromosome[sortedIndex2] = aux;
-    
-    optimLevel = individual.chromosome.filter(isnooptim).join(" ");
-    individual.fitness = compile_execute_and_report(optimLevel);
-
+   
     //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
     //println("---------------------------------------------------------------------------------------------------");
 
@@ -356,8 +342,6 @@
 
     //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
     individual.chromosome.splice(sortedIndex, 1, exploreParams[sortedOptimizations]);
-    optimLevel = individual.chromosome.filter(isnooptim).join(" ");
-    individual.fitness = compile_execute_and_report(optimLevel);
     
     //println(individual.fitness + ";" + individual.chromosomeSize + ";" + individual.chromosome.join(","));
     //println("---------------------------------------------------------------------------------------------------");
