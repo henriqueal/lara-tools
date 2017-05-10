@@ -19,7 +19,7 @@ aspectdef dse_algo
   var latencyRef = optimLevelsLatency[0];
 
   //Ag params
-  var maxGen ="30";
+  var maxGen ="10";
   var popSize="30"; 
   var crossRate="60";
   var mutationRate="40";
@@ -108,11 +108,19 @@ aspectdef dse_algo
     //04-end --------------------------------------------------------------------------------------------
 
 
-    //05-beg Reinsertion --------------------------------------------------------------------------------
-    pop.sort(by('fitness', by('chromosomeSize')));
+    //05-beg Calculte Childrens Fitness -----------------------------------------------------------------
+    for(i=popSize;i<popTotal;i++){
+      optimLevel = pop[i].chromosome.filter(isnooptim).join(" ");
+      pop[i].fitness = compile_execute_and_report(optimLevel);
+    }
     //05-end --------------------------------------------------------------------------------------------
+
+
+    //06-beg Reinsertion --------------------------------------------------------------------------------
+    pop.sort(by('fitness', by('chromosomeSize')));
+    //06-end --------------------------------------------------------------------------------------------
     
-    //06 - beg Stop criterions --------------------------------------------------------------------------
+    //07 - beg Stop criterions --------------------------------------------------------------------------
     if(bestFit == pop[0].fitness){
       contRepeatedFit++;
     } else {
@@ -123,7 +131,7 @@ aspectdef dse_algo
     if(contRepeatedFit >= maxRepeatedFit){
       break;
     }
-    //06-end ------------------------------------------------------------------------------------------
+    //07-end ------------------------------------------------------------------------------------------
     //println("iGen: "+iGen);
   }     
     
