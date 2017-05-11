@@ -34,9 +34,19 @@ function help {
     echo -e "  -selection \t\t\t- Selection Type in GA (default: tour)"
     echo -e "    =tour\t\t\t-   Tournment (tour of 3)"
     echo -e "    =roulette\t\t\t-   Roulette"
+    echo -e "  -maxGen\t\t\t- Number of generations (default: 100)"
+    echo -e "  -popSize\t\t\t- Population Size (default:60)"
+    echo -e "  -crossRate\t\t\t- Crossover operator rate (default:60)"
+    echo -e "  -mutationRate\t\t- Mutation operator rate (default:40)"
+    echo -e "  -stopByFit\t\t- Number of generates that the best individual is the same  (default:15)"
     echo -e "  -nsteps\t\t\t- Number of compile/test iterations (default: 1000)"
     echo -e "  -seqlen\t\t\t- Maximum number of compiler passes per sequence (default: 32)"
     echo -e "  -nexec\t\t\t- Number of times each compiled program is tested per iteration (default: 1)"
+
+      /*var maxGen ="1";
+  var popSize="10"; 
+  var crossRate="60";
+  var mutationRate="40";*/
 
 
 #        echo -e "    =ga\t\t\t-   Genetic algorithms approach"

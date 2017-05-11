@@ -99,7 +99,30 @@ aspectdef dse
 
 
   // APAGAR ISTO DEPOIS DE ENVIAR OS RESULTADOS AO GUSTAVO
-  //writeFile("./"+cfile+".seq", cleanseq.bestSeq.join(", "));  // Save the best sequence
-  //writeFile("./"+cfile+".speed", (cleanseq.bestSeqLatency.toFixed(0) * overBestOptimLevel) + ";" + cleanseq.bestSeqLatency.toFixed(0) + ";" + overBestOptimLevel.toFixed(6)); // Save fitness result
-  //writeFile("./"+cfile+".temp", totalTime.toFixed(3)); // Save exploration time
+  
+  println(cfile);
+
+  /*
+  writeFile("/tmp/"+cfile+".seq", cleanseq.bestSeq.join(", "));  // Save the best sequence
+  writeFile("/tmp/"+cfile+".speed", (cleanseq.bestSeqLatency.toFixed(0) * overBestOptimLevel) + ";" + cleanseq.bestSeqLatency.toFixed(0) + ";" + overBestOptimLevel.toFixed(6)); // Save fitness result
+  writeFile("/tmp/"+cfile+".temp", totalTime.toFixed(3)); // Save exploration time
+  */
+
+  //var path = "/opt/lara-tools/experiments/";
+  var pathRoot = "/tmp/";
+
+  var maxGen ="1";
+  var popSize="10"; 
+  var crossRate="60";
+  var mutationRate="40";
+  var cFileSub = cfile.substring(41,54);
+  var path = pathRoot + cFileSub + "/";
+
+  var fileName = cFileSub+"_"+selection+"_"+maxGen+"_"+popSize+"_"+crossRate+"_"+mutationRate;
+
+  var stringReport = cFileSub + ";" + cleanseq.bestSeq.join(", ") + ";" + (cleanseq.bestSeqLatency.toFixed(0) * overBestOptimLevel) + ";" + cleanseq.bestSeqLatency.toFixed(0) + ";" + overBestOptimLevel.toFixed(6) + ";" + totalTime.toFixed(3);
+
+  appendFile(path+fileName, stringReport+"\n");
+
+
 end

@@ -148,7 +148,7 @@
     return -1;
   };
 
-  var generateInitialPopulation = function(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report){
+  var generateInitialPopulation = function(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report, maxValue, total_steps, check_sequence_is_valid, maxwidth){
 
     var vet_dist_prob = [];
     var population = [];
@@ -164,10 +164,12 @@
       vet_dist_prob[i] = vet_dist_prob[i-1] + (i*10); 
     }
 
-    for (id = population.length; id < popSize; id++){
+    for (id = 0; id < popSize; id++){
       
       population[id] = indiv_maker();
+      //sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[exploreParamSize]);
       sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[exploreParamSize]);
+      
       
       for(i = 1; i <= exploreParamSize; i++){
         if(sortChromossomeLength <= vet_dist_prob[i]){
@@ -184,6 +186,11 @@
       // Apply code transformations and simulate
       optimLevel = population[id].chromosome.filter(isnooptim).join(" ");
       population[id].fitness = compile_execute_and_report(optimLevel);
+
+      if(check_sequence_is_valid(population[id].fitness, optimLevel, total_steps) == false) {
+        population[id].fitness = Number.MAX_VALUE;
+        population[id].chromosomeSize = maxwidth;
+      }
 
       //antigamente tinha um check_sequence is valid
       population[id].chromosomeSize = population[id].chromosome.length;  

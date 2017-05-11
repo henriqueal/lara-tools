@@ -17,10 +17,12 @@ aspectdef dse_algo
   //-Ox variables
   var optimLevel = ""; //"-O0"; // No optimization
   var latencyRef = optimLevelsLatency[0];
+  var maxValue=99999;
+  var total_steps="10000";
 
   //Ag params
-  var maxGen ="10";
-  var popSize="30"; 
+  var maxGen ="100";
+  var popSize="10"; 
   var crossRate="60";
   var mutationRate="40";
   var tour="3";  
@@ -29,7 +31,7 @@ aspectdef dse_algo
   //stopcriterions
   var bestFit=0;
   var contRepeatedFit=0;
-  var maxRepeatedFit=3;
+  var maxRepeatedFit=100;
 
   //variaveis do ag
   var pop = [];
@@ -56,7 +58,7 @@ aspectdef dse_algo
   }
 
   //01-beg Generate Initial Population ------------------------------------------------------------------
-  pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
+  pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report, maxValue, total_steps, check_sequence_is_valid, maxwidth);
   //armazenar no vetor histórico?
 
   // childrens
@@ -65,8 +67,7 @@ aspectdef dse_algo
   }
   //01-end -----------------------------------------------------------------------------------------------
 
-  for (iGen = 0; iGen < maxGen; iGen++) {
-
+  for (iGen = 0; iGen < maxGen; iGen++) { 
     var child1;
     for (child1 = popSize; child1 < popTotal; child1 = child1+2) {
       var child2 = child1++;
@@ -95,15 +96,14 @@ aspectdef dse_algo
       childrens = crossoverTwoPoints(pop, parent1, parent2, isnooptim, compile_execute_and_report);
       pop[child1] = indiv_copy(childrens[0]);
       pop[child2] = indiv_copy(childrens[1]);
-      //03-end ------------------------------------------------------------------------------------------
-      
+      //03-end ------------------------------------------------------------------------------------------   
     }
 
     //04-beg Mutation -----------------------------------------------------------------------------------
     var i;
     for(i=0;i<Math.floor(mutationRate*popSize);i++){
       var indexMutation = Math.floor((Math.random()*(popTotal - popSize)) + (popSize*1.0));
-      mutationX(pop[indexMutation], exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
+      mutationX(pop[indexMutation], exploreParams, exploreParamSize);
     }
     //04-end --------------------------------------------------------------------------------------------
 
@@ -112,6 +112,10 @@ aspectdef dse_algo
     for(i=popSize;i<popTotal;i++){
       optimLevel = pop[i].chromosome.filter(isnooptim).join(" ");
       pop[i].fitness = compile_execute_and_report(optimLevel);
+      if(check_sequence_is_valid(pop[i].fitness, optimLevel, total_steps) == false) {
+        pop[i].fitness = Number.MAX_VALUE;
+        pop[i].chromosomeSize = maxwidth;
+      }
     }
     //05-end --------------------------------------------------------------------------------------------
 
