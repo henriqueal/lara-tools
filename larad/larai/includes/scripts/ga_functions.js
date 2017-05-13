@@ -198,13 +198,13 @@
     return population;
   };
   
-  var tournment = function (indiv, size, qty) {
-    var counter;
-    var bestId = Math.floor(Math.random()*(size-0.1));
+  var tournment = function (individual, size, qty) {
+    var i;
+    var bestId = Math.floor(Math.random()*size);
     
-    for (counter = 1; counter < qty; counter++) {
-      var idx = Math.floor(Math.random()*(size-0.1));
-      if (idx < bestId) {
+    for (i = 1; i < qty; i++) {
+      var idx = Math.floor(Math.random()*size);
+      if (individual[idx].fitness < individual[bestId].fitness) {
         bestId  = idx;
       };
     };
@@ -217,14 +217,24 @@
     var roulette = [];
     var id=0;
     var random_number;
+    var maxOfArray;
 
     roulette[0] = (population[0].fitness == Number.MAX_VALUE ? 0 : population[0].fitness);
     for(i=1; i< size; i++) {
       roulette[i] = roulette[i-1] + (population[i].fitness == Number.MAX_VALUE ? 0 : population[i].fitness);
+      //println("roulette[" + i + "] =  " + roulette[i]);
     };
 
-    println(roulette[roulette.length-1]);
+    maxOfArray = Math.max.apply(null, roulette);
 
+    //println("maxOfArray: " + maxOfArray);
+
+    roulette[0] = roulette[0] == 0 ? 1 : (maxOfArray + 1 - roulette[0] )
+    for(i=1; i< size; i++) {
+      roulette[i] = roulette[i-1] + (roulette[i] == 0 ? 1 : (maxOfArray + 1 - roulette[i] ) );
+      //println("rouletteModificado[" + i + "] =  " + roulette[i]);
+    };
+    
     random_number = Math.random() * roulette[size - 1];
     while(random_number > roulette[id]){
       id++;
