@@ -160,23 +160,23 @@
 
     vet_dist_prob[0]=0;
     //generating chromosome probability by function: f(i)=i*10
-    for (i=1; i<=exploreParamSize;i++){
+    for (i=1; i<=maxwidth;i++){
       vet_dist_prob[i] = vet_dist_prob[i-1] + (i*10); 
     }
 
     for (id = 0; id < popSize; id++){
-      
+
       population[id] = indiv_maker();
       //sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[exploreParamSize]);
-      sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[exploreParamSize]);
-      
-      
-      for(i = 1; i <= exploreParamSize; i++){
+      sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[maxwidth]);
+      lengthChromossome =  Math.floor(Math.random() * 10);
+      /*
+      for(i = 1; i <= maxwidth; i++){
         if(sortChromossomeLength <= vet_dist_prob[i]){
           lengthChromossome = i;
           break;
         }
-      }
+      }*/
       
       for (gene=0; gene < lengthChromossome; gene++) {
         var pos = Math.floor(Math.random()*exploreParamSize);  
@@ -209,7 +209,7 @@
       };
     };
     
-    return (bestId);
+    return bestId;
   };
 
   var roulette = function (population, size) {
@@ -218,17 +218,19 @@
     var id=0;
     var random_number;
 
-    roulette[0] = population[0].fitness;
+    roulette[0] = (population[0].fitness == Number.MAX_VALUE ? 0 : population[0].fitness);
     for(i=1; i< size; i++) {
-      roulette[i] = roulette[i-1] + population[i].fitness;
+      roulette[i] = roulette[i-1] + (population[i].fitness == Number.MAX_VALUE ? 0 : population[i].fitness);
     };
+
+    println(roulette[roulette.length-1]);
 
     random_number = Math.random() * roulette[size - 1];
     while(random_number > roulette[id]){
       id++;
     };
-    return (id);
 
+    return (id);
   };
 
   var crossoverTwoPoints = function(population, parent1, parent2){
