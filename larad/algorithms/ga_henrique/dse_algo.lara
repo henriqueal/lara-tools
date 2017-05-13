@@ -1,7 +1,7 @@
 aspectdef dse_algo
 
   input
-    exploreParams = [], frontend, compile, execute_and_report, compile_execute_and_report, check_sequence_is_valid, add_timing, cleanall, minimumLat = 100, sequences, iterations, maxwidth, optimLevelsLatency, nr, selection;
+    exploreParams = [], frontend, compile, execute_and_report, compile_execute_and_report, check_sequence_is_valid, add_timing, cleanall, minimumLat = 100, sequences, iterations, maxwidth, optimLevelsLatency, nr, selection, maxGen, popSize, crossRate, mutRate, stopByFit;
   end
 
   output
@@ -17,19 +17,17 @@ aspectdef dse_algo
   //-Ox variables
   var optimLevel = ""; //"-O0"; // No optimization
   var latencyRef = optimLevelsLatency[0];
+  var maxValue=Number.MAX_VALUE;
+  var total_steps="10000";
 
   //Ag params
-  var maxGen ="10";
-  var popSize="30"; 
-  var crossRate="60";
-  var mutationRate="40";
-  var tour="3";  
+  var tour=3;
   var popTotal;
 
   //stopcriterions
   var bestFit=0;
   var contRepeatedFit=0;
-  var maxRepeatedFit=3;
+  var maxRepeatedFit=100;
 
   //variaveis do ag
   var pop = [];
@@ -47,7 +45,7 @@ aspectdef dse_algo
   
   // Adjust parameters for percentage
   crossRate = crossRate/100;
-  mutationRate = mutationRate/100;
+  mutRate = mutRate/100;
 
   // Define the maximum size of population
   popTotal = Math.round(popSize * (1+crossRate));
@@ -56,17 +54,20 @@ aspectdef dse_algo
   }
 
   //01-beg Generate Initial Population ------------------------------------------------------------------
-  pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
+  pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report, maxValue, total_steps, check_sequence_is_valid, maxwidth);
   //armazenar no vetor histórico?
+
+
 
   // childrens
   for (popId = popSize; popId < popTotal; popId++){
     pop[popId] = indiv_maker();
   }
   //01-end -----------------------------------------------------------------------------------------------
-
-  for (iGen = 0; iGen < maxGen; iGen++) {
-
+println("1 _______________________________________________________________________________________________________");
+println(maxGen);
+  for (iGen = 0; iGen < maxGen; iGen++) { 
+    println(iGen);
     var child1;
     for (child1 = popSize; child1 < popTotal; child1 = child1+2) {
       var child2 = child1++;
@@ -89,31 +90,37 @@ aspectdef dse_algo
         } 
       } while (parent1 == parent2);
       //02-end ------------------------------------------------------------------------------------------
+      println("2 _______________________________________________________________________________________________________");
 
       //03-beg Crossover --------------------------------------------------------------------------------
       var childrens = [];
       childrens = crossoverTwoPoints(pop, parent1, parent2, isnooptim, compile_execute_and_report);
       pop[child1] = indiv_copy(childrens[0]);
       pop[child2] = indiv_copy(childrens[1]);
-      //03-end ------------------------------------------------------------------------------------------
-      
+      //03-end ------------------------------------------------------------------------------------------   
+      println("3 _______________________________________________________________________________________________________");
     }
 
     //04-beg Mutation -----------------------------------------------------------------------------------
     var i;
-    for(i=0;i<Math.floor(mutationRate*popSize);i++){
+    for(i=0;i<Math.floor(mutRate*popSize);i++){
       var indexMutation = Math.floor((Math.random()*(popTotal - popSize)) + (popSize*1.0));
-      mutationX(pop[indexMutation], exploreParams, exploreParamSize, isnooptim, compile_execute_and_report);
+      mutationX(pop[indexMutation], exploreParams, exploreParamSize);
     }
     //04-end --------------------------------------------------------------------------------------------
-
+    println("4 _______________________________________________________________________________________________________");
 
     //05-beg Calculte Childrens Fitness -----------------------------------------------------------------
     for(i=popSize;i<popTotal;i++){
       optimLevel = pop[i].chromosome.filter(isnooptim).join(" ");
       pop[i].fitness = compile_execute_and_report(optimLevel);
+      if(check_sequence_is_valid(pop[i].fitness, optimLevel, total_steps) == false) {
+        pop[i].fitness = Number.MAX_VALUE;
+        pop[i].chromosomeSize = maxwidth;
+      }
     }
     //05-end --------------------------------------------------------------------------------------------
+    println("5 _______________________________________________________________________________________________________");
 
 
     //06-beg Reinsertion --------------------------------------------------------------------------------
@@ -132,9 +139,9 @@ aspectdef dse_algo
       break;
     }
     //07-end ------------------------------------------------------------------------------------------
-    //println("iGen: "+iGen);
+    println("iGen: "+iGen);
   }     
-    
+  
   bestSeqLatency = pop[0].fitness;
   bestSeq = pop[0].chromosome;
 
