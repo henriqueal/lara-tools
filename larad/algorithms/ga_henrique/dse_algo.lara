@@ -42,6 +42,8 @@ aspectdef dse_algo
       }
     }
   }
+
+
   
   // Adjust parameters for percentage
   crossRate = crossRate/100;
@@ -52,11 +54,23 @@ aspectdef dse_algo
   if (popTotal%2 == 1) {
     popTotal++;
   }
+  
+
+  
+  println("selection: " + selection);
+  println("maxGen:" + maxGen);
+  println("popSize: " + popSize);
+  println("crossRate: " + crossRate);
+  println("mutRate: " + mutRate);
+  println("stopByFit: " + stopByFit);
+  //println("nexec: " + nexec);
+
+
 
   //01-beg Generate Initial Population ------------------------------------------------------------------
   pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report, maxValue, total_steps, check_sequence_is_valid, maxwidth);
   //armazenar no vetor histórico?
-
+/*
   var i,cont=0;
   for (i=0; i<popSize;i++){
     if(pop[i].fitness == Number.MAX_VALUE){
@@ -65,15 +79,13 @@ aspectdef dse_algo
   }
 
   println("cont: " + cont);
-/*
+
 
   // childrens
   for (popId = popSize; popId < popTotal; popId++){
     pop[popId] = indiv_maker();
   }
   //01-end -----------------------------------------------------------------------------------------------
-println("1 _______________________________________________________________________________________________________");
-println("maxGen:" + maxGen);
   for (iGen = 0; iGen < maxGen; iGen++) { 
     println(iGen);
     var child1;
@@ -98,15 +110,14 @@ println("maxGen:" + maxGen);
         } 
       } while (parent1 == parent2);
       //02-end ------------------------------------------------------------------------------------------
-      println("2 _______________________________________________________________________________________________________");
-
+      
       //03-beg Crossover --------------------------------------------------------------------------------
       var childrens = [];
       childrens = crossoverTwoPoints(pop, parent1, parent2, isnooptim, compile_execute_and_report);
       pop[child1] = indiv_copy(childrens[0]);
       pop[child2] = indiv_copy(childrens[1]);
       //03-end ------------------------------------------------------------------------------------------   
-      println("3 _______________________________________________________________________________________________________");
+      
     }
 
     //04-beg Mutation -----------------------------------------------------------------------------------
@@ -116,8 +127,7 @@ println("maxGen:" + maxGen);
       mutationX(pop[indexMutation], exploreParams, exploreParamSize);
     }
     //04-end --------------------------------------------------------------------------------------------
-    println("4 _______________________________________________________________________________________________________");
-
+    
     //05-beg Calculte Childrens Fitness -----------------------------------------------------------------
     for(i=popSize;i<popTotal;i++){
       optimLevel = pop[i].chromosome.filter(isnooptim).join(" ");
@@ -128,8 +138,7 @@ println("maxGen:" + maxGen);
       }
     }
     //05-end --------------------------------------------------------------------------------------------
-    println("5 _______________________________________________________________________________________________________");
-
+    
 
     //06-beg Reinsertion --------------------------------------------------------------------------------
     pop.sort(by('fitness', by('chromosomeSize')));
