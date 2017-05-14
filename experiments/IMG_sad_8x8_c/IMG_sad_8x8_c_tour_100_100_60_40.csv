@@ -1,0 +1,1 @@
+IMG_sad_8x8_c;-instcombine, -reassociate, -sroa, -loop-rotate, -loop-unroll;878;878;1.000000;263.549;4708;878;-instcombine, -reassociate, -sroa, -loop-rotate, -loop-unroll, -loop-simplify;6

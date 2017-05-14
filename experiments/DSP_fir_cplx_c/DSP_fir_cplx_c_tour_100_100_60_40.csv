@@ -1,0 +1,1 @@
+DSP_fir_cplx_c;-scalarrepl, -licm, -early-cse, -loop-unswitch, -loop-rotate, -instcombine;8509;8277;1.028029;311.610;4927;8277;-scalarrepl, -licm, -early-cse, -early-cse, -loop-unswitch, -loop-rotate, -instcombine;7
