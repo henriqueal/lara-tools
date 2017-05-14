@@ -26,7 +26,8 @@ do
 	#mkdir "/tmp/experiments/${dir##*/}/"
 
 	#larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -nsteps=100 -seqlen=128 -nexec=1 ~/Benchmarks/TEXAS_42_LEON3/${dir##*/}/${dir##*/}.c > /tmp/experiments/${dir##*/}/${sel}_${gen}_${pop}_${cro}_${mut}
-	larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -popSize=10 -maxGen=1 -seqlen=128 ~/Benchmarks/TEXAS_42_LEON3/${dir##*/}/${dir##*/}.c
+	cd /tmp
+	larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -popSize=100 -maxGen=100 -seqlen=128 ~/Benchmarks/TEXAS_42_LEON3/${dir##*/}/${dir##*/}.c
 	#$filename = "/tmp/experiments/${dir##*/}/${sel}_${gen}_${pop}_${cro}_${mut}"
 
 done

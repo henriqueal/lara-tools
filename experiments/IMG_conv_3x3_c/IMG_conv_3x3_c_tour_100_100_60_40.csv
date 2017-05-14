@@ -1,0 +1,1 @@
+IMG_conv_3x3_c;-loop-rotate, -scalarrepl, -loop-reduce, -loop-unroll, -gvn, -slsr;25269;23984;1.053577;386.025;4873;23984;-loop-rotate, -scalarrepl, -loop-reduce, -loop-unroll, -dce, -gvn, -slsr;7
