@@ -5,7 +5,7 @@ aspectdef dse_algo
   end
 
   output
-    bestSeq, bestSeqLatency;
+    bestSeq, bestSeqLatency, sizeHistPop ,chromoSizeBestIndiv;
   end
 
   function isnooptim(x){
@@ -34,6 +34,10 @@ aspectdef dse_algo
   var popId;
   var exploreParamSize = exploreParams.length;
   var iGen;
+  var histPop = [];
+  sizeHistPop = 0;
+      var aux=0;
+
 
   if(latencyRef == 0) {
     for(var i=0; i<optimLevelsLatency.length; i++) {
@@ -63,15 +67,20 @@ aspectdef dse_algo
   println("crossRate: " + crossRate);
   println("mutRate: " + mutRate);
   println("stopByFit: " + stopByFit);
+  println("popTotal: "+ popTotal);
   //println("nexec: " + nexec);
 
 
 
   //01-beg Generate Initial Population ------------------------------------------------------------------
   pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report, maxValue, total_steps, check_sequence_is_valid, maxwidth);
-  //armazenar no vetor histórico?
-/*
   var i,cont=0;
+  for (i=0; i<popSize; i++){
+    histPop[i] = indiv_copy(pop[i]);
+  }
+  sizeHistPop = popSize;
+
+
   for (i=0; i<popSize;i++){
     if(pop[i].fitness == Number.MAX_VALUE){
       cont++;
@@ -87,7 +96,6 @@ aspectdef dse_algo
   }
   //01-end -----------------------------------------------------------------------------------------------
   for (iGen = 0; iGen < maxGen; iGen++) { 
-    println(iGen);
     var child1;
     for (child1 = popSize; child1 < popTotal; child1 = child1+2) {
       var child2 = child1++;
@@ -128,13 +136,23 @@ aspectdef dse_algo
     }
     //04-end --------------------------------------------------------------------------------------------
     
+
     //05-beg Calculte Childrens Fitness -----------------------------------------------------------------
     for(i=popSize;i<popTotal;i++){
-      optimLevel = pop[i].chromosome.filter(isnooptim).join(" ");
-      pop[i].fitness = compile_execute_and_report(optimLevel);
-      if(check_sequence_is_valid(pop[i].fitness, optimLevel, total_steps) == false) {
+
+      if(indiv_finder(histPop, pop[i]) > -1){
         pop[i].fitness = Number.MAX_VALUE;
         pop[i].chromosomeSize = maxwidth;
+        aux++;
+      } else {
+        optimLevel = pop[i].chromosome.filter(isnooptim).join(" ");
+        pop[i].fitness = compile_execute_and_report(optimLevel);
+        if(check_sequence_is_valid(pop[i].fitness, optimLevel, total_steps) == false) {
+          pop[i].fitness = Number.MAX_VALUE;
+          pop[i].chromosomeSize = maxwidth;
+        }
+        histPop[sizeHistPop] = indiv_copy(pop[i]); 
+        sizeHistPop++;
       }
     }
     //05-end --------------------------------------------------------------------------------------------
@@ -156,11 +174,16 @@ aspectdef dse_algo
       break;
     }
     //07-end ------------------------------------------------------------------------------------------
-    println("iGen: "+iGen);
   }     
-  */
-  pop.sort(by('fitness', by('chromosomeSize')));
+  
+  //pop.sort(by('fitness', by('chromosomeSize')));
+  println("Individuos avaliados: "+ sizeHistPop);
+  println("Melhor individuo: " +  pop[0].chromosome.join(","));
+  println("Tamanho do melhor individuo: " +  pop[0].chromosomeSize);
+
+
   bestSeqLatency = pop[0].fitness;
   bestSeq = pop[0].chromosome;
+  chromoSizeBestIndiv = pop[0].chromosomeSize;
 
 end

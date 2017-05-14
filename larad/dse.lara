@@ -111,13 +111,18 @@ aspectdef dse
   //var path = "/opt/lara-tools/experiments/";
   var pathRoot = "/tmp/";
 
+  println("Individuos avaliados: "+ llvm_algorithm.sizeHistPop);
+
 
   var cFileSub = cfile.substring(41,54);//arrumar aqui para pegar .c vai funcionar bem melhor
   var path = pathRoot + cFileSub + "/";
 
   var fileName = cFileSub+"_"+selection+"_"+maxGen+"_"+popSize+"_"+crossRate+"_"+mutRate;
 
-  var stringReport = cFileSub + ";" + cleanseq.bestSeq.join(", ") + ";" + (cleanseq.bestSeqLatency.toFixed(0) * overBestOptimLevel) + ";" + cleanseq.bestSeqLatency.toFixed(0) + ";" + overBestOptimLevel.toFixed(6) + ";" + totalTime.toFixed(3);
+  //Nome do arquivo + individuocleando + latencia + speedup + tempo exploracao + qtd_indiv_avaliadosAG + latencia do AG (sem ser o cleanSeq) +inidividuo do AG + tamanho do indiv AG 
+  //Nome; Individuo Cleanado;  -Ox; Latencia indiv;  speedup (cuidado - dividir por 1000); Tempo Exploração (cuidado quando jogar no calc (deve dividir por 100));  #avaliados;  Latencia indiv;  indivíduo ag;  Tamanho Cromo;
+
+  var stringReport = cFileSub + ";" +  cleanseq.bestSeq.join(", ") + ";" + (cleanseq.bestSeqLatency.toFixed(0) * overBestOptimLevel) + ";" + cleanseq.bestSeqLatency.toFixed(0) + ";" + overBestOptimLevel.toFixed(6) + ";" + totalTime.toFixed(3) + ";" + llvm_algorithm.sizeHistPop + ";" + llvm_algorithm.bestSeqLatency +";" +llvm_algorithm.bestSeq.join(", ") + ";" + llvm_algorithm.chromoSizeBestIndiv;
 
   appendFile(path+fileName, stringReport+"\n");
 
