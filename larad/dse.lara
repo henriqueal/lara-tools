@@ -46,7 +46,7 @@ aspectdef dse
   for(i=0; i < optimLevelsName.length; i++) {
     var optimLevel = optimLevelsSwitch[i];
     optimLevelsLatency[i] = llvm_setup.compile_execute_and_report(optimLevel);
-    println("\t" + optimLevelsName[i] + ": " + optimLevelsLatency[i]);
+    //println("\t" + optimLevelsName[i] + ": " + optimLevelsLatency[i]);
   }
 
 
@@ -62,11 +62,12 @@ aspectdef dse
 
   llvm_setup.cleanall();
 
-  println("\nBest Solution Found...");
+  /*println("\nBest Solution Found...");
   println("\tSequence : " + cleanseq.bestSeq.join(" "));
   println("\tLatency  : " + cleanseq.bestSeqLatency.toFixed(0));
 
   println("\nSpeedup Over Clang/LLVM Optimization Levels...");
+  */
 
   // Determine best latency of all, including latencies from -Ox flags
   var bestOfAll = cleanseq.bestSeqLatency;
@@ -79,8 +80,8 @@ aspectdef dse
   var overBestOptimLevel = Number.MAX_VALUE;
   var bestOfAllOverBestOptimLevel = Number.MAX_VALUE;
   for(i=0; i < optimLevelsName.length; i++) {
-    println("\tOver " + optimLevelsName[i] + " : " + (optimLevelsLatency[i] / cleanseq.bestSeqLatency).toFixed(3));
-    println("\tOver " + optimLevelsName[i] + " [including optim levels] : " + (optimLevelsLatency[i] / bestOfAll).toFixed(3));
+    //println("\tOver " + optimLevelsName[i] + " : " + (optimLevelsLatency[i] / cleanseq.bestSeqLatency).toFixed(3));
+    //println("\tOver " + optimLevelsName[i] + " [including optim levels] : " + (optimLevelsLatency[i] / bestOfAll).toFixed(3));
     if(((optimLevelsLatency[i] / cleanseq.bestSeqLatency).toFixed(3)) < overBestOptimLevel) {
       overBestOptimLevel = (optimLevelsLatency[i] / cleanseq.bestSeqLatency).toFixed(3);
     }
@@ -90,17 +91,17 @@ aspectdef dse
 
   }
 
-  println("\tOver -OX : " + overBestOptimLevel);
-  println("\tOver -OX [including optim levels] : " + bestOfAllOverBestOptimLevel);
+  //println("\tOver -OX : " + overBestOptimLevel);
+  //println("\tOver -OX [including optim levels] : " + bestOfAllOverBestOptimLevel);
 
 
-  println("\nDesign Space Exploration Execution Stats...");
-  println("\tExploration Time (in seconds) : " + totalTime.toFixed(3));
+  //println("\nDesign Space Exploration Execution Stats...");
+  //println("\tExploration Time (in seconds) : " + totalTime.toFixed(3));
 
 
   // APAGAR ISTO DEPOIS DE ENVIAR OS RESULTADOS AO GUSTAVO
   
-  println(cfile);
+  //println(cfile);
 
   /*
   writeFile("/tmp/"+cfile+".seq", cleanseq.bestSeq.join(", "));  // Save the best sequence
@@ -111,20 +112,27 @@ aspectdef dse
   //var path = "/opt/lara-tools/experiments/";
   var pathRoot = "/tmp/";
 
-  println("Individuos avaliados: "+ llvm_algorithm.sizeHistPop);
+  //println("Individuos avaliados: "+ llvm_algorithm.sizeHistPop);
 
+  println(cfile);
 
-  var cFileSub = cfile.substring(41,54);//arrumar aqui para pegar .c vai funcionar bem melhor
-  var path = pathRoot + cFileSub + "/";
+  //var cFileSub = cfile.substring(41,54);//arrumar aqui para pegar .c vai funcionar bem melhor
 
-  var fileName = cFileSub+"_"+selection+"_"+maxGen+"_"+popSize+"_"+crossRate+"_"+mutRate;
+  var cFileSub = [];
+
+  cFileSub = cfile.split("/");
+
+  //println(cFileSub[5]);
+
+  var path = pathRoot + cFileSub[5] + "/";
+
+  var fileName = cFileSub[5]+"_"+selection+"_"+maxGen+"_"+popSize+"_"+crossRate+"_"+mutRate;
 
   //Nome do arquivo + individuocleando + latencia + speedup + tempo exploracao + qtd_indiv_avaliadosAG + latencia do AG (sem ser o cleanSeq) +inidividuo do AG + tamanho do indiv AG 
   //Nome; Individuo Cleanado;  -Ox; Latencia indiv;  speedup (cuidado - dividir por 1000); Tempo Exploração (cuidado quando jogar no calc (deve dividir por 100));  #avaliados;  Latencia indiv;  indivíduo ag;  Tamanho Cromo;
 
-  var stringReport = cFileSub + ";" +  cleanseq.bestSeq.join(", ") + ";" + (cleanseq.bestSeqLatency.toFixed(0) * overBestOptimLevel) + ";" + cleanseq.bestSeqLatency.toFixed(0) + ";" + overBestOptimLevel.toFixed(6) + ";" + totalTime.toFixed(3) + ";" + llvm_algorithm.sizeHistPop + ";" + llvm_algorithm.bestSeqLatency +";" +llvm_algorithm.bestSeq.join(", ") + ";" + llvm_algorithm.chromoSizeBestIndiv;
+  var stringReport = cFileSub[5] + ";" +  cleanseq.bestSeq.join(", ") + ";" + (cleanseq.bestSeqLatency.toFixed(0) * overBestOptimLevel) + ";" + cleanseq.bestSeqLatency.toFixed(0) + ";" + overBestOptimLevel.toFixed(6) + ";" + totalTime.toFixed(3) + ";" + llvm_algorithm.sizeHistPop + ";" + llvm_algorithm.bestSeqLatency +";" +llvm_algorithm.bestSeq.join(", ") + ";" + llvm_algorithm.chromoSizeBestIndiv;
 
   appendFile(path+fileName, stringReport+"\n");
-
 
 end

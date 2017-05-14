@@ -35,8 +35,9 @@ aspectdef dse_algo
   var exploreParamSize = exploreParams.length;
   var iGen;
   var histPop = [];
+  //var repeatedMut = 5;
   sizeHistPop = 0;
-      var aux=0;
+  var aux=0;
 
 
   if(latencyRef == 0) {
@@ -46,8 +47,6 @@ aspectdef dse_algo
       }
     }
   }
-
-
   
   // Adjust parameters for percentage
   crossRate = crossRate/100;
@@ -59,15 +58,13 @@ aspectdef dse_algo
     popTotal++;
   }
   
-
-  
-  println("selection: " + selection);
+  /*println("selection: " + selection);
   println("maxGen:" + maxGen);
   println("popSize: " + popSize);
   println("crossRate: " + crossRate);
   println("mutRate: " + mutRate);
   println("stopByFit: " + stopByFit);
-  println("popTotal: "+ popTotal);
+  println("popTotal: "+ popTotal);*/
   //println("nexec: " + nexec);
 
 
@@ -86,9 +83,6 @@ aspectdef dse_algo
       cont++;
     }
   }
-
-  println("cont: " + cont);
-
 
   // childrens
   for (popId = popSize; popId < popTotal; popId++){
@@ -175,12 +169,6 @@ aspectdef dse_algo
     }
     //07-end ------------------------------------------------------------------------------------------
   }     
-  
-  //pop.sort(by('fitness', by('chromosomeSize')));
-  println("Individuos avaliados: "+ sizeHistPop);
-  println("Melhor individuo: " +  pop[0].chromosome.join(","));
-  println("Tamanho do melhor individuo: " +  pop[0].chromosomeSize);
-
 
   bestSeqLatency = pop[0].fitness;
   bestSeq = pop[0].chromosome;
