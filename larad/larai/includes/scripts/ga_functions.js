@@ -118,7 +118,7 @@
     var sink = indiv_maker();
     sink.chromosome = source.chromosome.slice(0);
     sink.chromosomeSize = source.chromosomeSize;
-    sink.loopFactors = source.loopFactors.slice(0);
+    //sink.loopFactors = source.loopFactors.slice(0);
     sink.fitness = source.fitness;
     
     return sink;
@@ -129,7 +129,7 @@
     var size = base.length;
     var x;
     for (x=0; x < size; x++) {
-      if (base[x].chromosome.join(",") == indiv.chromosome.join(",") && base[x].loopFactors.join(",") == indiv.loopFactors.join(","))
+      if (base[x].chromosome.join(",") == indiv.chromosome.join(","))
         return x;
     };
     
@@ -169,7 +169,7 @@
       population[id] = indiv_maker();
       //sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[exploreParamSize]);
       sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[maxwidth]);
-      lengthChromossome =  Math.floor(Math.random() * 10);
+      lengthChromossome =  Math.ceil(Math.random() * 10) ;
       /*
       for(i = 1; i <= maxwidth; i++){
         if(sortChromossomeLength <= vet_dist_prob[i]){

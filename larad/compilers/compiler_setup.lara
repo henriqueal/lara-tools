@@ -62,26 +62,26 @@ aspectdef compiler_setup
 		}
 
 
-		switch(newLatency) {
+		/*switch(newLatency) {
 			case 0:
-				println("\t" + iteration + " Problematic sequence (incorrect result)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+				//println("\t" + iteration + " Problematic sequence (incorrect result)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
 			case -1:
 	                        println("\t" + iteration + " Problematic sequence (Function IR and ASM for main function not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
 			case -2:
                                 println("\t" + iteration + " Problematic sequence (ASM for main function not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
-                        case -3:
-                                println("\t" + iteration + " Problematic sequence (IR for function to optimize not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
-                        case -4:
+            case -3:
+                println("\t" + iteration + " Problematic sequence (IR for function to optimize not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+            case -4:
 				println("\t" + iteration + " Problematic sequence (Optimized function IR not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
-                        case -5:
-				println("\t" + iteration + " Problematic sequence (ASM for optimized function IR not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
-                        case -6:
-				println("\t" + iteration + " Problematic sequence (Binary not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
-                        case -7:
-				println("\t" + iteration + " Problematic sequence (Report not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
-                        case -8:
-				println("\t" + iteration + " Problematic sequence (Report is broken)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
-		}
+            case -5:
+	println("\t" + iteration + " Problematic sequence (ASM for optimized function IR not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+            case -6:
+	println("\t" + iteration + " Problematic sequence (Binary not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+            case -7:
+	println("\t" + iteration + " Problematic sequence (Report not generated)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+            case -8:
+	println("\t" + iteration + " Problematic sequence (Report is broken)\t : " + Number.MAX_VALUE + " : " + sequence);	break;
+		}*/
 //                else if(newLatency < minimumLat) {
 //                        println("\t" + iteration + " Problematic sequence (too few cycles)\t: " + Number.MAX_VALUE + " : " + sequence);
 //                }
