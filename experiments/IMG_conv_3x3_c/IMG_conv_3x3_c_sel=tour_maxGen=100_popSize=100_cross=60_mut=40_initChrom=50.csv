@@ -1,0 +1,1 @@
+IMG_conv_3x3_c;-instcombine, -sroa, -loop-rotate, -loop-unroll;25268.999999999996;24750;1.020970;385.113;4808;24750;-instcombine, -sroa, -loop-rotate, -loop-unroll;4

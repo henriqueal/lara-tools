@@ -1,0 +1,1 @@
+IMG_conv_3x3_c;-loop-rotate, -mem2reg, -loop-reduce, -loop-unroll, -gvn;25268.999999999996;24500;1.031388;410.317;4898;24500;, -loop-rotate, -debug-aa, -mem2reg, -loop-reduce, -strip-nondebug, -loop-unroll, -mem2reg, -objc-arc-aa, -loop-unroll, -loop-unroll, -gvn, -loop-rotate, -lowerswitch;14

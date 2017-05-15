@@ -1,0 +1,1 @@
+IMG_idct_8x8_12q4_c;-early-cse, -sroa, -loop-rotate, -indvars, -reg2mem, -sroa, -loop-reduce, -instcombine;24267.999999999996;21810;1.112701;472.251;4934;21810;-early-cse, -sroa, -instcombine, -indvars, -objc-arc-expand, -loop-rotate, -indvars, -scalarizer, -sroa, -loop-unswitch, -sroa, -instcombine, -reg2mem, -indvars, -aa-eval, -sroa, -loop-reduce, -instcombine, -irce, -licm;20

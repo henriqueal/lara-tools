@@ -1,0 +1,1 @@
+IMG_fdct_8x8_c;-loop-rotate, -instcombine, -jump-threading, -scalarrepl, -instcombine;20141;17134;1.175499;441.992;4932;17134;-loop-rotate, -instcombine, -jump-threading, -licm, -scalarrepl, -loop-rotate, -instcombine;7

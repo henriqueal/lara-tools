@@ -1,0 +1,1 @@
+DSP_blk_move_c;-loop-rotate, -instcombine, -sroa, -indvars;907;898;1.010022;299.358;4857;898;-loop-rotate, -instcombine, -sroa, -indvars;4

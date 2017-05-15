@@ -1,0 +1,1 @@
+DSP_q15tofl_c;-instcombine, -loop-rotate, -scalarrepl-ssa, -reg2mem, -simplifycfg, -scalarrepl-ssa;676;648;1.043210;253.127;4477;648;-instcombine, -loop-rotate, -scalarrepl-ssa, -reg2mem, -simplifycfg, -scalarrepl-ssa;6

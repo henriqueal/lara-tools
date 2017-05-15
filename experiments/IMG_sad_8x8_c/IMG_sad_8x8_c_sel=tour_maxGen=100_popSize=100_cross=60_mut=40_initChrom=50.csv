@@ -1,0 +1,1 @@
+IMG_sad_8x8_c;-scalarrepl-ssa, -instcombine, -reassociate, -loop-rotate, -loop-unroll;878;878;1.000000;301.309;4880;878;-scalarrepl-ssa, , -instcombine, -cfl-aa, -mldst-motion, -reassociate, , -loop-rotate, , -loop-unroll, -aa-eval;11

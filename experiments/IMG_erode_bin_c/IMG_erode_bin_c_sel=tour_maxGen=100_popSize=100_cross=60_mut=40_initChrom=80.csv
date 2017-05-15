@@ -1,0 +1,1 @@
+IMG_erode_bin_c;-sroa, -simplifycfg, -instsimplify, -load-combine, -loop-rotate, -instcombine;4186;4113;1.017749;337.883;4947;4113;-slp-vectorizer, -sroa, -simplifycfg, -instsimplify, -indvars, -deadargelim, -deadargelim, -load-combine, -dce, -loop-rotate, -instcombine;11

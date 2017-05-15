@@ -15,6 +15,8 @@
 #declare -a arr_cro=("90" "80" "70" "60")
 #declare -a arr_mut=("40" "30" "20" "10")
 #declare -a arr_sto=("20" "15" "10")
+declare -a arr_initChrom=("30" "50" "80" "100")
+
 
 #rm -rf /tmp/experiments
 #mkdir /tmp/experiments
@@ -22,12 +24,15 @@
 for dir in /opt/lara-tools/benchmarks/TEXAS_42_LEON3/*/
 do
   dir=${dir%*/}
-	#mkdir "/tmp/teste/${dir##*/}/"
-	#mkdir "/tmp/experiments/${dir##*/}/"
 
-	#larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -nsteps=100 -seqlen=128 -nexec=1 ~/Benchmarks/TEXAS_42_LEON3/${dir##*/}/${dir##*/}.c > /tmp/experiments/${dir##*/}/${sel}_${gen}_${pop}_${cro}_${mut}
-	cd /tmp
-	larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -popSize=100 -maxGen=100 -seqlen=128 ~/Benchmarks/TEXAS_42_LEON3/${dir##*/}/${dir##*/}.c
-	#$filename = "/tmp/experiments/${dir##*/}/${sel}_${gen}_${pop}_${cro}_${mut}"
+  	for init in "${arr_initChrom[@]}"
+  	do
+		#mkdir "/tmp/teste/${dir##*/}/"
+		#mkdir "/tmp/experiments/${dir##*/}/"
 
+		#larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -nsteps=100 -seqlen=128 -nexec=1 ~/Benchmarks/TEXAS_42_LEON3/${dir##*/}/${dir##*/}.c > /tmp/experiments/${dir##*/}/${sel}_${gen}_${pop}_${cro}_${mut}
+		cd /tmp
+		larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -popSize=100 -maxGen=100 -seqlen=128 -initChrom=${init} ~/Benchmarks/TEXAS_42_LEON3/${dir##*/}/${dir##*/}.c
+		#$filename = "/tmp/experiments/${dir##*/}/${sel}_${gen}_${pop}_${cro}_${mut}"
+	done
 done

@@ -1,0 +1,1 @@
+IMG_perimeter_c;-early-cse, -loop-rotate, -mem2reg, -early-cse;40037;28301;1.414685;259.427;3223;28301;-early-cse, -loop-rotate, -mem2reg, -loop-rotate, -early-cse;5

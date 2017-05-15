@@ -148,7 +148,7 @@
     return -1;
   };
 
-  var generateInitialPopulation = function(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report, maxValue, total_steps, check_sequence_is_valid, maxwidth){
+  var generateInitialPopulation = function(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report, maxValue, total_steps, check_sequence_is_valid, maxwidth, initChrom){
 
     var vet_dist_prob = [];
     var population = [];
@@ -169,7 +169,7 @@
       population[id] = indiv_maker();
       //sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[exploreParamSize]);
       sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[maxwidth]);
-      lengthChromossome =  Math.ceil(Math.random() * 10) ;
+      lengthChromossome =  Math.ceil(Math.random() * initChrom) ;
       /*
       for(i = 1; i <= maxwidth; i++){
         if(sortChromossomeLength <= vet_dist_prob[i]){

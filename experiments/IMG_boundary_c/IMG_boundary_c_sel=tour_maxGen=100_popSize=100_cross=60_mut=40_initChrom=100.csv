@@ -1,0 +1,1 @@
+IMG_boundary_c;-scalarrepl-ssa, -licm, -loop-rotate, -loop-unswitch, -ipsccp, -loop-deletion;9320;9318;1.000215;407.692;4944;9318;-lowerswitch, -scalarrepl-ssa, -licm, -ipsccp, -scalarrepl-ssa, -scalarrepl-ssa, -lowerswitch, -loop-rotate, -loop-unswitch, -prune-eh, -prune-eh, -ipsccp, -loop-deletion, -loop-unswitch, -domfrontier, -functionattrs;16

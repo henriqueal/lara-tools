@@ -1,0 +1,1 @@
+DSP_autocor_c;-mem2reg, -loop-reduce, -loop-rotate, -instcombine, -loop-unswitch, -sccp;10069;9389;1.072425;296.924;4470;9389;-mem2reg, -loop-rotate, -sroa, -loop-reduce, -loop-rotate, -loop-unswitch, -instcombine, -loop-rotate, -loop-unswitch, -mergereturn, -sccp, -loop-unswitch, -flattencfg;12

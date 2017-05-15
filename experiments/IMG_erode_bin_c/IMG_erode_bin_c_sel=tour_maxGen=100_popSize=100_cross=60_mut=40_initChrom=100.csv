@@ -1,0 +1,1 @@
+IMG_erode_bin_c;-instcombine, -scalarrepl-ssa, -simplifycfg, -loop-rotate;4186;4186;1.000000;348.971;4785;4186;-instcombine, -scalarrepl-ssa, -simplifycfg, -loop-rotate;4

@@ -1,0 +1,1 @@
+DSP_mul32_c;-scalarrepl-ssa, -loop-rotate, -indvars;10567;10567;1.000000;288.855;4121;10567;-scalarrepl-ssa, -loop-rotate, -verify, -indvars;3
