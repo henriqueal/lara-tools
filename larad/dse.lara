@@ -11,7 +11,7 @@ import cleanseq;
 aspectdef dse
 
   input
-    cfile="", maxwidth=64, nexecutions=1, iterations=1000, compilerName="", nr=-1, selection="", maxGen="", popSize="", crossRate="", mutRate="", stopByFit="", aditionalflags="";
+    cfile="", maxwidth=64, nexecutions=1, iterations=1000, compilerName="", nr=-1, selection="", maxGen="", popSize="", crossRate="", mutRate="", stopByFit="", initChrom="", aditionalflags="";
   end
 
   // Sets random seed so that experiments are reproducible
@@ -54,7 +54,7 @@ aspectdef dse
   var startTime = (new Date()).getTime() / 1000.0;   // 'getTime()' gets time in miliseconds, so conversion to seconds is needed
 
   // output: bestSeq, bestSeqLatency[];
-  call llvm_algorithm : dse_algo(llvm_config.exploreParams, llvm_setup.frontend, llvm_setup.compile, llvm_setup.execute_and_report, llvm_setup.compile_execute_and_report, llvm_setup.check_sequence_is_valid, llvm_setup.add_timing, llvm_setup.cleanall, minimumLat, llvm_config.sequences, iterations, maxwidth, optimLevelsLatency, nr, selection, maxGen, popSize, crossRate, mutRate, stopByFit);
+  call llvm_algorithm : dse_algo(llvm_config.exploreParams, llvm_setup.frontend, llvm_setup.compile, llvm_setup.execute_and_report, llvm_setup.compile_execute_and_report, llvm_setup.check_sequence_is_valid, llvm_setup.add_timing, llvm_setup.cleanall, minimumLat, llvm_config.sequences, iterations, maxwidth, optimLevelsLatency, nr, selection, maxGen, popSize, crossRate, mutRate, stopByFit, initChrom);
 
   var totalTime = ((new Date()).getTime() / 1000.0) - startTime;
   
@@ -126,7 +126,7 @@ aspectdef dse
 
   var path = pathRoot + cFileSub[5] + "/";
 
-  var fileName = cFileSub[5]+"_"+selection+"_"+maxGen+"_"+popSize+"_"+crossRate+"_"+mutRate;
+  var fileName = cFileSub[5]+"_sel="+selection+"_maxGen="+maxGen+"_popSize="+popSize+"_cross="+crossRate+"_mut="+mutRate+"_initChrom="+initChrom;
 
   //Nome do arquivo + individuocleando + latencia + speedup + tempo exploracao + qtd_indiv_avaliadosAG + latencia do AG (sem ser o cleanSeq) +inidividuo do AG + tamanho do indiv AG 
   //Nome; Individuo Cleanado;  -Ox; Latencia indiv;  speedup (cuidado - dividir por 1000); Tempo Exploração (cuidado quando jogar no calc (deve dividir por 100));  #avaliados;  Latencia indiv;  indivíduo ag;  Tamanho Cromo;

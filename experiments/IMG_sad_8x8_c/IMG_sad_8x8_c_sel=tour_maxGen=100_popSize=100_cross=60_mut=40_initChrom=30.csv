@@ -1,0 +1,1 @@
+IMG_sad_8x8_c;-instcombine, -scalarrepl-ssa, -loop-reduce, -loop-rotate, -loop-unroll;878;885;0.992090;299.870;4928;885;-instcombine, -scalarrepl-ssa, -mergereturn, -loop-reduce, -loop-rotate, -bdce, -sancov, -loop-rotate, -loop-unroll, -loop-reduce, -irce, -instcount;12

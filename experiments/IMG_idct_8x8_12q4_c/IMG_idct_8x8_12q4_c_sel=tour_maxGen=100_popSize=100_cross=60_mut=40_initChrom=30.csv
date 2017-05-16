@@ -1,0 +1,1 @@
+IMG_idct_8x8_12q4_c;-early-cse, -sroa, -loop-rotate, -instcombine, -indvars;24268;22038;1.101189;441.652;4918;22038;-basicaa, -loop-rotate, -argpromotion, -early-cse, -memdep, -delinearize, -loop-rotate, -mergefunc, -sroa, -loop-idiom, -loop-rotate, -instcombine, -domfrontier, -indvars, -lcssa;15

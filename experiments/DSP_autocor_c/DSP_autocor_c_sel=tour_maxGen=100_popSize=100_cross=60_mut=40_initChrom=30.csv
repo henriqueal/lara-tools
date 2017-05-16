@@ -1,0 +1,1 @@
+DSP_autocor_c;-scalarrepl, -loop-reduce, -loop-rotate, -loop-unswitch, -gvn;10069.000000000002;9390;1.072311;306.298;4519;9390;-scalarrepl, -loop-reduce, -loop-rotate, -loop-unswitch, -gvn, -cost-model;6

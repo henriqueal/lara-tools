@@ -1,0 +1,1 @@
+DSP_minerror_c;-scalarrepl, -loop-reduce, -indvars, -loop-rotate, -loop-unroll;25844;25834;1.000387;387.840;4931;25834;-scalarrepl, -loop-reduce, -cost-model, -indvars, -lowerbitsets, -scalarrepl, -loop-rotate, -loop-unroll;8

@@ -1,0 +1,1 @@
+DSP_blk_move_c;-scalarrepl, -instcombine, -loop-rotate, -indvars;907;898;1.010022;316.083;4818;898;-scalarrepl, -instcombine, -loop-rotate, -indvars, -objc-arc-aa;5

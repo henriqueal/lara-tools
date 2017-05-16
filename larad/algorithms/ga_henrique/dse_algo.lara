@@ -1,7 +1,7 @@
 aspectdef dse_algo
 
   input
-    exploreParams = [], frontend, compile, execute_and_report, compile_execute_and_report, check_sequence_is_valid, add_timing, cleanall, minimumLat = 100, sequences, iterations, maxwidth, optimLevelsLatency, nr, selection, maxGen, popSize, crossRate, mutRate, stopByFit;
+    exploreParams = [], frontend, compile, execute_and_report, compile_execute_and_report, check_sequence_is_valid, add_timing, cleanall, minimumLat = 100, sequences, iterations, maxwidth, optimLevelsLatency, nr, selection, maxGen, popSize, crossRate, mutRate, stopByFit, initChrom;
   end
 
   output
@@ -65,12 +65,13 @@ aspectdef dse_algo
   println("mutRate: " + mutRate);
   println("stopByFit: " + stopByFit);
   println("popTotal: "+ popTotal);*/
+  //println("initChrom: "+ initChrom);
   //println("nexec: " + nexec);
 
 
 
   //01-beg Generate Initial Population ------------------------------------------------------------------
-  pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report, maxValue, total_steps, check_sequence_is_valid, maxwidth);
+  pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report, maxValue, total_steps, check_sequence_is_valid, maxwidth, initChrom);
   var i,cont=0;
   for (i=0; i<popSize; i++){
     histPop[i] = indiv_copy(pop[i]);

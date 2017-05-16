@@ -38,6 +38,7 @@ function help {
     echo -e "  -popSize\t\t\t- Population Size (default:60)"
     echo -e "  -crossRate\t\t\t- Crossover operator rate (default:60)"
     echo -e "  -mutRate\t\t\t- Mutation operator rate (default:40)"
+    echo -e "  -initChrom\t\t\t- Mutation operator rate (default:40)"
     echo -e "  -stopByFit\t\t\t- Number of generates that the best individual is the same  (default:15)"
     echo -e "  -nsteps\t\t\t- Number of compile/test iterations (default: 1000)"
     echo -e "  -seqlen\t\t\t- Maximum number of compiler passes per sequence (default: 32)"
@@ -62,6 +63,7 @@ popSize="60"
 crossRate="60"
 mutRate="40"
 stopByFit="15"
+initChrom="16"
 seqlen="32"
 nexec="1"
 compiler="llvm371"
@@ -107,6 +109,9 @@ do
     if [[ $var == -stopByFit=* ]]; then
         stopByFit=${var:11:100}
     fi
+    if [[ $var == -initChrom=* ]]; then
+        initChrom=${var:11:100}
+    fi
     if [[ $var == -nsteps=* ]]; then
             nsteps=${var:8:100}
     fi
@@ -150,7 +155,7 @@ cp /opt/lara-tools/larad/algorithms/"$algo"/dse_algo.lara .
 cp /opt/lara-tools/larad/reflectc_runoptims.xml .
 cp /opt/lara-tools/larad/dse.lara .
 
-larai dse.lara "--argv ('$cfile', $seqlen, $nexec, $nsteps, '$compiler', '$nr', '$selection', '$maxGen', '$popSize', '$crossRate', '$mutRate', '$stopByFit')" 2>&1 | tee "$cfile"_"$seqlen"_"$nexec"_"$nsteps"_"$algo"_"$target"_"$compiler"_"$nr"_"$selection"_"$maxGen"_"$popSize"_"$crossRate"_"$mutRate"_"$stopByFit".txt
+larai dse.lara "--argv ('$cfile', $seqlen, $nexec, $nsteps, '$compiler', '$nr', '$selection', '$maxGen', '$popSize', '$crossRate', '$mutRate', '$stopByFit', '$initChrom')" 2>&1 | tee "$cfile"_"$seqlen"_"$nexec"_"$nsteps"_"$algo"_"$target"_"$compiler"_"$nr"_"$selection"_"$maxGen"_"$popSize"_"$crossRate"_"$mutRate"_"$stopByFit"_"initChrom".txt
 
 rm cleanseq.lara compiler_optimlevels.lara compiler_setup.lara target_config.lara dse_algo.lara reflectc_runoptims.xml dse.lara dse.xml 
 exit 1

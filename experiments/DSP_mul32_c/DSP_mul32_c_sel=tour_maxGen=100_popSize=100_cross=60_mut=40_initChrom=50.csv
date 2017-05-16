@@ -1,0 +1,1 @@
+DSP_mul32_c;-loop-rotate, -sroa, -indvars;10567;10567;1.000000;301.977;4421;10567;-loop-rotate, -sroa, -indvars;3

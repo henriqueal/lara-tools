@@ -1,0 +1,1 @@
+DSP_dotp_sqr_c;-sroa, -loop-rotate, -indvars, -gvn;2906;2906;1.000000;300.509;4691;2906;-sroa, -loop-rotate, -indvars, -gvn;4

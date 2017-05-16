@@ -1,0 +1,1 @@
+DSP_minerror_c;-scalarrepl, -loop-rotate, -loop-reduce, -indvars, -loop-unroll;25844;25834;1.000387;427.736;4954;25834;-codegenprepare, -instsimplify, -scalarrepl, -loop-rotate, -loop-reduce, -indvars, -loop-unroll, -cfl-aa;8

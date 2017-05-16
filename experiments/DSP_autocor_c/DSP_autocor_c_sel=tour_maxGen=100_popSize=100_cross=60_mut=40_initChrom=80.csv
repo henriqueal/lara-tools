@@ -1,0 +1,1 @@
+DSP_autocor_c;-mem2reg, -loop-reduce, -loop-rotate, -loop-unswitch, -instcombine;10069;9389;1.072425;341.638;4914;9389;-mem2reg, -loop-rotate, -loop-reduce, -loop-rotate, -loop-unswitch, -instcombine, -objc-arc-aa;7

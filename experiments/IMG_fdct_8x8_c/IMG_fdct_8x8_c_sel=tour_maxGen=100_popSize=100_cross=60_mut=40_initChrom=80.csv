@@ -1,0 +1,1 @@
+IMG_fdct_8x8_c;-loop-rotate, -instcombine, -scalarrepl-ssa, -instcombine;20141;17154;1.174128;451.020;4894;17154;-loop-rotate, -instcombine, -scalarrepl-ssa, -objc-arc, -instcombine;5

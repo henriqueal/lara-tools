@@ -1,0 +1,1 @@
+IMG_mad_8x8_c;-scalarrepl-ssa, -reassociate, -loop-reduce, -loop-rotate, -loop-unroll, -instcombine, -indvars;10132;9863;1.027274;407.023;4994;9863;-scalarrepl-ssa, -instcount, -loops, -objc-arc-apelim, -domtree, -reassociate, -loop-reduce, -sink, -loop-rotate, -count-aa, -loop-unroll, -instcombine, -lint, -indvars, -tti;15

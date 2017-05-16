@@ -1,0 +1,1 @@
+IMG_fdct_8x8_c;-instcombine, -scalarrepl-ssa, -loop-rotate, -instcombine, -gvn;20141;17148;1.174539;411.565;4898;17148;-instcombine, -scalarrepl-ssa, -loop-rotate, -instcombine, -gvn;5

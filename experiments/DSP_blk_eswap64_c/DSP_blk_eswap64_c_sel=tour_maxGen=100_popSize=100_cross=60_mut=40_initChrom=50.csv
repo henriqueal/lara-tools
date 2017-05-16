@@ -1,0 +1,1 @@
+DSP_blk_eswap64_c;-loop-rotate, -sroa;2800;2798;1.000715;241.861;3965;2798;-loop-rotate, -sroa, -instsimplify;2

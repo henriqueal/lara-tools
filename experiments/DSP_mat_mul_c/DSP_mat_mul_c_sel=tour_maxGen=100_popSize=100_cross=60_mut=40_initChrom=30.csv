@@ -1,0 +1,1 @@
+DSP_mat_mul_c;-loop-rotate, -safe-stack, -scalarrepl-ssa, -loop-reduce, -licm, -loop-reduce, -loop-unswitch, -loop-unswitch;53236;49716;1.070802;463.465;4864;49716;-loop-rotate, -safe-stack, -scalarrepl-ssa, -loop-reduce, -scoped-noalias, -scalarrepl-ssa, -licm, -loop-reduce, -scoped-noalias, -loop-unswitch, -loop-unswitch, -instrprof;12

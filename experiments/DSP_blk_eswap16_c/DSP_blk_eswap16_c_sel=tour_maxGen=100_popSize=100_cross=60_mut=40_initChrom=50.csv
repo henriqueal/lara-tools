@@ -1,0 +1,1 @@
+DSP_blk_eswap16_c;-mem2reg, -loop-rotate, -indvars;3664;3664;1.000000;251.375;4140;3664;-mem2reg, -loop-rotate, -indvars;3
