@@ -1,0 +1,1 @@
+DSP_blk_eswap16_c;-instcombine;3664;8374;0.437545;1.934;31;8374;-strip-nondebug, -atomic-expand, -instcombine;3
