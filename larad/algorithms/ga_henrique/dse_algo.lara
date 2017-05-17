@@ -125,11 +125,11 @@ aspectdef dse_algo
     }
 
     //04-beg Mutation -----------------------------------------------------------------------------------
-    /*var i;
+    var i;
     for(i=0;i<Math.floor(mutRate*popSize);i++){
       var indexMutation = Math.floor((Math.random()*(popTotal - popSize)) + (popSize*1.0));
       mutationX(pop[indexMutation], exploreParams, exploreParamSize);
-    }*/
+    }
     //04-end --------------------------------------------------------------------------------------------
     
 

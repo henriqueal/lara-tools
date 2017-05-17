@@ -1,1 +1,4 @@
 DSP_blk_eswap16_c;-mem2reg, -loop-rotate, -indvars;3664;3664;1.000000;227.998;3902;3664;-mem2reg, -loop-rotate, -indvars;3
+DSP_blk_eswap16_c;-sroa, -loop-rotate, -indvars;3664;3664;1.000000;296.311;4970;3664;-sroa, -loop-rotate, -indvars;3
+DSP_blk_eswap16_c;-loop-rotate, -sroa, -indvars;3664;3664;1.000000;250.609;4311;3664;-loop-rotate, -sroa, -indvars;3
+DSP_blk_eswap16_c;-sroa, -loop-rotate, -indvars;3664;3664;1.000000;303.465;5104;3664;-sroa, -loop-rotate, -indvars;3

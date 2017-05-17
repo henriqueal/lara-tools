@@ -2,6 +2,7 @@
 # ==========================================================================
 
 # INSTALL SUPPORT PACKAGES
+sudo apt-get update
 sudo apt-get install lib32z1 #
 sudo apt-get -y install timelimit
 sudo apt-get -y install php5 #
@@ -19,6 +20,7 @@ echo 'export PATH=$PATH:/opt/lara-tools/larad/larac:/opt/lara-tools/larad/larai:
 . ~/.bashrc 
 
 # INSTALL CLANG
+scp /opt/clang+llvm-3.7.1-x86_64-linux-gnu-ubuntu-14.04.tar.xz root@138.197.110.151:/opt
 tar xvf clang+llvm-3.7.1-x86_64-linux-gnu-ubuntu-14.04.tar.xz 
 sudo mv clang+llvm-3.7.1-x86_64-linux-gnu-ubuntu-14.04 /opt/clang+llvm-3.7.1-x86_64-linux-gnu-ubuntu-15.10
 
@@ -27,7 +29,8 @@ tar xvf sparc-elf-4.4.2-1.0.45.tar.bz2
 sudo mv sparc-elf-4.4.2 /opt
 
 # INSTALL LEON3 SIMULATOR
-tar xvf tsim-eval-2.0.44.tar.gz
+scp /opt/tsim-eval-2.0.49.tar.gz root@138.197.110.151:/opt
+sudo tar xvf tsim-eval-2.0.49.tar.gz
 sudo mv tsim-eval /opt/tsim2-leon3-eval
 
 # INSTALL 42 BENCHMARKS FOR TI REPOSITORIES

@@ -1,1 +1,3 @@
 DSP_blk_move_c;-instcombine, -loop-rotate, -scalarrepl-ssa, -indvars;907;898;1.010022;253.261;4137;898;-instcombine, -loop-rotate, -scalarrepl-ssa, -indvars;4
+DSP_blk_move_c;-instcombine, -loop-rotate, -sroa, -indvars;907;898;1.010022;298.534;5032;898;-instcombine, -loop-rotate, -loop-rotate, -sroa, -indvars;4
+DSP_blk_move_c;-instcombine, -sroa, -jump-threading, -loop-rotate, -instcombine;907.0000000000001;902;1.005543;363.746;5918;902;-instcombine, -sroa, -jump-threading, -loop-rotate, -instcombine, -atomic-expand;6
