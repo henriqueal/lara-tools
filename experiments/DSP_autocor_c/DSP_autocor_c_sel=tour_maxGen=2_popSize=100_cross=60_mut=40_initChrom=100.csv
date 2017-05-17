@@ -1,0 +1,23 @@
+DSP_autocor_c;-scalarrepl-ssa;10069;12053;0.835394;24.840;191;12053;-basicaa, -dse, -basiccg, -ipsccp, -targetlibinfo, -reg2mem, -rewrite-symbols, -memcpyopt, -loop-unroll, -dse, -verify, -memcpyopt, -scalarrepl-ssa, -functionattrs, -alloca-hoisting, -mldst-motion;16
+DSP_autocor_c;-loop-rotate, -scalarrepl-ssa;10069;10069;1.000000;28.381;193;10069;-iv-users, -scalarrepl, -adce, -loop-rotate, -ipconstprop, -loop-distribute, -inline-cost, -intervals, -pa-eval, -flattencfg, -scalarrepl-ssa;11
+DSP_autocor_c;-sroa;10069;12053;0.835394;29.765;192;12053;-sroa, -cfl-aa, -bb-vectorize;3
+DSP_autocor_c;-scalarrepl-ssa;10069;12053;0.835394;29.778;192;12053;-scalarizer, -verify, -tbaa, -scalarrepl-ssa;4
+DSP_autocor_c;-loop-rotate;10069;22684;0.443881;30.377;179;22684;-load-combine, -lint, -adce, -loop-rotate;4
+DSP_autocor_c;-sroa;10069;12053;0.835394;30.344;181;12053;-ipconstprop, -prune-eh, -bdce, -objc-arc, -adce, -slp-vectorizer, -domtree, -sroa, -regions, -inline-cost;10
+DSP_autocor_c;-scalarrepl;10069;12053;0.835394;7.354;101;12053;-scalarrepl;1
+DSP_autocor_c;-scalarrepl-ssa;10069;12053;0.835394;7.003;101;12053;-scalarrepl-ssa;1
+DSP_autocor_c;-sroa;10069;12053;0.835394;6.861;101;12053;-sroa;1
+DSP_autocor_c;-scalarrepl;10069;12053;0.835394;7.234;101;12053;-scalarrepl;1
+DSP_autocor_c;-scalarrepl-ssa;10069;12053;0.835394;6.957;101;12053;-scalarrepl-ssa;1
+DSP_autocor_c;-scalarrepl-ssa;10069;12053;0.835394;6.921;101;12053;-scalarrepl-ssa;1
+DSP_autocor_c;-scalarrepl-ssa;10069;12053;0.835394;6.878;101;12053;-scalarrepl-ssa;1
+DSP_autocor_c;-loop-rotate;10069;22684;0.443881;7.235;101;22684;-loop-rotate;1
+DSP_autocor_c;-loop-rotate;10069;22684;0.443881;7.003;101;22684;-loop-rotate;1
+DSP_autocor_c;-scalarrepl-ssa;10069;12053;0.835394;6.894;101;12053;-scalarrepl-ssa;1
+DSP_autocor_c;-mem2reg;10069;12053;0.835394;6.964;101;12053;-mem2reg;1
+DSP_autocor_c;-sroa;10069;12053;0.835394;7.292;101;12053;-sroa;1
+DSP_autocor_c;-sroa;10069;12053;0.835394;7.046;101;12053;-sroa;1
+DSP_autocor_c;-scalarrepl;10069;12053;0.835394;7.028;101;12053;-scalarrepl;1
+DSP_autocor_c;-mem2reg;10069;12053;0.835394;6.864;100;12053;-mem2reg;1
+DSP_autocor_c;-sroa;10069;12053;0.835394;37.484;220;12053;-slp-vectorizer, -sroa, -basiccg, -verify, -loop-accesses, -tailcallelim, -memdep, -bdce, -cost-model, -sroa;10
+DSP_autocor_c;-gvn;10069;23320;0.431775;38.709;220;23320;-libcall-aa, -regions, -loweratomic, -dce, -gvn, -dce, -bounds-checking;7

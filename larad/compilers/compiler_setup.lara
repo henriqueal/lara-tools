@@ -7,7 +7,7 @@ import compiler_optimlevels;
 
 aspectdef compiler_setup
 	input
-		cfile = "", target_name = "", latency_exporter = "", compilerName = "", nexecutions = 1, aditionalflags = "";
+		cfile = "", target_name = "", latency_exporter = "", compilerName = "", nexecutions = 1, aditionalflags = "", maxwidth="";
 	end
 
 	output
@@ -56,10 +56,10 @@ aspectdef compiler_setup
 		return latency;
         }
 
-        function check_sequence_is_valid2(newLatency, sequence, iteration) {
-		if(newLatency > 0) {
-			return true;
-		}
+        function check_sequence_is_valid2(newLatency, sequence, chromSize) {
+	        if(newLatency > 0 && chromSize <= maxwidth) {
+				return true;
+			}
 
 
 		/*switch(newLatency) {

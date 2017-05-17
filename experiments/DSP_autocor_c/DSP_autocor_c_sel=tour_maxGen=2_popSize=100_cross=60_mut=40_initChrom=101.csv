@@ -1,0 +1,2 @@
+DSP_autocor_c;-early-cse;10069;24650;0.408479;28.663;192;24650;-indvars, -early-cse, -pa-eval, -loop-idiom;4
+DSP_autocor_c;-scalarrepl;10069;12053;0.835394;28.832;190;12053;-scalarrepl, -lint, -targetlibinfo, -memdep;4

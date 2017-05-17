@@ -169,7 +169,7 @@
       population[id] = indiv_maker();
       //sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[exploreParamSize]);
       sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[maxwidth]);
-      lengthChromossome =  Math.ceil(Math.random() * initChrom) ;
+      lengthChromossome =  1+(Math.floor(Math.random() * initChrom));
       /*
       for(i = 1; i <= maxwidth; i++){
         if(sortChromossomeLength <= vet_dist_prob[i]){
@@ -179,7 +179,8 @@
       }*/
       
       for (gene=0; gene < lengthChromossome; gene++) {
-        var pos = Math.floor(Math.random()*exploreParamSize);  
+        var pos = Math.floor(Math.random()*(exploreParamSize));
+        //println("pos;gene: "+pos+";"+gene) 
         population[id].chromosome[gene] = exploreParams[pos];
       }
       
@@ -187,7 +188,7 @@
       optimLevel = population[id].chromosome.filter(isnooptim).join(" ");
       population[id].fitness = compile_execute_and_report(optimLevel);
 
-      if(check_sequence_is_valid(population[id].fitness, optimLevel, total_steps) == false) {
+      if(check_sequence_is_valid(population[id].fitness, optimLevel, population[id].chromosomeSize) == false) {
         population[id].fitness = Number.MAX_VALUE;
         population[id].chromosomeSize = maxwidth;
       }
@@ -256,8 +257,8 @@
     
     childrens[0].chromosomeSize = childrens[0].chromosome.length;
     childrens[1].chromosomeSize = childrens[1].chromosome.length;
-    
-    /*
+/*
+    println("###################################################################################################################");
     println("Points = ("+ point1 + ", "+point2+")");
     println("Fathers:\n");
     println(population[parent1].fitness + ";" + population[parent1].chromosomeSize + ";" 
@@ -265,15 +266,14 @@
     println("");
     println(population[parent2].fitness + ";" + population[parent2].chromosomeSize + ";" 
       + population[parent2].chromosome.join(","));
-    println("----------------------------------------------------------------------------------------------------");
+    
     println("Childrens:\n");
     println(childrens[0].fitness + ";" + childrens[0].chromosomeSize + ";" 
       + childrens[0].chromosome.join(","));
     println("");
     println(childrens[1].fitness + ";" + childrens[1].chromosomeSize + ";" 
       + childrens[1].chromosome.join(","));
-    */
-
+*/
     return childrens;
 
   };

@@ -25,7 +25,7 @@ aspectdef dse
 
 
   // output: frontend(), compile(), execute(optimLevel), report_latency(), add_timing(), cleanall()
-  call llvm_setup : compiler_setup(cfile, llvm_config.targetName, llvm_config.exporterName, compilerName, nexecutions, aditionalflags);
+  call llvm_setup : compiler_setup(cfile, llvm_config.targetName, llvm_config.exporterName, compilerName, nexecutions, aditionalflags, maxwidth);
 
 
   // INSERT DELTA TIME REPORTING CODE AND GENERATE LLVM IR
