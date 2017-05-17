@@ -56,8 +56,8 @@ aspectdef compiler_setup
 		return latency;
         }
 
-        function check_sequence_is_valid2(newLatency, sequence, iteration) {
-		if(newLatency > 0) {
+        function check_sequence_is_valid2(newLatency, sequence, chromSize, maxWidth) {
+		if(newLatency > 0 && chromSize < maxwidth) {
 			return true;
 		}
 
