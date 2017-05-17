@@ -1,1 +1,4 @@
 DSP_blk_eswap32_c;-sroa, -loop-rotate;3078;3076;1.000650;206.204;3560;3076;-sroa, -loop-rotate;2
+DSP_blk_eswap32_c;-loop-rotate, -scalarrepl;3078;3076;1.000650;225.783;3957;3076;-loop-rotate, -scalarrepl, -regions;2
+DSP_blk_eswap32_c;-loop-rotate, -scalarrepl-ssa;3078;3076;1.000650;239.044;4197;3076;-loop-rotate, -scalarrepl-ssa;1
+DSP_blk_eswap32_c;-loop-rotate, -sroa;3078;3076;1.000650;230.882;4060;3076;-loop-rotate, -sroa;1

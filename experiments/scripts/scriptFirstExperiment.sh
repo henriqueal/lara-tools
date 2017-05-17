@@ -25,14 +25,17 @@ for dir in /opt/lara-tools/benchmarks/TEXAS_42_LEON3/*/
 do
   dir=${dir%*/}
 
-  	for init in "${arr_initChrom[@]}"
-  	do
-		#mkdir "/tmp/teste/${dir##*/}/"
-		#mkdir "/tmp/experiments/${dir##*/}/"
+  for i in 1 2 3	
+  do
+	  	for init in "${arr_initChrom[@]}"
+	  	do
+			#mkdir "/tmp/teste/${dir##*/}/"
+			#mkdir "/tmp/experiments/${dir##*/}/"
 
-		#larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -nsteps=100 -seqlen=128 -nexec=1 ~/Benchmarks/TEXAS_42_LEON3/${dir##*/}/${dir##*/}.c > /tmp/experiments/${dir##*/}/${sel}_${gen}_${pop}_${cro}_${mut}
-		cd /tmp
-		larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -popSize=100 -maxGen=100 -seqlen=128 -initChrom=${init} ~/Benchmarks/TEXAS_42_LEON3/${dir##*/}/${dir##*/}.c
-		#$filename = "/tmp/experiments/${dir##*/}/${sel}_${gen}_${pop}_${cro}_${mut}"
-	done
+			#larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -nsteps=100 -seqlen=128 -nexec=1 ~/Benchmarks/TEXAS_42_LEON3/${dir##*/}/${dir##*/}.c > /tmp/experiments/${dir##*/}/${sel}_${gen}_${pop}_${cro}_${mut}
+			cd /tmp
+			larad -compiler=llvm371 -target=leon3 -algo=ga_henrique -popSize=100 -maxGen=100 -seqlen=128 -initChrom=${init} ~/Benchmarks/TEXAS_42_LEON3/${dir##*/}/${dir##*/}.c
+			#$filename = "/tmp/experiments/${dir##*/}/${sel}_${gen}_${pop}_${cro}_${mut}"
+		done
+  done	
 done
