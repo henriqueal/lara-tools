@@ -1,1 +1,0 @@
-IMG_wave_horz_c;-loop-rotate, -scalarrepl, -instcombine, -loop-unroll, -indvars;99866;99471;1.003971;531.301;4774;99471;-loop-rotate, -scalarrepl, -instcombine, -loop-unroll, -indvars;5

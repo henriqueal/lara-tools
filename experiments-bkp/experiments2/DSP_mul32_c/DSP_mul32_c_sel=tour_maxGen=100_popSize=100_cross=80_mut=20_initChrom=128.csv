@@ -1,0 +1,3 @@
+DSP_mul32_c;10567;10567;1.000000;373.534;5412;-scalarrepl, -loop-rotate, -indvars;10567;-scalarrepl, -loop-rotate, -indvars;3
+DSP_mul32_c;10567;10567;1.000000;442.762;6269;-loop-rotate, -scalarrepl-ssa, -indvars;10567;-loop-rotate, -scalarrepl-ssa, -indvars;3
+DSP_mul32_c;10567;10567;1.000000;367.826;5126;-loop-rotate, -scalarrepl-ssa, -indvars;10567;-loop-rotate, -scalarrepl-ssa, -indvars;3

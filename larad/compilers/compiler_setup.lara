@@ -18,46 +18,51 @@ aspectdef compiler_setup
 	optimlevelsName = optimlevels.optimlevelsName;
 	optimlevelsSwitch = optimlevels.optimlevelsSwitch;
 
-        var cfile_noext = cfile.substring(0, cfile.length - 2);     // Removes ".c" extension
+   var cfile_noext = cfile.substring(0, cfile.length - 2);     // Removes ".c" extension
 
-        function frontend2() {
-                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/frontend.sh", ""]);
-        }
+   function frontend2() {
+   	cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/frontend.sh", ""]);
+	  }
 
-        function compile2(optimLevel){
-                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/opt.sh", aditionalflags + " " + optimLevel]);
-                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/backend.sh", ""]);
-        }
+	  function compile2(optimLevel){
+	    cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/opt.sh", aditionalflags + " " + optimLevel]);
+	    cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/backend.sh", ""]);
+	  }
 
 	// Auxiliar function, used by 'execute_and_report' and by 'compile_execute_and_report'
-        function report_latency() {
-                if(@function != undefined) {
-                        @function[cfile_noext].latency = undefined;
-                }
-                report(latency_exporter, [cfile_noext]);
-                var lat = @function[cfile_noext].latency;
-                return lat;
-        }
+    function report_latency() {
+	    if(@function != undefined) {
+	      @function[cfile_noext].latency = undefined;
+	    }
+	    report(latency_exporter, [cfile_noext]);
+	    var lat = @function[cfile_noext].latency;
+	    return lat;
+    }
 
-        function execute_and_report2() {
-		var latency_acc = 0;
+    function execute_and_report2() {
+			var latency_acc = 0;
 
-		for(var i=0; i<nexecutions; i++) {
-	                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/execute.sh", ""]);
-			var lat = report_latency();
-			latency_acc = latency_acc + lat;
-		}
-		return Math.floor(latency_acc / nexecutions);
-        }
+			for(var i=0; i<nexecutions; i++) {
+        cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/execute.sh", ""]);
+				var lat = report_latency();
+				latency_acc = latency_acc + lat;
+			}
 
-        function compile_execute_and_report2(optimLevel) {
-                compile2(optimLevel);
-                var latency = execute_and_report2();
-		return latency;
-        }
 
-        function check_sequence_is_valid2(newLatency, sequence, chromSize) {
-	        if(newLatency > 0 && chromSize <= maxwidth) {
+			return Math.floor(latency_acc / nexecutions);
+    }
+
+    function compile_execute_and_report2(optimLevel) {
+      compile2(optimLevel);
+      var latency = execute_and_report2();
+			return latency;
+    }
+
+    function check_sequence_is_valid2(newLatency, sequence, chromSize) {
+    	//println(newLatency);
+    	//println(sequence);
+    	//println(chromSize);
+      if(newLatency > 0 && chromSize <= maxwidth) {
 				return true;
 			}
 
@@ -85,16 +90,17 @@ aspectdef compiler_setup
 //                else if(newLatency < minimumLat) {
 //                        println("\t" + iteration + " Problematic sequence (too few cycles)\t: " + Number.MAX_VALUE + " : " + sequence);
 //                }
+
 		return false;
-        }
+  }
 
-        function add_timing2() {
-                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/add_timing.sh", cfile]);
-        }
+  function add_timing2() {
+    cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/add_timing.sh", cfile]);
+  }
 
-        function cleanall2() {
-                cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/cleanall.sh", ""]);
-        }
+  function cleanall2() {
+    cmd("sh", ["/opt/lara-tools/larad/targets/" + target_name + "/" + compilerName + "/scripts/cleanall.sh", ""]);
+  }
 
 	frontend = frontend2;
 	compile = compile2;

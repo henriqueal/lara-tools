@@ -1,0 +1,3 @@
+IMG_yc_demux_be16_c;578;574;1.006969;1034.710;5896;-loop-rotate, -licm, -basicaa, -loop-reduce, -scalarrepl, -indvars, -die;574;-loop-rotate, -licm, -basicaa, -loop-reduce, -scalarrepl, -indvars, -licm, -die;8
+IMG_yc_demux_be16_c;578;578;1.000000;285.981;4636;-scalarrepl, -loop-rotate, -indvars;578;-scalarrepl, -loop-rotate, -indvars;3
+IMG_yc_demux_be16_c;578;574;1.006969;435.253;5724;-loop-rotate, -licm, -loop-reduce, -basicaa, -scalarrepl-ssa, -jump-threading, -indvars;574;-loop-rotate, -licm, -loop-reduce, -basicaa, -scalarrepl-ssa, -jump-threading, -indvars;7

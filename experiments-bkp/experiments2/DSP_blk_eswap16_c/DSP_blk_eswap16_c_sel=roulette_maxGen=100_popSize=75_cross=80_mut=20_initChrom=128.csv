@@ -1,0 +1,3 @@
+DSP_blk_eswap16_c;3664;3664;1.000000;264.630;4164;-loop-rotate, -scalarrepl-ssa, -indvars;3664;-loop-rotate, -scalarrepl-ssa, -indvars;3
+DSP_blk_eswap16_c;3664;3664;1.000000;293.910;4611;-loop-rotate, -scalarrepl-ssa, -indvars;3664;-loop-rotate, -scalarrepl-ssa, -indvars;3
+DSP_blk_eswap16_c;3664;3655;1.002462;443.217;5976;-instcombine, -scalarrepl-ssa, -licm, -early-cse, -loop-rotate, -sccp, -codegenprepare, -early-cse, -indvars, -licm;3655;-instcombine, -domtree, -scalarrepl-ssa, -scalarrepl-ssa, -memdep, -licm, -early-cse, -loop-rotate, -sccp, -codegenprepare, -early-cse, -ipconstprop, -indvars, -licm, -adce;15

@@ -1,1 +1,0 @@
-IMG_ycbcr422p_rgb565_c;-scalarrepl, -structurizecfg, -jump-threading, -loop-rotate, -sink;5010;4404;1.137602;363.832;4690;4404;-scalarrepl, -structurizecfg, -jump-threading, -loop-rotate, -sink;5

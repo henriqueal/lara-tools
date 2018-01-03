@@ -1,0 +1,3 @@
+IMG_fdct_8x8_c;20141;52592;0.382967;0.147;0;;52592;-mergefunc, -instsimplify, -memdep, -count-aa, -slp-vectorizer, -functionattrs, -bdce, -bounds-checking, -ipsccp;9
+IMG_fdct_8x8_c;20141;66388;0.303383;0.167;0;-loop-extract;1.7976931348623157e+308;-loop-extract, -ass.-cache-track.;128
+IMG_fdct_8x8_c;20141;52040;0.387029;0.087;0;-loop-rotate;1.7976931348623157e+308;-add-dis., -scalar-evolution, -loops, -tbaa, -loop-vectorize, -loop-rotate, -lowerinvoke, -consthoist, -verify, -slp-vectorizer, -loop-simplify;128

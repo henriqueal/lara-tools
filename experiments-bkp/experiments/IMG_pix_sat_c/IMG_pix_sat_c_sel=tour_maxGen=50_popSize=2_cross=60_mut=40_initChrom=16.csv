@@ -1,0 +1,2 @@
+IMG_pix_sat_c;22589;23093;0.978175;0.132;0;-scalarrepl;23093;-scalarrepl, -instrprof, -adce, -mergereturn, -lowerinvoke, -jump-threading, -codegenprepare, -gvn, -instsimplify, -inline, -objc-arc-aa, -prune-eh;12
+IMG_pix_sat_c;22589.000000000004;38755;0.582867;0.145;0;;38755;-instsimplify;1

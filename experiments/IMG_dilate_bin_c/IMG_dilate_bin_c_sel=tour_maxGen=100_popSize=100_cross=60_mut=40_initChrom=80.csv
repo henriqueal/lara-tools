@@ -1,1 +1,0 @@
-IMG_dilate_bin_c;-loop-rotate, -scalarrepl-ssa, -simplifycfg, -instcombine;5436;5436;1.000000;325.721;4889;5436;-loop-rotate, -scalarrepl-ssa, -simplifycfg, -instcombine, -lcssa;5

@@ -1,0 +1,3 @@
+IMG_median_3x3_c;35291;30248;1.166722;654.105;7384;-basicaa, -loop-rotate, -gvn, -simplifycfg, -sink, -scalarrepl;30248;-basicaa, -loop-rotate, -gvn, -simplifycfg, -sink, -scalarrepl;6
+IMG_median_3x3_c;35291;30248;1.166722;742.892;7822;-loop-rotate, -gvn, -simplifycfg, -basicaa, -sink, -scalarrepl;30248;-loop-rotate, -gvn, -simplifycfg, -basicaa, -sink, -scalarrepl;6
+IMG_median_3x3_c;35291;30278;1.165566;444.706;4792;-loop-rotate, -scalarrepl;30278;-loop-rotate, -scalarrepl, -load-combine;2

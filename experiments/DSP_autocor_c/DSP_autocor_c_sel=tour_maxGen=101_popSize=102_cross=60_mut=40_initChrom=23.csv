@@ -1,1 +1,0 @@
-DSP_autocor_c;-scalarrepl, -loop-reduce, -loop-rotate, -loop-unswitch, -instcombine;10069;9389;1.072425;324.756;5083;9389;-scalarrepl, -loop-reduce, -loop-rotate, -loop-unswitch, -loop-rotate, -instcombine;6

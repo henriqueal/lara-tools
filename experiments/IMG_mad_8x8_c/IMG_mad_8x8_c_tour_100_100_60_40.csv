@@ -1,1 +1,0 @@
-IMG_mad_8x8_c;-sroa, -reassociate, -loop-rotate, -instcombine, -loop-reduce, -loop-unroll;10132;9893;1.024158;306.382;4559;9893;-sroa, -reassociate, -loop-rotate, -loop-unroll, -loop-rotate, -loop-rotate, -loop-unroll, -loop-rotate, -loop-unroll, -instcombine, -loop-reduce, -sroa, -sroa, -loop-unroll, -loop-rotate;15

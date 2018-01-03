@@ -1,0 +1,3 @@
+IMG_erode_bin_c;4186;4186;1.000000;237.229;3201;-loop-instsimplify, -scalarrepl-ssa, -simplifycfg, -loop-rotate;4186;-loop-instsimplify, -scalarrepl-ssa, -simplifycfg, -loop-rotate;4
+IMG_erode_bin_c;4186;4186;1.000000;231.905;3346;-scalarrepl-ssa, -simplifycfg, -instcombine, -loop-rotate;4186;-scalarrepl-ssa, -simplifycfg, -instcombine, -loop-rotate;4
+IMG_erode_bin_c;4186;4186;1.000000;24626.210;3340;-loop-rotate, -scalarrepl, -simplifycfg, -instcombine;4186;-loop-rotate, -scalarrepl, -simplifycfg, -instcombine;4

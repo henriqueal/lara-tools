@@ -1,3 +1,0 @@
-DSP_blk_move_c;-scalarrepl, -instcombine, -loop-rotate, -indvars;907;898;1.010022;316.083;4818;898;-scalarrepl, -instcombine, -loop-rotate, -indvars, -objc-arc-aa;5
-DSP_blk_move_c;-loop-rotate, -instcombine, -mem2reg, -indvars;907;898;1.010022;339.954;5483;898;-loop-rotate, -instcombine, -mem2reg, -indvars;4
-DSP_blk_move_c;-gvn, -sroa, -instcombine, -simplifycfg, -loop-rotate;907.0000000000001;902;1.005543;394.489;5863;902;-gvn, -sroa, -instcombine, -simplifycfg, -loop-rotate;5

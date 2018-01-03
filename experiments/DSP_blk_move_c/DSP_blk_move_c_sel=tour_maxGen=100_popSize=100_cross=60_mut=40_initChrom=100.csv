@@ -1,2 +1,0 @@
-DSP_blk_move_c;-loop-rotate, -sroa;907;908;0.998899;235.069;3685;908;-loop-rotate, -sroa;2
-DSP_blk_move_c;-mem2reg, -instcombine, -loop-rotate, -indvars;907;898;1.010022;413.492;5879;898;-mem2reg, -instcombine, -loop-rotate, -indvars;4

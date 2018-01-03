@@ -1,0 +1,3 @@
+IMG_pix_sat_c;22589.000000000004;20025;1.128040;640.582;7682;-licm, -instcombine, -licm, -loop-rotate, -licm, -mldst-motion, -instcombine, -simplifycfg, -basicaa, -mldst-motion;20025;-licm, -constprop, -ipconstprop, -early-cse, -loweratomic, -instcombine, -reassociate, -licm, -loop-rotate, -dce, -licm, -mldst-motion, -loop-deletion, -loop-rotate, -instcombine, -reassociate, -loop-rotate, -simplifycfg, -basicaa, -mldst-motion, -loop-deletion, -tbaa, -loop-rotate, -argpromotion;24
+IMG_pix_sat_c;22589.000000000004;21567;1.047387;341.584;4482;-scalarrepl-ssa, -loop-rotate;21567;-scalarrepl-ssa, -loop-rotate;2
+IMG_pix_sat_c;22589.000000000004;21567;1.047387;379.218;4953;-loop-rotate, -scalarrepl-ssa;21567;-loop-rotate, -scalarrepl-ssa;2

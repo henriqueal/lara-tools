@@ -150,6 +150,7 @@
 
   var generateInitialPopulation = function(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report, maxValue, total_steps, check_sequence_is_valid, maxwidth, initChrom){
 
+
     var vet_dist_prob = [];
     var population = [];
     var id;
@@ -157,45 +158,108 @@
     var lengthChromossome;
     var sortChromossomeLength;
     var i;
+    var cont = 0;
+    var vet_dist_prob_acc = [];
 
-    vet_dist_prob[0]=0;
+
     //generating chromosome probability by function: f(i)=i*10
-    for (i=1; i<=maxwidth;i++){
-      vet_dist_prob[i] = vet_dist_prob[i-1] + (i*10); 
+    vet_dist_prob_acc[0]=1;
+    for (i=1; i<12;i++){
+      vet_dist_prob[i-1] = i; 
+      vet_dist_prob_acc[i] = vet_dist_prob_acc[i-1] + i +1; 
     }
+
+    //println(vet_dist_prob_acc[vet_dist_prob_acc.length-1]);
+
+
 
     for (id = 0; id < popSize; id++){
 
       population[id] = indiv_maker();
+
       //sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[exploreParamSize]);
-      sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[maxwidth]);
-      lengthChromossome =  1+(Math.floor(Math.random() * initChrom));
+      
+
+      //lengthChromossome = 1 + Math.floor(Math.random() * initChrom);
+
+      //println("lengthChromossome: " + lengthChromossome)
+
+
+      //Descomentar aquie para roleta...
+      /*sortChromossomeLength = Math.floor(Math.random() * vet_dist_prob[maxwidth]);
+      sort =  Math.floor(Math.random() * vet_dist_prob_acc[vet_dist_prob_acc.length-1]);
+      
+      for (i=0;i<vet_dist_prob_acc.length;i++){
+        if( sort < vet_dist_prob_acc[i]){
+          lengthChromossome = (i+1)*10.0;
+          break;
+        }
+      }*/
+
+      //lengthChromossome = initChrom;//  1+(Math.floor(Math.random() * initChrom));
       /*
       for(i = 1; i <= maxwidth; i++){
         if(sortChromossomeLength <= vet_dist_prob[i]){
           lengthChromossome = i;
           break;
         }
-      }*/
+      */
+
+      //#lengthChromossome = 10*(1 + Math.floor(id/10));
+      //println(lengthChromossome)
       
+      lengthChromossome = 1 + Math.floor(Math.random() * initChrom);
+      //println(lengthChromossome);
+      //println(exploreParamSize);
       for (gene=0; gene < lengthChromossome; gene++) {
         var pos = Math.floor(Math.random()*(exploreParamSize));
         //println("pos;gene: "+pos+";"+gene) 
+        //println(pos);
         population[id].chromosome[gene] = exploreParams[pos];
+        //println(exploreParams[1]);
       }
       
       // Apply code transformations and simulate
       optimLevel = population[id].chromosome.filter(isnooptim).join(" ");
+      //println(optimLevel)
+      //println("######################################################################################")
       population[id].fitness = compile_execute_and_report(optimLevel);
+      population[id].chromosomeSize = population[id].chromosome.length;  
+      //println(population[id].chromosomeSize);
+
+      //println("######################################################################################")
+
+      
+
+      //println(population[id].fitness)
+
+      /*if(check_sequence_is_valid(population[id].fitness, optimLevel, population[id].chromosomeSize) == false) {
+        id = id-1;
+      }*/
 
       if(check_sequence_is_valid(population[id].fitness, optimLevel, population[id].chromosomeSize) == false) {
-        population[id].fitness = Number.MAX_VALUE;
-        population[id].chromosomeSize = maxwidth;
-      }
+          population[id].fitness = Number.MAX_VALUE;
+          population[id].chromosomeSize = maxwidth;
+        }
 
-      //antigamente tinha um check_sequence is valid
-      population[id].chromosomeSize = population[id].chromosome.length;  
+
+
+      //println("___________________________________________________________________________________________")
+      //println(cont)
+
+      //appendFile("~/Documentos/experiments/O3_aleatorio.csv", population[id].fitness+";" + population[id].chromosomeSize );
+
+      //appendFile("/home/henrique/Documentos/experiments/ALL/ALL_aleatorio.csv", population[id].fitness + ";" + population[id].chromosomeSize + ";" 
+      //+ population[id].chromosome.join(",") + "\n");
+
+
+
+      //println("id: " + id + "; chrom: " + population[id].chromosome.join(","));
+
+      
     }
+
+   
     return population;
   };
   
@@ -220,20 +284,24 @@
     var random_number;
     var maxOfArray;
 
-    roulette[0] = (population[0].fitness == Number.MAX_VALUE ? 0 : population[0].fitness);
-    for(i=1; i< size; i++) {
-      roulette[i] = roulette[i-1] + (population[i].fitness == Number.MAX_VALUE ? 0 : population[i].fitness);
-      //println("roulette[" + i + "] =  " + roulette[i]);
+    //remove the max values...
+    for(i=0; i< size; i++) {
+      roulette[i] = (population[i].fitness == Number.MAX_VALUE ? -1 : population[i].fitness);
     };
 
     maxOfArray = Math.max.apply(null, roulette);
 
-    //println("maxOfArray: " + maxOfArray);
+    maxOfArray = maxOfArray + 2;
 
-    roulette[0] = roulette[0] == 0 ? 1 : (maxOfArray + 1 - roulette[0] )
+    //inverte o vetor
+    for(i=0; i< size; i++) {
+      roulette[i] = (roulette[i] == -1 ? 1 : (maxOfArray - roulette[i]));
+    };
+
+    //roleta acumulativa
     for(i=1; i< size; i++) {
-      roulette[i] = roulette[i-1] + (roulette[i] == 0 ? 1 : (maxOfArray + 1 - roulette[i] ) );
-      //println("rouletteModificado[" + i + "] =  " + roulette[i]);
+      roulette[i] = roulette[i-1] + roulette[i];
+      //println("roulette[" + i + "] =  " + roulette[i]);
     };
     
     random_number = Math.random() * roulette[size - 1];

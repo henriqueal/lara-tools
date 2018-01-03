@@ -1,0 +1,3 @@
+DSP_fltoq15_c;1015.0000000000001;1006;1.008946;209.332;0;-mem2reg;1006;-mem2reg, -objc-arc-aa, -irce;3
+DSP_fltoq15_c;1015;988;1.027328;222.234;0;-mem2reg, -loop-rotate;988;-lower-expect, -mem2reg, -targetlibinfo, -constmerge, -basiccg, -load-combine, -no-aa, -no-aa, -licm, -loop-rotate, -lower-expect, -objc-arc, -sancov, -cfl-aa, -scalarizer, -cost-model;16
+DSP_fltoq15_c;1015.0000000000001;1006;1.008946;206.904;0;-mem2reg;1006;-mem2reg, -iv-users;2

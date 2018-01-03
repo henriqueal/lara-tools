@@ -1,0 +1,3 @@
+IMG_sobel_c;14186.999999999998;12791;1.109139;464.148;5772;-loop-rotate, -reassociate, -reassociate, -scalarrepl-ssa, -early-cse, -loop-reduce, -instcombine, -gvn;12791;-loop-rotate, -reassociate, -reassociate, -scalarrepl-ssa, -early-cse, -loop-reduce, -instcombine, -gvn;8
+IMG_sobel_c;14187;12793;1.108966;393.756;5390;-scalarrepl-ssa, -reassociate, -reassociate, -loop-rotate, -instcombine, -early-cse;12793;-scalarrepl-ssa, -reassociate, -reassociate, -loop-rotate, -instcombine, -early-cse;6
+IMG_sobel_c;14186.999999999998;12791;1.109139;438.641;5854;-gvn, -reassociate, -reassociate, -loop-reduce, -loop-rotate, -basicaa, -early-cse, -instcombine;12791;-gvn, -loop-rotate, -reassociate, -reassociate, -loop-reduce, -loop-rotate, -basicaa, -early-cse, -instcombine;9

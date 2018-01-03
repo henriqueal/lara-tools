@@ -1,1 +1,0 @@
-IMG_sad_8x8_c;-scalarrepl, -instcombine, -reassociate, -loop-rotate, -loop-reduce, -loop-unroll;878;878;1.000000;333.155;4988;878;-scalarrepl, -instcombine, -reassociate, -loop-rotate, -objc-arc-expand, -basiccg, -loop-reduce, -loop-unroll, -mergereturn;9

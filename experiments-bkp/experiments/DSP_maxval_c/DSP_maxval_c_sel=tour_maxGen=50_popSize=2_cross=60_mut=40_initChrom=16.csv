@@ -1,0 +1,3 @@
+DSP_maxval_c;1280;1164;1.099656;0.147;0;-scalarrepl-ssa;1164;-objc-arc, -constmerge, -loop-distribute, -scalarrepl-ssa, -cost-model, -loop-deletion, -loop-reroll, -loop-extract, -gvn, -instcount, -loop-accesses, -licm, -loop-unswitch, -inline-cost;14
+DSP_maxval_c;1280;1164;1.099656;0.126;0;-sroa;1635;-tti, -aa-eval, -structurizecfg, -iv-users, -scalarrepl-ssa, -sroa, -lowerswitch, -codegenprepare, -loops, -bb-vectorize, -cfl-aa, -mergereturn;12
+DSP_maxval_c;1280;1800;0.711111;0.142;0;-early-cse;1800;-early-cse, -lazy-value-info, -instrprof, -inline, -loop-vectorize, -prune-eh;6

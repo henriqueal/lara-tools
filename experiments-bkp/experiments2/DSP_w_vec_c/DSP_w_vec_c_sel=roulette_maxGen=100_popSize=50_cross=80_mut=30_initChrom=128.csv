@@ -1,0 +1,3 @@
+DSP_w_vec_c;6190;6190;1.000000;202.653;2770;-scalarrepl-ssa, -loop-rotate, -indvars;6190;-scalarrepl-ssa, -loop-rotate, -indvars;3
+DSP_w_vec_c;6190;5687;1.088447;261.500;3647;-early-cse, -licm, -loop-rotate, -instcombine, -basicaa, -licm;5687;-early-cse, -licm, -loop-rotate, -instcombine, -basicaa, -licm;6
+DSP_w_vec_c;6190.000000000001;6062;1.021115;295.137;3791;-loop-rotate, -scalarrepl-ssa, -extract-blocks, -inline, -simplifycfg;6062;-loop-rotate, -scalarrepl-ssa, -extract-blocks, -inline, -simplifycfg;5

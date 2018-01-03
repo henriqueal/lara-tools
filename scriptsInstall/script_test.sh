@@ -8,7 +8,7 @@ Após a instalação este diretório deve conter:
   -tsim (expira rapidamente. Deve baixar do próprio site as novas versões)
   -sparc
   -clang
-
+ 
 # LARAD
 larad
 

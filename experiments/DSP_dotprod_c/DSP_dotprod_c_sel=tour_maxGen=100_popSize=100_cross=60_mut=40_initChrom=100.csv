@@ -1,1 +1,0 @@
-DSP_dotprod_c;-loop-rotate, -scalarrepl, -indvars;827;827;1.000000;246.852;4189;827;-loop-rotate, -scalarrepl, -indvars;3

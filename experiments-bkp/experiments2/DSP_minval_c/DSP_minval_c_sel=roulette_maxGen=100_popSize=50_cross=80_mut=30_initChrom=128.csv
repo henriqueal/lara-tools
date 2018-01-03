@@ -1,0 +1,3 @@
+DSP_minval_c;1285;1079;1.190918;184.190;2745;-scalarrepl, -loop-rotate, -indvars;1079;-scalarrepl, -loop-rotate, -indvars;3
+DSP_minval_c;1285;1079;1.190918;210.948;2956;-scalarrepl-ssa, -loop-rotate, -indvars;1079;-scalarrepl-ssa, -loop-rotate, -indvars;3
+DSP_minval_c;1285;1079;1.190918;190.764;2892;-scalarrepl, -loop-rotate, -indvars;1079;-scalarrepl, -loop-rotate, -indvars;3

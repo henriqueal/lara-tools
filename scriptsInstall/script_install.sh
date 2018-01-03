@@ -13,10 +13,11 @@ sudo apt-get -y install libstdc++6:i386
 sudo apt-get install g++-multilib #
 
 # INSTALL LARAD
-mkdir lara-tools
-unzip larad.zip -d ./lara-tools
-sudo mv lara-tools /opt
-echo 'export PATH=$PATH:/opt/lara-tools/larad/larac:/opt/lara-tools/larad/larai:/opt/lara-tools/larad/bin' >> ~/.bashrc
+git clone 
+#mkdir lara-tools
+#unzip larad.zip -d ./lara-tools
+#sudo mv lara-tools /opt
+#echo 'export PATH=$PATH:/opt/lara-tools/larad/larac:/opt/lara-tools/larad/larai:/opt/lara-tools/larad/bin' >> ~/.bashrc
 . ~/.bashrc 
 
 # INSTALL CLANG
@@ -25,6 +26,7 @@ tar xvf clang+llvm-3.7.1-x86_64-linux-gnu-ubuntu-14.04.tar.xz
 sudo mv clang+llvm-3.7.1-x86_64-linux-gnu-ubuntu-14.04 /opt/clang+llvm-3.7.1-x86_64-linux-gnu-ubuntu-15.10
 
 # INSTALL LEON3 BACKEND COMPILER
+scp /opt/sparc-elf-4.4.2-1.0.45.tar.bz2 root@138.197.110.151:/opt
 tar xvf sparc-elf-4.4.2-1.0.45.tar.bz2
 sudo mv sparc-elf-4.4.2 /opt
 

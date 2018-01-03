@@ -1,1 +1,0 @@
-DSP_mat_trans_c;-scalarrepl-ssa, -loop-unswitch, -loop-rotate, -codegenprepare, -globalopt, -loop-deletion, -loop-reduce;14152.000000000002;14031;1.008624;407.456;4993;14031;-domfrontier, -globalopt, -rewrite-symbols, -scalarrepl-ssa, -loop-unswitch, -loop-rotate, -loop-rotate, -codegenprepare, -globalopt, -loop-deletion, -loop-reduce;11

@@ -1,0 +1,3 @@
+IMG_pix_sat_c;22589.000000000004;21567;1.047387;311.059;3529;-loop-rotate, -scalarrepl-ssa;21567;-loop-rotate, -scalarrepl-ssa;2
+IMG_pix_sat_c;22589;21047;1.073265;638.544;6509;-scalarrepl-ssa, -loop-rotate, -indvars, -loop-reduce, -instcombine;21047;-scalarrepl-ssa, -loop-rotate, -indvars, -loop-reduce, -instcombine, -loweratomic;6
+IMG_pix_sat_c;22589.000000000004;21567;1.047387;296.528;3345;-loop-rotate, -sroa;21567;-loop-rotate, -sroa;2

@@ -1,0 +1,3 @@
+DSP_dotp_sqr_c;2906;2906;1.000000;331.347;5388;-scalarrepl, -loop-rotate, -gvn, -indvars;2906;-scalarrepl, -loop-rotate, -gvn, -indvars;4
+DSP_dotp_sqr_c;2906;2906;1.000000;318.448;5383;-loop-rotate, -scalarrepl-ssa, -indvars, -gvn;2906;-loop-rotate, -scalarrepl-ssa, -indvars, -gvn;4
+DSP_dotp_sqr_c;2906;2906;1.000000;260.238;4457;-loop-rotate, -scalarrepl, -gvn, -indvars;2906;-loop-rotate, -scalarrepl, -gvn, -indvars;4

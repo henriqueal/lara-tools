@@ -1,3 +1,0 @@
-DSP_autocor_c;-scalarrepl;10069;12053;0.835394;30.872;234;12053;-die, -constprop, -always-inline, -scalarrepl, -lcssa;5
-DSP_autocor_c;-mem2reg;10069;12053;0.835394;22.330;148;12053;-slp-vectorizer, -loop-deletion, -mem2reg;3
-DSP_autocor_c;-mem2reg;10069;12053;0.835394;22.686;146;12053;-tti, -globalopt, -gvn, -lazy-value-info, -mem2reg, -indvars;6

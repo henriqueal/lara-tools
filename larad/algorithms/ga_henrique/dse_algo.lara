@@ -1,7 +1,7 @@
 aspectdef dse_algo
 
   input
-    exploreParams = [], frontend, compile, execute_and_report, compile_execute_and_report, check_sequence_is_valid, add_timing, cleanall, minimumLat = 100, sequences, iterations, maxwidth, optimLevelsLatency, nr, selection, maxGen, popSize, crossRate, mutRate, stopByFit, initChrom;
+    exploreParamsO3 = [], exploreParams = [], frontend, compile, execute_and_report, compile_execute_and_report, check_sequence_is_valid, add_timing, cleanall, minimumLat = 100, sequences, iterations, maxwidth, optimLevelsLatency, nr, selection, maxGen, popSize, crossRate, mutRate, stopByFit, initChrom;
   end
 
   output
@@ -33,6 +33,7 @@ aspectdef dse_algo
   var pop = [];
   var popId;
   var exploreParamSize = exploreParams.length;
+  var exploreParam_O3_Size = exploreParamsO3.length;
   var iGen;
   var histPop = [];
   //var repeatedMut = 5;
@@ -71,7 +72,13 @@ aspectdef dse_algo
 
   //01-beg Generate Initial Population ------------------------------------------------------------------
 
+
+  //println("wtf");
+
   pop = generateInitialPopulation(popSize, exploreParams, exploreParamSize, isnooptim, compile_execute_and_report, maxValue, total_steps, check_sequence_is_valid, maxwidth, initChrom);
+  
+
+/*
   
   var i,cont=0;
   for (i=0; i<popSize; i++){
@@ -160,7 +167,8 @@ aspectdef dse_algo
 
     //06-beg Reinsertion --------------------------------------------------------------------------------
     pop.sort(by('fitness', by('chromosomeSize')));
-    //println("The best of gen["+ iGen + "] = " + pop[0].fitness + "; " + pop[0].chromosomeSize + "; " + pop[0].chromosome.join(","));
+    appendFile("/opt/lara-tools/individuos/individuos.csv", iGen +";"+ pop[0].fitness +";"+  pop[0].chromosomeSize +";"+ pop[0].chromosome.join(",")+"\n");
+    //println(iGen +";"+ pop[0].fitness +";"+  pop[0].chromosomeSize +";"+ pop[0].chromosome.join(",")+"\n");
     //06-end --------------------------------------------------------------------------------------------
     
     //07 - beg Stop criterions --------------------------------------------------------------------------
@@ -177,7 +185,9 @@ aspectdef dse_algo
     
     //07-end ------------------------------------------------------------------------------------------
   }
-
+  
+*/
+  pop.sort(by('fitness', by('chromosomeSize')));
   bestSeqLatency = pop[0].fitness;
   bestSeq = pop[0].chromosome;
   chromoSizeBestIndiv = pop[0].chromosomeSize;

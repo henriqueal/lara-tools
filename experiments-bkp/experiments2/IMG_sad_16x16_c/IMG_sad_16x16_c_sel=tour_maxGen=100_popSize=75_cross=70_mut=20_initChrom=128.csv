@@ -1,0 +1,3 @@
+IMG_sad_16x16_c;4643;3059;1.517816;344.147;5226;-gvn, -loop-rotate, -scalarrepl, -loop-reduce, -loop-unroll, -instcombine;3059;-gvn, -loop-rotate, -scalarrepl, -loop-reduce, -loop-unroll, -instcombine, -basicaa;7
+IMG_sad_16x16_c;4643;3041;1.526800;369.907;5267;-loop-rotate, -scalarrepl, -reassociate, -loop-reduce, -loop-unroll, -instcombine;3041;-loop-rotate, -scalarrepl, -indvars, -basicaa, -reassociate, -loop-reduce, -loop-unroll, -loop-idiom, -instcombine, -sink;10
+IMG_sad_16x16_c;4643;3041;1.526800;312.939;4937;-loop-rotate, -scalarrepl, -loop-reduce, -reassociate, -loop-unroll, -instcombine;3041;-loop-reduce, -dce, -loop-rotate, -reassociate, -loop-unroll, -scalarrepl, -loop-rotate, -loop-reduce, -loop-rotate, -reassociate, -loop-unroll, -instcombine;12

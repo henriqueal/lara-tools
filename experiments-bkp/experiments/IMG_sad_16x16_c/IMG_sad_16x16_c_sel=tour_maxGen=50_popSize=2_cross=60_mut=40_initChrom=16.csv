@@ -1,0 +1,2 @@
+IMG_sad_16x16_c;4643;12570;0.369372;0.125;0;;12570;-slsr, -lcssa, -lowerinvoke;3
+IMG_sad_16x16_c;4643;12570;0.369372;0.139;0;;12570;-always-inline, -basicaa, -scalar-evolution;3

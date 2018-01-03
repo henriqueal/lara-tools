@@ -1,0 +1,3 @@
+DSP_firlms2_c;831;1598;0.520025;0.150;0;;1598;-mergereturn, -globaldce, -slsr;3
+DSP_firlms2_c;831;1598;0.520025;0.161;0;;1598;-regions;1
+DSP_firlms2_c;831.0000000000001;1571;0.528962;0.210;0;-targetlibinfo, -no-aa, -tailcallelim, -float2int, -bb-vectorize, -objc-arc, -loop-idiom, -instcombine;1.7976931348623157e+308;-targetlibinfo, -no-aa, -tailcallelim, -float2int, -bb-vectorize, -objc-arc, -loop-idiom, -alig.-f.-ass., -reg2mem, -instcombine;128

@@ -1,0 +1,3 @@
+IMG_wave_vert_c;5185;5164;1.004067;362.771;5624;-scalarrepl-ssa, -loop-rotate, -loop-unroll, -gvn, -jump-threading, -indvars, -early-cse;5164;-scalarrepl-ssa, -loop-rotate, -loop-unroll, -gvn, -jump-threading, -indvars, -early-cse;7
+IMG_wave_vert_c;5185;5164;1.004067;399.220;5957;-loop-rotate, -gvn, -indvars, -basicaa, -simplifycfg, -scalarrepl, -loop-unroll, -gvn;5164;-loop-rotate, -gvn, -indvars, -basicaa, -simplifycfg, -scalarrepl, -loop-unroll, -gvn;8
+IMG_wave_vert_c;5185;5164;1.004067;412.948;6038;-scalarrepl, -loop-rotate, -indvars, -loop-unroll, -instcombine, -jump-threading, -gvn;5164;-scalarrepl, -loweratomic, -loop-rotate, -indvars, -loop-unroll, -instcombine, -jump-threading, -gvn, -memdep;9

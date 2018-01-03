@@ -1,0 +1,3 @@
+DSP_fir_cplx_c;8509;18582;0.457916;0.120;0;;18582;-cost-model, -memdep, -loops, -consthoist, -delinearize, -scev-aa, -lowerinvoke, -jump-threading, -ipconstprop;9
+DSP_fir_cplx_c;8509;1.7976931348623157e+308;0.000000;0.205;0;-str.-d.-proto., -memcpyopt, -da, -spec.-execution, -strip-d.-declare, -sink, -part.-inl.-libcal., -lowerswitch, -libcall-aa, -alloca-hoisting, -dce, -objc-arc-apelim;1.7976931348623157e+308;-str.-d.-proto., -memcpyopt, -da, -spec.-execution, -strip-d.-declare, -sink, -part.-inl.-libcal., -lowerswitch, -libcall-aa, -alloca-hoisting, -dce, -objc-arc-apelim;128
+DSP_fir_cplx_c;8509;18582;0.457916;0.226;0;;18582;-strip;1

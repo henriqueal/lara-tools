@@ -1,0 +1,3 @@
+DSP_firlms2_c;831;820;1.013415;477.780;6196;-scalarrepl, -loop-reduce, -loop-rotate;820;-scalarrepl, -loop-reduce, -loop-rotate;3
+DSP_firlms2_c;831;820;1.013415;511.768;6520;-scalarrepl, -loop-reduce, -loop-rotate;820;-scalarrepl, -loop-reduce, -loop-rotate;3
+DSP_firlms2_c;831;820;1.013415;522.620;6150;-scalarrepl, -loop-reduce, -loop-rotate;820;-scalarrepl, -loop-reduce, -loop-rotate;3

@@ -1,0 +1,159 @@
+DROP SCHEMA IF EXISTS `db_experimentos_ag` ;
+CREATE SCHEMA IF NOT EXISTS `db_experimentos_ag` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `db_experimentos_ag` ;
+
+-- -----------------------------------------------------
+-- Table `db_experimentos_ag`.`Programa`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_experimentos_ag`.`Programa` ;
+
+CREATE TABLE IF NOT EXISTS `db_experimentos_ag`.`Programa` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NULL,
+  `fonte` VARCHAR(45) NULL COMMENT 'TI\nPolibench',
+  `classe` VARCHAR(200) NULL COMMENT 'Matematico\nImagem',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_experimentos_ag`.`Individuo`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_experimentos_ag`.`Individuo` ;
+
+CREATE TABLE IF NOT EXISTS `db_experimentos_ag`.`Individuo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_experimento` INT NULL,
+  `id_programa` INT NULL,
+  `latencia` INT NULL,
+  `tamanho` INT NULL,
+  `cod_erro` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Individuo_1_idx` (`id_programa` ASC),
+  CONSTRAINT `fk_Individuo_1`
+    FOREIGN KEY (`id_programa`)
+    REFERENCES `db_experimentos_ag`.`Programa` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_experimentos_ag`.`Latencia_Programa`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_experimentos_ag`.`Latencia_Programa` ;
+
+CREATE TABLE IF NOT EXISTS `db_experimentos_ag`.`Latencia_Programa` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_programa` INT NULL,
+  `-O0` INT NULL,
+  `-O1` INT NULL,
+  `-O2` INT NULL,
+  `-O3` INT NULL,
+  `entrada` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_idx` (`id_programa` ASC),
+  CONSTRAINT `fk`
+    FOREIGN KEY (`id_programa`)
+    REFERENCES `db_experimentos_ag`.`Programa` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_experimentos_ag`.`GA`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_experimentos_ag`.`GA` ;
+
+CREATE TABLE IF NOT EXISTS `db_experimentos_ag`.`GA` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `taxa_crossover` INT NULL,
+  `taxa_mutacao` INT NULL,
+  `tam_populacao` INT NULL,
+  `tipo_crossover` VARCHAR(45) NULL,
+  `tipo_selecao` VARCHAR(45) NULL,
+  `max_geracoes` INT NULL,
+  `stop_by_fit` INT NULL,
+  `conj_exploracao` VARCHAR(45) NULL,
+  `conj_inicial` VARCHAR(45) NULL,
+  `qtd_execucoes` INT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_experimentos_ag`.`Experimentos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_experimentos_ag`.`Experimentos` ;
+
+CREATE TABLE IF NOT EXISTS `db_experimentos_ag`.`Experimentos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_programa` INT NULL,
+  `id_ga` INT NULL,
+  `id_melhor_individuo` INT NULL,
+  `tempo` INT NULL,
+  `qtd_ind_invalidos` INT NULL,
+  `qtd_ind_total` INT NULL,
+  `qtd_execucoes` INT NULL,
+  `semente` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Experimentos_2_idx` (`id_programa` ASC),
+  INDEX `fk_Experimentos_3_idx` (`id_melhor_individuo` ASC),
+  INDEX `fk_Experimentos_1_idx` (`id_ga` ASC),
+  CONSTRAINT `fk_Experimentos_1`
+    FOREIGN KEY (`id_ga`)
+    REFERENCES `db_experimentos_ag`.`GA` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Experimentos_2`
+    FOREIGN KEY (`id_programa`)
+    REFERENCES `db_experimentos_ag`.`Programa` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Experimentos_3`
+    FOREIGN KEY (`id_melhor_individuo`)
+    REFERENCES `db_experimentos_ag`.`Individuo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_experimentos_ag`.`Passos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_experimentos_ag`.`Passos` ;
+
+CREATE TABLE IF NOT EXISTS `db_experimentos_ag`.`Passos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NULL,
+  `descricao` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_experimentos_ag`.`Individuo_passos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_experimentos_ag`.`Individuo_passos` ;
+
+CREATE TABLE IF NOT EXISTS `db_experimentos_ag`.`Individuo_passos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_individuo` INT NULL,
+  `id_passos` INT NULL,
+  `posicao` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Individuo_passos_1_idx` (`id_individuo` ASC),
+  INDEX `fk_Individuo_passos_2_idx` (`id_passos` ASC),
+  CONSTRAINT `fk_Individuo_passos_1`
+    FOREIGN KEY (`id_individuo`)
+    REFERENCES `db_experimentos_ag`.`Individuo` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Individuo_passos_2`
+    FOREIGN KEY (`id_passos`)
+    REFERENCES `db_experimentos_ag`.`Passos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+

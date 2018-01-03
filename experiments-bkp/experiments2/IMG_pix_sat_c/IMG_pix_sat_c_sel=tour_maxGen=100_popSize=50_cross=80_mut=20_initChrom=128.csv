@@ -1,0 +1,3 @@
+IMG_pix_sat_c;22589;20547;1.099382;162.810;2186;-loop-rotate, -scalarrepl, -scev-aa, -mldst-motion;20547;-globaldce, -loop-rotate, -scalarrepl, -scev-aa, -mldst-motion;4
+IMG_pix_sat_c;22589.000000000004;21567;1.047387;183.903;2416;-scalarrepl-ssa, -loop-rotate;21567;-scalarrepl-ssa, -loop-rotate;2
+IMG_pix_sat_c;22589.000000000004;21567;1.047387;175.573;2335;-scalarrepl-ssa, -loop-rotate;21567;-scalarrepl-ssa, -loop-rotate, -strip;2

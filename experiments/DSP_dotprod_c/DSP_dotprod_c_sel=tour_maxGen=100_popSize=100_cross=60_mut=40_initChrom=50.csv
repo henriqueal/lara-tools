@@ -1,1 +1,0 @@
-DSP_dotprod_c;-scalarrepl-ssa, -loop-rotate, -indvars;827;827;1.000000;211.704;3748;827;-scalarrepl-ssa, -loop-rotate, -slp-vectorizer, -indvars, -loops, -scalarrepl-ssa, -loop-rotate, -lcssa;8

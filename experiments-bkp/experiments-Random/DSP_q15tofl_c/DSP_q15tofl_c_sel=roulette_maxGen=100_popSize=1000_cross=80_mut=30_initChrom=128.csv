@@ -1,0 +1,3 @@
+DSP_q15tofl_c;676;757;0.892999;225.630;0;-instcombine, -sroa;757;-instcombine, -scalarizer, -loop-idiom, -sroa, -lowerinvoke, -jump-threading, -flattencfg, -postdomtree, -loop-reroll, -argpromotion, -reassociate, -indvars, -safe-stack, -branch-prob, -regions, -da;16
+DSP_q15tofl_c;676;757;0.892999;230.117;0;-scalarrepl, -instcombine;757;-atomic-expand, -lint, -scalarrepl, -instcombine, -instnamer, -lowerinvoke, -basicaa;7
+DSP_q15tofl_c;676;986;0.685598;228.005;0;-instcombine;986;-adce, -consthoist, -loop-idiom, -globaldce, -no-aa, -licm, -loop-unroll, -loop-idiom, -aa-eval, -loop-distribute, -loweratomic, -instcombine, -scev-aa, -pa-eval, -scalar-evolution, -argpromotion;16

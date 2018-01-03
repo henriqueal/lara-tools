@@ -1,0 +1,3 @@
+IMG_conv_3x3_c;25269;33699;0.749844;217.612;0;-instcombine, -scalarrepl-ssa;33699;-scoped-noalias, -instcombine, -consthoist, -scalarrepl-ssa, -constmerge, -scalarizer, -tailcallelim, -tbaa, -scalar-evolution, -mem2reg, -lazy-value-info;11
+IMG_conv_3x3_c;25269;34977;0.722446;227.683;0;-mem2reg;34977;-mem2reg;1
+IMG_conv_3x3_c;25269;31105;0.812377;201.967;0;-loop-rotate, -jump-threading, -scalarrepl;31105;-instsimplify, -scalarrepl, -lint, -instcount, -barrier, -bb-vectorize, -sccp, -domtree, -barrier, -adce, -loop-vectorize, -deadargelim, -loop-rotate, -ipconstprop, -basicaa, -jump-threading, -tbaa, -aa-eval, -loop-deletion, -bounds-checking, -instrprof, -scalarrepl, -cfl-aa, -loop-accesses, -strip-nondebug, -safe-stack;26

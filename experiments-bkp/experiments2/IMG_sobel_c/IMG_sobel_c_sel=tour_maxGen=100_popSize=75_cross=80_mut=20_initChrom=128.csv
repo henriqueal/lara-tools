@@ -1,0 +1,3 @@
+IMG_sobel_c;14187.000000000002;12910;1.098916;558.926;5846;-reassociate, -reassociate, -loop-rotate, -scalarrepl, -indvars, -simplifycfg, -instcombine;12910;-reassociate, -reassociate, -loop-rotate, -scalarrepl, -indvars, -simplifycfg, -instcombine;7
+IMG_sobel_c;14187;12793;1.108966;427.904;5696;-reassociate, -scalarrepl, -early-cse, -loop-rotate, -reassociate, -instcombine;12793;-reassociate, -scalarrepl, -early-cse, -loop-rotate, -reassociate, -instcombine, -loop-simplify;7
+IMG_sobel_c;14187.000000000002;12910;1.098916;484.406;5886;-loop-rotate, -scalarrepl, -reassociate, -reassociate, -simplifycfg, -instcombine, -indvars;12910;-loop-rotate, -scalarrepl, -simplifycfg, -reassociate, -reassociate, -simplifycfg, -instcombine, -indvars;8
