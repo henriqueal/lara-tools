@@ -1,3 +1,0 @@
-DSP_minval_c;1285;4506;0.285175;0.119;0;-mergereturn, -intervals, -extract-blocks;1.7976931348623157e+308;-mergereturn, -intervals, -extract-blocks, -spec.-execution, -lcssa, -aa-eval, -prune-eh, -rewrite-symbols;128
-DSP_minval_c;1285;1949;0.659312;0.149;0;;1949;-libcall-aa, -branch-prob;2
-DSP_minval_c;1285;1.7976931348623157e+308;0.000000;0.113;0;-elim-avail-ext., -globalsmodref-aa, -loop-simplify, -branch-prob, -loop-reduce, -mergereturn, -extract-blocks, -indvars, -cfl-aa, -bounds-checking, -tailcallelim, -pl.-ba.-safe.-im.;1.7976931348623157e+308;-elim-avail-ext., -globalsmodref-aa, -loop-simplify, -branch-prob, -loop-reduce, -mergereturn, -extract-blocks, -indvars, -cfl-aa, -bounds-checking, -tailcallelim, -pl.-ba.-safe.-im.;128

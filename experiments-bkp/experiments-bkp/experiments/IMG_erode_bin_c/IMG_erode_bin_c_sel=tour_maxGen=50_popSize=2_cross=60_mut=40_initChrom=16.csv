@@ -1,3 +1,0 @@
-IMG_erode_bin_c;4186;1.7976931348623157e+308;0.000000;0.102;0;-sroa, -slsr, -break-crit-edg., -mergereturn, -s.-c.-o.-f.-gep, -libcall-aa, -always-inline, -tbaa, -lowerswitch;1.7976931348623157e+308;-sroa, -slsr, -break-crit-edg., -mergereturn, -s.-c.-o.-f.-gep, -libcall-aa, -always-inline, -tbaa, -lowerswitch;128
-IMG_erode_bin_c;4186;14110;0.296669;0.140;0;;14110;-cost-model, -dce;2
-IMG_erode_bin_c;4186;14110;0.296669;0.158;0;;14110;-regions, -debug-aa;2

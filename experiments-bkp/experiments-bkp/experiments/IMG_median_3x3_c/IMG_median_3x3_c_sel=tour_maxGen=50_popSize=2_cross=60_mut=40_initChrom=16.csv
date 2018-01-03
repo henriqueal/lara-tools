@@ -1,3 +1,0 @@
-IMG_median_3x3_c;35291;66820;0.528150;0.230;0;-loop-rotate;66820;-loop-distribute, -loop-rotate, -reassociate, -tti;4
-IMG_median_3x3_c;35291;30884;1.142695;0.171;0;-scalarrepl;30884;-flattencfg, -ipconstprop, -jump-threading, -scalarrepl, -tailcallelim, -tbaa, -load-combine, -regions;8
-IMG_median_3x3_c;35291;60242;0.585821;0.150;0;-instcombine;98432;-instcombine, -ipconstprop, -bounds-checking, -scalarrepl, -reg2mem, -functionattrs;6

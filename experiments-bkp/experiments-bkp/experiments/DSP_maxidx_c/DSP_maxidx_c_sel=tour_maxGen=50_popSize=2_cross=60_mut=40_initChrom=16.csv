@@ -1,3 +1,0 @@
-DSP_maxidx_c;1666;2007;0.830095;0.148;0;;2007;-loop-deletion, -block-freq, -scoped-noalias, -licm, -indvars;5
-DSP_maxidx_c;1666;1168;1.426370;0.100;0;-functionattrs, -scalarrepl, -postdomtree, -libcall-aa, -load-combine, -objc-arc-apelim, -loop-distribute;1.7976931348623157e+308;-functionattrs, -scalarrepl, -postdomtree, -libcall-aa, -load-combine, -objc-arc-apelim, -loop-distribute, -break-crit-edg., -licm;128
-DSP_maxidx_c;1666;1939;0.859206;0.105;0;-instcombine;1939;-intervals, -instcombine, -objc-arc-aa, -debug-aa, -dce, -instsimplify;6

@@ -1,3 +1,0 @@
-IMG_perimeter_c;40037;1.7976931348623157e+308;0.000000;0.121;0;-functionattrs, -loop-idiom, -scev-aa, -basiccg, -loop-unswitch, -da, -rewrite-symbols, -loop-instsimpl., -gvn, -delinearize, -nary-reass., -instcount, -loop-instsimpl., -lazy-value-info;1.7976931348623157e+308;-functionattrs, -loop-idiom, -scev-aa, -basiccg, -loop-unswitch, -da, -rewrite-symbols, -loop-instsimpl., -gvn, -delinearize, -nary-reass., -instcount, -loop-instsimpl., -lazy-value-info;128
-IMG_perimeter_c;40037;67717;0.591240;0.221;0;;67717;-scalarizer, -codegenprepare, -lint, -instnamer;4
-IMG_perimeter_c;40037;29012;1.380015;0.101;0;-mem2reg;1.7976931348623157e+308;-mem2reg, -strip-d.-declare, -bounds-checking, -loop-vectorize;128

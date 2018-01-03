@@ -1,4 +1,0 @@
-DSP_blk_eswap16_c;3663.9999999999995;10998;0.333151;0.124;0;-lazy-value-info, -globaldce;1.7976931348623157e+308;-lazy-value-info, -globaldce, -add-dis., -objc-arc, -block-freq, -instrprof, -argpromotion, -barrier, -inline, -loop-reroll;128
-DSP_blk_eswap16_c;3663.9999999999995;10998;0.333151;0.120;0;;10998;-ipsccp, -instcount, -loop-accesses, -lowerbitsets, -reassociate, -postdomtree, -intervals, -globalsmodref-aa, -pa-eval;9
-DSP_blk_eswap16_c;3664;4276;0.856876;0.110;0;-loop-reduce, -die, -instnamer, -scalarrepl-ssa;1.7976931348623157e+308;-loop-reduce, -die, -instnamer, -pl.-ba.-safe.-im., -scalarrepl-ssa, -block-freq;128
-DSP_blk_eswap16_c;3664;4276;0.856876;0.109;0;-scalarrepl;7929;-memdep, -scalarrepl, -globalopt, -reg2mem, -mldst-motion, -functionattrs, -debug-aa, -irce, -instrprof, -indvars, -constmerge, -branch-prob, -tbaa, -loops;14

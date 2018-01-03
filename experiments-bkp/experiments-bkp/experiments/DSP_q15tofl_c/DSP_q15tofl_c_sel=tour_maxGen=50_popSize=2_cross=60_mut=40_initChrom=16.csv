@@ -1,3 +1,0 @@
-DSP_q15tofl_c;676;1260;0.536508;0.070;0;;1.7976931348623157e+308;-part.-inliner, -bdce, -jump-threading, -basicaa, -globalopt;128
-DSP_q15tofl_c;676;1020;0.662745;0.104;0;-early-cse, -mem2reg;1.7976931348623157e+308;-early-cse, -part.-inl.-libcal., -instnamer, -scoped-noalias, -instcount, -mem2reg, -loop-unroll, -irce, -sink, -ipconstprop, -mldst-motion, -sink;128
-DSP_q15tofl_c;676;1260;0.536508;0.119;0;;1260;-strip, -atomic-expand, -loop-extract, -lcssa, -sink, -loops, -rewrite-symbols, -strip-nondebug, -tti, -mergereturn, -block-freq, -lcssa, -bdce, -lowerinvoke, -codegenprepare, -reassociate;16
