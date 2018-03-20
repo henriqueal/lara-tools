@@ -1,4 +1,0 @@
-DSP_dotprod_c;827;1656;0.499396;0.159;0;;1656;-indvars;1
-DSP_dotprod_c;827;1656;0.499396;0.272;0;;1656;-inline;1
-DSP_dotprod_c;827;1.7976931348623157e+308;0.000000;0.142;0;-float2int, -part.-inliner, -inline, -correlated-prop., -argpromotion, -ipconstprop;1.7976931348623157e+308;-float2int, -part.-inliner, -inline, -correlated-prop., -argpromotion, -ipconstprop;128
-DSP_dotprod_c;827;1656;0.499396;0.147;0;;1656;-instrprof;1

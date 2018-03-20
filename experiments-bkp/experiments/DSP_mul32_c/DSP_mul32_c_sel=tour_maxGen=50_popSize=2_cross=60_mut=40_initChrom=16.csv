@@ -1,3 +1,0 @@
-DSP_mul32_c;10567;26598;0.397286;0.129;0;;26598;-scalar-evolution, -loop-unroll;2
-DSP_mul32_c;10567;12124;0.871577;0.077;0;-loop-extract, -slp-vectorizer, -scalarrepl;1.7976931348623157e+308;-loop-extract, -slp-vectorizer, -strip-d.-declare, -sancov, -globaldce, -constprop, -scalarrepl, -memcpyopt, -iv-users;128
-DSP_mul32_c;10567;12124;0.871577;0.125;0;-scalarrepl-ssa;12124;-debug-aa, -cfl-aa, -globalopt, -bb-vectorize, -basiccg, -domtree, -early-cse, -tbaa, -globalsmodref-aa, -sancov, -scalarrepl-ssa, -dse, -loop-reroll, -instnamer, -early-cse;15

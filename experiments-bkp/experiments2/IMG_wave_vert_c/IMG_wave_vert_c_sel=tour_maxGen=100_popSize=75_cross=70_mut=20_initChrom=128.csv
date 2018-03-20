@@ -1,3 +1,0 @@
-IMG_wave_vert_c;5185;5164;1.004067;402.954;5145;-scalarrepl, -loop-rotate, -loop-unroll, -gvn, -simplifycfg, -indvars, -early-cse;5164;-scalarrepl, -loop-rotate, -loop-unroll, -gvn, -simplifycfg, -indvars, -early-cse;7
-IMG_wave_vert_c;5185;5164;1.004067;378.917;5197;-loop-rotate, -scalarrepl, -early-cse, -loop-unroll, -jump-threading, -indvars, -early-cse;5164;-ipconstprop, -loop-rotate, -scalarrepl, -early-cse, -loop-unroll, -jump-threading, -indvars, -early-cse, -memdep;9
-IMG_wave_vert_c;5185;5164;1.004067;388.462;5325;-scalarrepl-ssa, -loop-rotate, -instcombine, -jump-threading, -gvn, -indvars, -loop-unroll;5164;-scalarrepl-ssa, -loop-rotate, -lower-expect, -instcombine, -jump-threading, -gvn, -indvars, -loop-reduce, -scalarrepl, -tbaa, -loop-unroll, -lcssa;12

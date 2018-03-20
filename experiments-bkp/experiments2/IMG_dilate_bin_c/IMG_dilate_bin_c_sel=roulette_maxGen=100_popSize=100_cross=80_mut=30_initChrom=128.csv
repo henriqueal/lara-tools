@@ -1,3 +1,0 @@
-IMG_dilate_bin_c;5436;5435;1.000184;583.647;7851;-basicaa, -loop-rotate, -instcombine, -gvn, -simplifycfg, -instcombine;5435;-basicaa, -loop-rotate, -instcombine, -gvn, -simplifycfg, -instcombine, -targetlibinfo;7
-IMG_dilate_bin_c;5436;5436;1.000000;408.193;6259;-scalarrepl-ssa, -simplifycfg, -loop-rotate, -instcombine;5436;-scalarrepl-ssa, -simplifycfg, -loop-rotate, -instcombine;4
-IMG_dilate_bin_c;5436;5435;1.000184;578.645;7837;-instcombine, -basicaa, -gvn, -simplifycfg, -loop-rotate, -instcombine;5435;-instcombine, -basicaa, -gvn, -simplifycfg, -loop-rotate, -instcombine;6

@@ -1,3 +1,0 @@
-DSP_blk_eswap64_c;2800;2798;1.000715;215.790;0;-loop-rotate, -mem2reg;2798;-loop-distribute, -lowerinvoke, -loop-rotate, -sancov, -ipsccp, -basicaa, -no-aa, -mem2reg, -branch-prob;9
-DSP_blk_eswap64_c;2800;3068;0.912647;212.637;0;-sroa;3068;-sroa;1
-DSP_blk_eswap64_c;2800;3008;0.930851;210.827;0;-instcombine, -scalarrepl;3008;-objc-arc-expand, -tailcallelim, -always-inline, -always-inline, -instcombine, -basiccg, -scalarrepl-ssa, -scalarrepl;8

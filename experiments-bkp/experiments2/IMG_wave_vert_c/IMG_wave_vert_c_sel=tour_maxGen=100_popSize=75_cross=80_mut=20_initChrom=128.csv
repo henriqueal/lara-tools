@@ -1,3 +1,0 @@
-IMG_wave_vert_c;5185;5164;1.004067;442.747;5975;-loop-rotate, -gvn, -basicaa, -scalarrepl, -indvars, -jump-threading, -loop-simplify, -early-cse, -loop-unroll;5164;-loop-rotate, -gvn, -basicaa, -scalarrepl, -indvars, -jump-threading, -loop-simplify, -early-cse, -loop-unroll, -ipsccp;10
-IMG_wave_vert_c;5185;5164;1.004067;480.743;5897;-loop-rotate, -scalarrepl, -loop-unroll, -gvn, -jump-threading, -indvars, -gvn;5164;-loop-rotate, -scalarrepl, -mergereturn, -loop-unroll, -gvn, -jump-threading, -indvars, -gvn, -correlated-propagation;9
-IMG_wave_vert_c;5185;5164;1.004067;454.144;5989;-loop-rotate, -scalarrepl-ssa, -gvn, -indvars, -simplifycfg, -loop-unroll, -gvn;5164;-loop-rotate, -scalarrepl-ssa, -gvn, -indvars, -simplifycfg, -lower-expect, -loop-unroll, -gvn;8

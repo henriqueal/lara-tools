@@ -1,3 +1,0 @@
-DSP_neg32_c;17;17;1.000000;200.956;3454;-inline, -scalarrepl;17;-inline, -scalarrepl;2
-DSP_neg32_c;17;17;1.000000;190.426;3267;-scalarrepl, -inline;17;-scalarrepl, -inline;2
-DSP_neg32_c;17;17;1.000000;203.688;3451;-inline, -scalarrepl;17;-inline, -scalarrepl;2

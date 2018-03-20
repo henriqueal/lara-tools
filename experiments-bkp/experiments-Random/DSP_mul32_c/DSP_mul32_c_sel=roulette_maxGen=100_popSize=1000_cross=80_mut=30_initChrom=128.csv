@@ -1,3 +1,0 @@
-DSP_mul32_c;10567;12124;0.871577;241.691;0;-sroa;12124;-sroa, -instsimplify, -inline;3
-DSP_mul32_c;10567;10569;0.999811;265.114;0;-loop-rotate, -sroa;10569;-atomic-expand, -irce, -alloca-hoisting, -gvn, -scev-aa, -licm, -reassociate, -loop-rotate, -atomic-expand, -sroa, -iv-users;11
-DSP_mul32_c;10567;12124;0.871577;234.699;0;-mem2reg;12124;-mergefunc, -mem2reg;2

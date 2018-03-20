@@ -1,1 +1,0 @@
-IMG_median_3x3_c;35291;30278;1.165566;60.094;682;-loop-rotate, -scalarrepl;30278;-loop-deletion, -dce, -loop-rotate, -loweratomic, -scalarrepl, -die, -argpromotion, -domtree, -sink;9

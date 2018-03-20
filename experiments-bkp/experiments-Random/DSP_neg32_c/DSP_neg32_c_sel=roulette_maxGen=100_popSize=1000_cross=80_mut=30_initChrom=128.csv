@@ -1,3 +1,0 @@
-DSP_neg32_c;17;30;0.566667;229.357;0;-sroa;30;-sroa;1
-DSP_neg32_c;17;17;1.000000;236.664;0;-scalarrepl-ssa, -inline;17;-count-aa, -early-cse, -lcssa, -scalarrepl-ssa, -inline, -strip-nondebug, -loop-vectorize, -lowerswitch, -safe-stack, -jump-threading, -globalopt, -objc-arc, -objc-arc, -adce, -safe-stack, -irce, -reassociate, -bdce;18
-DSP_neg32_c;17;17;1.000000;214.810;0;-scalarrepl-ssa, -inline;17;-cost-model, -scalarrepl, -sancov, -scalarrepl-ssa, -scev-aa, -simplifycfg, -instnamer, -argpromotion, -consthoist, -da, -verify, -reassociate, -aa-eval, -ipsccp, -inline, -pa-eval, -objc-arc-expand, -debug-aa, -targetlibinfo;19

@@ -1,3 +1,0 @@
-DSP_blk_eswap16_c;3664;3664;1.000000;275.140;4043;-scalarrepl, -loop-rotate, -indvars;3664;-scalarrepl, -loop-rotate, -indvars;3
-DSP_blk_eswap16_c;3664;3664;1.000000;340.018;4638;-scalarrepl, -loop-rotate, -indvars;3664;-scalarrepl, -loop-rotate, -indvars;3
-DSP_blk_eswap16_c;3664;3655;1.002462;459.625;5947;-instcombine, -scalarrepl, -licm, -loop-reduce, -loop-rotate, -gvn, -indvars;3655;-instcombine, -scalarrepl, -licm, -constmerge, -loop-reduce, -loop-rotate, -gvn, -indvars, -loop-unroll, -loop-instsimplify, -loop-accesses;10

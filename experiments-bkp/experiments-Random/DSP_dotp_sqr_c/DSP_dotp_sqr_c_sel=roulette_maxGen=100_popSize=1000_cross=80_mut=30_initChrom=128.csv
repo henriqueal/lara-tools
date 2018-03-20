@@ -1,3 +1,0 @@
-DSP_dotp_sqr_c;2906;3146;0.923713;211.537;0;-mem2reg, -loop-rotate, -indvars;3146;-reassociate, -loop-simplify, -mem2reg, -loop-reroll, -licm, -scoped-noalias, -sccp, -instnamer, -strip, -objc-arc-aa, -instnamer, -divergence, -debug-aa, -jump-threading, -loop-rotate, -sink, -instrprof, -instcount, -indvars, -strip, -scev-aa, -loop-distribute;22
-DSP_dotp_sqr_c;2906;3457;0.840613;219.411;0;-scalarrepl;3457;-scalarrepl;1
-DSP_dotp_sqr_c;2906;3457;0.840613;212.441;0;-mem2reg;3457;-postdomtree, -mem2reg, -objc-arc-aa, -scalarizer, -constprop;5

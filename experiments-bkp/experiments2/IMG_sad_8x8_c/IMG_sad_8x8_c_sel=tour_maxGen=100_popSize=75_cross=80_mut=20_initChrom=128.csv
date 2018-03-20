@@ -1,3 +1,0 @@
-IMG_sad_8x8_c;878;877;1.001140;452.123;6084;-instcombine, -reassociate, -scalarrepl-ssa, -loop-rotate, -loop-reduce, -loop-unroll, -codegenprepare;877;-instcombine, -reassociate, -scalarrepl-ssa, -loop-rotate, -constprop, -loop-reduce, -instcombine, -loop-unroll, -loop-idiom, -codegenprepare;10
-IMG_sad_8x8_c;878;878;1.000000;379.292;5624;-loop-rotate, -instcombine, -reassociate, -scalarrepl, -loop-unroll;878;-loop-rotate, -instcombine, -reassociate, -scalarrepl, -loop-unroll;5
-IMG_sad_8x8_c;878;878;1.000000;373.098;5516;-scalarrepl-ssa, -loop-rotate, -reassociate, -instcombine, -loop-unroll;878;-scalarrepl-ssa, -loop-rotate, -reassociate, -instcombine, -loop-unroll;5

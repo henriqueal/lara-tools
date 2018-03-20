@@ -1,3 +1,0 @@
-DSP_q15tofl_c;676;676;1.000000;237.586;4110;-loop-rotate, -instcombine, -scalarrepl-ssa, -indvars;676;-loop-rotate, -instcombine, -scalarrepl-ssa, -indvars;4
-DSP_q15tofl_c;676;676;1.000000;266.111;4520;-scalarrepl-ssa, -loop-rotate, -indvars, -instcombine;676;-scalarrepl-ssa, -loop-rotate, -indvars, -instcombine;4
-DSP_q15tofl_c;676;676;1.000000;255.946;4478;-scalarrepl, -loop-rotate, -instcombine, -indvars;676;-scalarrepl, -loop-rotate, -instcombine, -indvars;4

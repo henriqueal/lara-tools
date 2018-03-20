@@ -1,3 +1,0 @@
-IMG_sad_8x8_c;878;1451;0.605100;206.260;0;-mem2reg, -loop-rotate;1498;-loop-rotate, -alloca-hoisting, -globalopt, -no-aa, -mem2reg, -intervals, -bdce, -loop-rotate;8
-IMG_sad_8x8_c;878;1575;0.557460;204.895;0;-scalarrepl, -loop-reduce;1575;-loop-simplify, -strip, -scalarrepl, -pa-eval, -loop-reduce, -mergefunc, -delinearize, -loop-deletion, -loop-reroll, -tti, -indvars, -loops, -strip, -block-freq, -mldst-motion, -alloca-hoisting, -objc-arc, -loop-unswitch, -da, -bb-vectorize, -constmerge, -memcpyopt, -targetlibinfo;23
-IMG_sad_8x8_c;878;1730;0.507514;200.250;0;-scalarrepl-ssa;1730;-scalarrepl-ssa;1

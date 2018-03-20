@@ -1,3 +1,0 @@
-IMG_conv_3x3_c;25269;23984;1.053577;703.708;7672;-loop-rotate, -scalarrepl-ssa, -loop-reduce, -loop-unroll, -gvn, -licm;23984;-loop-rotate, -scalarrepl-ssa, -loop-reduce, -loop-unroll, -gvn, -licm, -strip-dead-prototypes;7
-IMG_conv_3x3_c;25268.999999999996;24501;1.031346;759.239;7820;-early-cse, -licm, -loop-rotate, -jump-threading, -licm, -sink, -basicaa, -loop-unroll;24501;-memdep, -early-cse, -licm, -loop-rotate, -jump-threading, -licm, -sink, -basicaa, -basicaa, -loop-unroll;10
-IMG_conv_3x3_c;25269;24486;1.031977;13102.816;6318;-instcombine, -loop-rotate, -licm, -loop-unroll, -instsimplify, -basicaa;24486;-instcombine, -loop-rotate, -licm, -loop-unroll, -instsimplify, -basicaa;6

@@ -1,3 +1,0 @@
-DSP_fir_cplx_c;8509;8292;1.026170;330.796;5292;-scalarrepl-ssa, -gvn, -loop-rotate, -reassociate;8292;-scalarrepl-ssa, -gvn, -loop-rotate, -reassociate;4
-DSP_fir_cplx_c;8509;8133;1.046231;487.614;6829;-scalarrepl-ssa, -instcombine, -early-cse, -loop-rotate, -loop-unswitch, -reassociate, -sccp;8133;-scalarrepl-ssa, -globaldce, -dse, -instcombine, -scalarrepl, -early-cse, -loop-rotate, -memcpyopt, -loop-unswitch, -reassociate, -sccp, -no-aa, -constprop;13
-DSP_fir_cplx_c;8509;8279;1.027781;417.146;6372;-scalarrepl, -licm, -early-cse, -loop-rotate, -sink, -loop-unswitch;8279;-scalarrepl, -licm, -early-cse, -loop-rotate, -sink, -loop-unswitch, -die;7

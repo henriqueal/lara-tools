@@ -1,3 +1,0 @@
-DSP_blk_eswap64_c;2800;2798;1.000715;346.183;4942;-scalarrepl, -loop-rotate;2798;-scalarrepl, -loop-rotate;2
-DSP_blk_eswap64_c;2800;2798;1.000715;338.997;4830;-scalarrepl-ssa, -loop-rotate;2798;-scalarrepl-ssa, -loop-rotate;2
-DSP_blk_eswap64_c;2800;2798;1.000715;314.763;4438;-scalarrepl, -loop-rotate;2798;-scalarrepl, -loop-rotate;2

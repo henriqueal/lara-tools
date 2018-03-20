@@ -1,3 +1,0 @@
-IMG_dilate_bin_c;5436;1.7976931348623157e+308;0.000000;0.152;0;-bdce, -nary-reass., -tailcallelim, -scoped-noalias, -simplifycfg, -ipconstprop, -sink, -rewr.-sta.-for-gc, -mldst-motion;1.7976931348623157e+308;-bdce, -nary-reass., -tailcallelim, -scoped-noalias, -simplifycfg, -ipconstprop, -sink, -rewr.-sta.-for-gc, -mldst-motion;128
-IMG_dilate_bin_c;5436;1.7976931348623157e+308;0.000000;0.097;0;-objc-arc-contrac., -nary-reass., -count-aa, -basiccg, -loop-deletion;1.7976931348623157e+308;-objc-arc-contrac., -nary-reass., -count-aa, -basiccg, -loop-deletion;128
-IMG_dilate_bin_c;5436;14110;0.385259;0.150;0;;14110;-globaldce, -scoped-noalias, -constmerge, -loop-reduce, -loop-unroll, -loop-reduce, -libcall-aa;7

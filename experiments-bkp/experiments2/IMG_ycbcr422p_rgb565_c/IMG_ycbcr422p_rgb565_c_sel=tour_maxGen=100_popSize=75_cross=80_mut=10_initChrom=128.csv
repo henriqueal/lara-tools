@@ -1,3 +1,0 @@
-IMG_ycbcr422p_rgb565_c;5010;4483;1.117555;225.459;3737;-scalarrepl, -sink, -loop-rotate;4483;-scalarrepl, -sink, -loop-rotate;3
-IMG_ycbcr422p_rgb565_c;5010;4404;1.137602;200.665;3348;-structurizecfg, -sroa, -jump-threading, -loop-rotate, -sink;4404;-structurizecfg, -sroa, -jump-threading, -loop-rotate, -sink;5
-IMG_ycbcr422p_rgb565_c;5010;4474;1.119803;358.701;5305;-gvn, -loop-reduce, -basicaa, -scalarrepl, -sink, -loop-rotate;4474;-gvn, -loop-reduce, -basicaa, -scalarrepl, -sink, -loop-rotate;6

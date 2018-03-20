@@ -1,3 +1,0 @@
-DSP_mat_mul_c;53236;50985;1.044150;212.107;0;-loop-rotate, -mem2reg, -loop-reduce;50985;-instcombine, -loop-rotate, -barrier, -loop-idiom, -memcpyopt, -basiccg, -mem2reg, -scoped-noalias, -loop-reduce, -delinearize, -lcssa, -domfrontier;12
-DSP_mat_mul_c;53236;63803;0.834381;231.282;0;-sroa;63803;-globalsmodref-aa, -branch-prob, -sroa;3
-DSP_mat_mul_c;53236;63803;0.834381;234.112;0;-mem2reg;63803;-lint, -instnamer, -mem2reg;3

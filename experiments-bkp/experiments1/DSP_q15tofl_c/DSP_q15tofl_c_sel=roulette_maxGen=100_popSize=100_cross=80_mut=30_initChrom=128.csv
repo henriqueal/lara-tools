@@ -1,3 +1,0 @@
-DSP_q15tofl_c;676;616;1.097403;589.328;7947;-loop-rotate, -scalarrepl-ssa, -codegenprepare, -reg2mem, -basicaa, -instcombine, -licm;616;-correlated-propagation, -loop-rotate, -loop-reduce, -scalarrepl-ssa, -codegenprepare, -reg2mem, -basicaa, -lowerswitch, -instcombine, -licm, -domtree;11
-DSP_q15tofl_c;676;676;1.000000;444.303;6538;-instcombine, -loop-rotate, -scalarrepl-ssa, -indvars;676;-instcombine, -loop-rotate, -scalarrepl-ssa, -indvars;4
-DSP_q15tofl_c;676;676;1.000000;481.041;7010;-instcombine, -scalarrepl, -loop-rotate, -indvars;676;-instcombine, -scalarrepl, -loop-rotate, -indvars;4

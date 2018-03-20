@@ -1,3 +1,0 @@
-IMG_perimeter_c;40037;28290;1.415235;351.315;4361;-early-cse, -loop-rotate, -scalarrepl-ssa;28290;-early-cse, -loop-rotate, -scalarrepl-ssa;3
-IMG_perimeter_c;40037;26415;1.515692;458.248;5434;-early-cse, -loop-rotate, -basicaa, -licm, -gvn;26415;-early-cse, -loop-rotate, -basicaa, -licm, -gvn;5
-IMG_perimeter_c;40037;26415;1.515692;477.529;5608;-basicaa, -early-cse, -loop-rotate, -licm, -gvn;26415;-basicaa, -early-cse, -loop-rotate, -licm, -gvn;5

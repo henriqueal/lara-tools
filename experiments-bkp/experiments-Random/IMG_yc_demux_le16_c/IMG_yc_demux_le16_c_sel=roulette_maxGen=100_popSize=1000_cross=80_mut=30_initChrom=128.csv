@@ -1,3 +1,0 @@
-IMG_yc_demux_le16_c;578;586;0.986348;211.191;0;-sroa, -loop-rotate;586;-scoped-noalias, -loop-accesses, -barrier, -scalarrepl, -cost-model, -prune-eh, -inline, -objc-arc, -loop-vectorize, -alloca-hoisting, -globalopt, -branch-prob, -sroa, -loop-rotate, -scalar-evolution, -float2int, -prune-eh, -objc-arc-apelim, -mergereturn, -irce, -divergence, -gvn, -scalarizer, -objc-arc-expand, -constprop, -instcombine, -globalsmodref-aa, -slp-vectorizer;28
-IMG_yc_demux_le16_c;578;636;0.908805;205.914;0;-scalarrepl;636;-regions, -objc-arc-expand, -scalarrepl;3
-IMG_yc_demux_le16_c;578;582;0.993127;201.202;0;-gvn, -loop-rotate, -reg2mem, -scalarrepl;582;-strip, -gvn, -domtree, -postdomtree, -codegenprepare, -loop-accesses, -dse, -loop-rotate, -reg2mem, -postdomtree, -scalarrepl;11

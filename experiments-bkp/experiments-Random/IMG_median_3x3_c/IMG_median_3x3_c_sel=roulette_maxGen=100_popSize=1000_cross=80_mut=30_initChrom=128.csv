@@ -1,3 +1,0 @@
-IMG_median_3x3_c;35291;30881;1.142806;208.938;0;-sroa;30881;-sroa, -slsr, -ipsccp;3
-IMG_median_3x3_c;35291;30884;1.142695;214.163;0;-scalarrepl;30884;-scalarrepl, -loop-idiom;2
-IMG_median_3x3_c;35291;30881;1.142806;216.966;0;-sroa;30881;-scoped-noalias, -sancov, -strip, -intervals, -sroa;5

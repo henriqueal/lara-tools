@@ -1,3 +1,0 @@
-DSP_blk_eswap32_c;3077.9999999999995;3065;1.004241;293.985;4020;-instcombine, -licm, -loop-reduce, -loop-rotate, -scalarrepl, -indvars, -basicaa, -gvn;3065;-instcombine, -licm, -loop-reduce, -strip-dead-prototypes, -loop-instsimplify, -loop-rotate, -partial-inliner, -scalarrepl, -basiccg, -gvn, -indvars, -basicaa, -gvn;13
-DSP_blk_eswap32_c;3078;3076;1.000650;160.926;2342;-scalarrepl, -loop-rotate;3076;-scalarrepl, -loop-rotate;2
-DSP_blk_eswap32_c;3078;3076;1.000650;150.165;2137;-scalarrepl, -loop-rotate;3076;-scalarrepl, -loop-rotate;2

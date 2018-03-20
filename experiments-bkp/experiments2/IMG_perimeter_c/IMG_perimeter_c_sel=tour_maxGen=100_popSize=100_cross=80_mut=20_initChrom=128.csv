@@ -1,3 +1,0 @@
-IMG_perimeter_c;40037;26415;1.515692;696.059;7806;-early-cse, -loop-rotate, -licm, -basicaa, -gvn;26415;-early-cse, -loop-rotate, -licm, -basicaa, -gvn, -loop-unswitch;6
-IMG_perimeter_c;40037;26415;1.515692;673.267;7513;-early-cse, -loop-rotate, -licm, -basicaa, -gvn;26415;-early-cse, -loop-rotate, -licm, -basicaa, -gvn;5
-IMG_perimeter_c;40037;28289;1.415285;711.866;7980;-scalarrepl-ssa, -loop-reduce, -sink, -instcombine, -loop-reduce, -simplifycfg, -loop-rotate;28289;-scalarrepl-ssa, -loop-reduce, -sink, -instcombine, -loop-reduce, -simplifycfg, -loop-rotate, -constmerge, -constprop, -die, -globaldce;11

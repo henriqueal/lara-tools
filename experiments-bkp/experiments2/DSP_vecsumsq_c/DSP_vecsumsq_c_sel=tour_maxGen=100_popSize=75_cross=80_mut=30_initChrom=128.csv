@@ -1,3 +1,0 @@
-DSP_vecsumsq_c;3887.9999999999995;3887;1.000257;201.757;3566;-scalarrepl, -loop-rotate;3887;-scalarrepl, -loop-rotate;2
-DSP_vecsumsq_c;3887.9999999999995;3884;1.001030;363.134;5967;-loop-rotate, -codegenprepare, -globalopt, -scalarrepl, -indvars, -instsimplify, -reg2mem, -loop-rotate, -scalarrepl-ssa;3884;-constmerge, -loop-rotate, -codegenprepare, -globalopt, -scalarrepl, -indvars, -instsimplify, -reg2mem, -loop-rotate, -scalarrepl-ssa, -licm;11
-DSP_vecsumsq_c;3887.9999999999995;3887;1.000257;240.514;4172;-scalarrepl, -loop-rotate;3887;-scalarrepl, -loop-rotate;2

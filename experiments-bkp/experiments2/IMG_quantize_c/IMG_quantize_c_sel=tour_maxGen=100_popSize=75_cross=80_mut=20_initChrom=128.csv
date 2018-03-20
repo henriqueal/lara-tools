@@ -1,3 +1,0 @@
-IMG_quantize_c;2008;2008;1.000000;358.209;5642;-loop-rotate, -scalarrepl, -instcombine, -indvars, -early-cse;2008;-loop-rotate, -scalarrepl, -instcombine, -indvars, -early-cse;5
-IMG_quantize_c;2008;2008;1.000000;350.826;5363;-sroa, -loop-rotate, -instcombine, -indvars, -gvn;2008;-sroa, -loop-rotate, -instcombine, -indvars, -gvn, -prune-eh;6
-IMG_quantize_c;2008;2008;1.000000;352.831;5560;-loop-rotate, -scalarrepl, -indvars, -instcombine, -gvn;2008;-loop-rotate, -scalarrepl, -indvars, -instcombine, -gvn;5

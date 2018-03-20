@@ -1,3 +1,0 @@
-IMG_idct_8x8_12q4_c;24268;24712;0.982033;202.077;0;-sroa;24712;-iv-users, -argpromotion, -lcssa, -sroa;4
-IMG_idct_8x8_12q4_c;24268;24365;0.996019;206.235;0;-scalarrepl, -loop-rotate;24365;-scalarizer, -dse, -objc-arc-aa, -cfl-aa, -mergereturn, -objc-arc-apelim, -sancov, -scev-aa, -loop-simplify, -scalarrepl, -instcount, -branch-prob, -loop-rotate, -mldst-motion, -rewrite-symbols, -lowerbitsets;16
-IMG_idct_8x8_12q4_c;24268;24702;0.982431;206.037;0;-mem2reg, -codegenprepare;24702;-mem2reg, -prune-eh, -codegenprepare, -flattencfg;4

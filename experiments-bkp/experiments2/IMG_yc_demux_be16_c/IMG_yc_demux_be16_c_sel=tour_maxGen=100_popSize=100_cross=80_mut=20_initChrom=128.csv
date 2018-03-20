@@ -1,3 +1,0 @@
-IMG_yc_demux_be16_c;578;574;1.006969;530.539;7786;-loop-rotate, -licm, -loop-reduce, -correlated-propagation, -basicaa, -scalarrepl, -indvars;574;-loop-rotate, -licm, -loop-reduce, -correlated-propagation, -basicaa, -scalarrepl, -indvars, -atomic-expand;8
-IMG_yc_demux_be16_c;578;574;1.006969;513.061;7776;-instcombine, -licm, -loop-rotate, -loop-reduce, -indvars, -scalarrepl, -basicaa;574;-instcombine, -licm, -loop-rotate, -loop-reduce, -indvars, -scalarrepl, -basicaa, -loop-unswitch;8
-IMG_yc_demux_be16_c;578;574;1.006969;537.871;7883;-basicaa, -loop-rotate, -licm, -loop-reduce, -scalarrepl, -dce, -indvars;574;-basicaa, -loop-rotate, -licm, -flattencfg, -loop-unroll, -loop-reduce, -scalarrepl, -dce, -indvars;9

@@ -1,3 +1,0 @@
-IMG_boundary_c;9320;9318;1.000215;402.679;4824;-scalarrepl-ssa, -licm, -loop-rotate, -loop-unswitch, -sccp, -loop-deletion;9318;-scalarrepl-ssa, -licm, -loop-rotate, -loop-unswitch, -sccp, -loop-deletion;6
-IMG_boundary_c;9320;9318;1.000215;433.088;5305;-scalarrepl, -loop-rotate, -loop-unswitch, -licm, -simplifycfg, -loop-deletion;9318;-tailcallelim, -scalarrepl, -loop-rotate, -loop-unswitch, -licm, -simplifycfg, -instsimplify, -loop-deletion, -simplifycfg, -tbaa;10
-IMG_boundary_c;9320;9318;1.000215;472.915;5228;-loop-rotate, -scalarrepl-ssa, -loop-unswitch, -licm, -simplifycfg, -loop-deletion;9318;-loop-rotate, -scalarrepl-ssa, -loop-unswitch, -licm, -simplifycfg, -loop-deletion;6

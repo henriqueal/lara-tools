@@ -1,3 +1,0 @@
-IMG_yc_demux_be16_c;578;578;1.000000;226.338;4122;-scalarrepl-ssa, -loop-rotate, -indvars;578;-scalarrepl-ssa, -loop-rotate, -indvars;3
-IMG_yc_demux_be16_c;578;578;1.000000;268.240;4570;-scalarrepl-ssa, -loop-rotate, -indvars;578;-scalarrepl-ssa, -loop-rotate, -indvars;3
-IMG_yc_demux_be16_c;578;578;1.000000;247.444;4361;-scalarrepl, -loop-rotate, -indvars;578;-scalarrepl, -loop-rotate, -indvars;3

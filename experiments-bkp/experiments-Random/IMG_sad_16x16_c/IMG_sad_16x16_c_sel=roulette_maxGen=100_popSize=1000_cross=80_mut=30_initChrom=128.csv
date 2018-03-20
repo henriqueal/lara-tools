@@ -1,3 +1,0 @@
-IMG_sad_16x16_c;4643;6328;0.733723;217.137;0;-scalarrepl-ssa;6328;-irce, -licm, -debug-aa, -scalarrepl-ssa;4
-IMG_sad_16x16_c;4643;5419;0.856800;206.759;0;-sroa, -loop-rotate;5419;-reassociate, -cost-model, -objc-arc, -sroa, -loop-vectorize, -count-aa, -lint, -loop-rotate, -mergefunc;9
-IMG_sad_16x16_c;4643;5419;0.856800;212.277;0;-scalarrepl, -loop-rotate;5419;-load-combine, -instcount, -objc-arc, -lcssa, -scalarrepl, -domfrontier, -count-aa, -debug-aa, -barrier, -loop-idiom, -bdce, -loop-rotate, -cost-model, -jump-threading, -float2int, -domtree, -da;17

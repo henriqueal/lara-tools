@@ -1,3 +1,0 @@
-IMG_conv_3x3_c;25269;86179;0.293215;0.239;0;-loop-rotate;86179;-loop-rotate, -alloca-hoisting, -structurizecfg, -loop-unroll, -lcssa, -basiccg, -divergence, -globaldce, -cfl-aa, -loop-deletion, -loop-idiom, -constprop;12
-IMG_conv_3x3_c;25269;1.7976931348623157e+308;0.000000;0.120;0;-mergefunc, -loop-reroll, -intervals, -strip-d.-declare, -globaldce, -spec.-execution, -extract-blocks, -lower-expect;1.7976931348623157e+308;-mergefunc, -loop-reroll, -intervals, -strip-d.-declare, -globaldce, -spec.-execution, -extract-blocks, -lower-expect;128
-IMG_conv_3x3_c;25269;91553;0.276004;0.100;0;-domfrontier;1.7976931348623157e+308;-domfrontier, -strip-d.-declare, -atomic-expand;128

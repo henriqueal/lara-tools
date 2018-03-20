@@ -1,3 +1,0 @@
-IMG_perimeter_c;40037;29012;1.380015;212.647;0;-sroa;29012;-loop-simplify, -loweratomic, -sancov, -sroa, -loop-reduce, -flattencfg;6
-IMG_perimeter_c;40037;29012;1.380015;214.588;0;-scalarrepl-ssa;29012;-scalarrepl-ssa, -loop-unswitch, -loop-unswitch, -alloca-hoisting;4
-IMG_perimeter_c;40037;29012;1.380015;205.797;0;-scalarrepl-ssa;29012;-scalarrepl-ssa, -scoped-noalias, -reassociate;3

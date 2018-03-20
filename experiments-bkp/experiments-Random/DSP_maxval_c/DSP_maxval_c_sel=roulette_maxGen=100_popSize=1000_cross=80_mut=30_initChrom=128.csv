@@ -1,3 +1,0 @@
-DSP_maxval_c;1280;1164;1.099656;218.774;0;-mem2reg;1164;-irce, -mem2reg, -codegenprepare;3
-DSP_maxval_c;1280;1164;1.099656;215.347;0;-sroa;1164;-loop-reduce, -sroa, -functionattrs;3
-DSP_maxval_c;1280;1082;1.182994;211.365;0;-sroa, -loop-rotate;1082;-delinearize, -scalar-evolution, -load-combine, -prune-eh, -scoped-noalias, -safe-stack, -targetlibinfo, -slp-vectorizer, -sroa, -globalopt, -objc-arc-apelim, -mldst-motion, -scalarizer, -loop-rotate, -memdep, -aa-eval, -dce, -pa-eval, -da, -early-cse, -constprop, -loop-accesses, -debug-aa;23

@@ -1,3 +1,0 @@
-IMG_ycbcr422p_rgb565_c;5010;4483;1.117555;352.915;5641;-scalarrepl, -sink, -loop-rotate;4483;-scalarrepl, -sink, -loop-rotate;3
-IMG_ycbcr422p_rgb565_c;5010;4474;1.119803;552.514;7806;-loop-rotate, -licm, -instcombine, -gvn, -sink, -instcombine, -basicaa;4474;-loop-rotate, -licm, -instcombine, -gvn, -sink, -instcombine, -basicaa, -lcssa;8
-IMG_ycbcr422p_rgb565_c;5010;4483;1.117555;327.848;5295;-scalarrepl-ssa, -loop-rotate, -sink;4483;-scalarrepl-ssa, -loop-rotate, -sink;3

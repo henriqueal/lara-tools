@@ -1,3 +1,0 @@
-DSP_w_vec_c;6190;6190;1.000000;275.096;4213;-scalarrepl-ssa, -loop-rotate, -indvars;6190;-scalarrepl-ssa, -loop-rotate, -indvars;3
-DSP_w_vec_c;6190;6190;1.000000;298.464;4725;-scalarrepl, -loop-rotate, -indvars;6190;-scalarrepl, -loop-rotate, -indvars;3
-DSP_w_vec_c;6190;6190;1.000000;320.215;4887;-loop-rotate, -scalarrepl-ssa, -indvars;6190;-loop-rotate, -scalarrepl-ssa, -indvars;3

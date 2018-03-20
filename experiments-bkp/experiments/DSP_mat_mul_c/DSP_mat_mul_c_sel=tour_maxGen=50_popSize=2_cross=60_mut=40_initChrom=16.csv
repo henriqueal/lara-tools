@@ -1,3 +1,0 @@
-DSP_mat_mul_c;53236.00000000001;165563;0.321545;0.306;0;;165563;-die, -loop-extract, -dce, -jump-threading, -objc-arc, -inline;6
-DSP_mat_mul_c;53236.00000000001;165563;0.321545;0.213;0;;165563;-bdce, -inline-cost;2
-DSP_mat_mul_c;53236.00000000001;165563;0.321545;0.295;0;;165563;-mldst-motion, -instnamer;2

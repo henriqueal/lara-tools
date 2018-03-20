@@ -1,3 +1,0 @@
-DSP_w_vec_c;6190;1.7976931348623157e+308;0.000000;0.166;0;-loop-instsimpl., -memcpyopt, -loop-extract, -pl.-ba.-safe.-im., -loop-reduce, -jump-threading, -bdce, -loop-distribute, -spec.-execution;1.7976931348623157e+308;-loop-instsimpl., -memcpyopt, -loop-extract, -pl.-ba.-safe.-im., -loop-reduce, -jump-threading, -bdce, -loop-distribute, -spec.-execution;128
-DSP_w_vec_c;6190;10373;0.596742;0.130;0;;10373;-reassociate, -loop-extract;2
-DSP_w_vec_c;6190;10120;0.611660;0.125;0;-strip, -simplifycfg, -indvars, -barrier, -pa-eval, -instcombine;1.7976931348623157e+308;-strip, -simplifycfg, -indvars, -barrier, -pa-eval, -rewr.-sta.-for-gc, -instcombine;128

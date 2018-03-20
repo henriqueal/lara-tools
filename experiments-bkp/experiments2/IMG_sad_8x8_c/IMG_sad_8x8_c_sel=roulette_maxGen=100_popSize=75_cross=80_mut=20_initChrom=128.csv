@@ -1,3 +1,0 @@
-IMG_sad_8x8_c;878;878;1.000000;392.885;5953;-scalarrepl-ssa, -instcombine, -reassociate, -loop-rotate, -loop-unroll;878;-scalarrepl-ssa, -scalar-evolution, -instcombine, -reassociate, -loop-rotate, -loop-unroll, -lowerinvoke;7
-IMG_sad_8x8_c;878;877;1.001140;429.728;6040;-loop-rotate, -scalarrepl-ssa, -reassociate, -loop-reduce, -loop-unroll, -partial-inliner, -codegenprepare, -instcombine;877;-memcpyopt, -loop-rotate, -loop-deletion, -scalarrepl-ssa, -basicaa, -reassociate, -targetlibinfo, -loop-reduce, -loop-unroll, -partial-inliner, -codegenprepare, -instcombine, -loop-rotate;13
-IMG_sad_8x8_c;878;878;1.000000;316.791;5136;-loop-rotate, -instcombine, -reassociate, -scalarrepl, -loop-unroll;878;-loop-rotate, -instcombine, -reassociate, -scalarrepl, -loop-unroll;5

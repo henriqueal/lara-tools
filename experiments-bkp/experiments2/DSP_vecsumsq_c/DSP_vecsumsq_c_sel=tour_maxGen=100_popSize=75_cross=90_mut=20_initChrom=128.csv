@@ -1,3 +1,0 @@
-DSP_vecsumsq_c;3887.9999999999995;3887;1.000257;229.991;3985;-scalarrepl, -loop-rotate;3887;-scalarrepl, -loop-rotate;2
-DSP_vecsumsq_c;3887.9999999999995;3887;1.000257;232.872;3825;-scalarrepl, -loop-rotate;3887;-scalarrepl, -loop-rotate;2
-DSP_vecsumsq_c;3887.9999999999995;3887;1.000257;202.831;3530;-scalarrepl, -loop-rotate;3887;-scalarrepl, -loop-rotate;2

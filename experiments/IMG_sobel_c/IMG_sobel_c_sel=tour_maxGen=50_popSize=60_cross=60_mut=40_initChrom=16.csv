@@ -1,4 +1,0 @@
-IMG_sobel_c;14187;17059;0.831643;4.182;0;-scalarrepl;17059;-mergefunc, -tailcallelim, -memdep, -scalarrepl, -tailcallelim, -load-combine, -objc-arc-apelim, -tailcallelim;8
-IMG_sobel_c;14187;16813;0.843811;3.532;0;-simplifycfg, -sroa;16813;-indvars, -simplifycfg, -postdomtree, -sancov, -sroa;5
-IMG_sobel_c;14187;16620;0.853610;4.071;0;-sroa, -loop-rotate;16620;-basicaa, -sroa, -domfrontier, -loop-rotate;4
-IMG_sobel_c;14187;17059;0.831643;4.098;0;-mem2reg;17059;-mem2reg;1

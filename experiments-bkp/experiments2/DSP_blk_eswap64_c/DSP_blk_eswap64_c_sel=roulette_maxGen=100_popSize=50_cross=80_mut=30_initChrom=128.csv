@@ -1,3 +1,0 @@
-DSP_blk_eswap64_c;2800;2764;1.013025;309.088;3989;-instcombine, -scalarrepl, -licm, -loop-rotate, -tailcallelim, -codegenprepare, -instcombine, -licm;2764;-partial-inliner, -instcombine, -scalarrepl, -licm, -loop-rotate, -tailcallelim, -codegenprepare, -instcombine, -licm, -globaldce;10
-DSP_blk_eswap64_c;2800;2798;1.000715;175.278;2363;-loop-rotate, -scalarrepl;2798;-loop-rotate, -scalarrepl;2
-DSP_blk_eswap64_c;2800;2798;1.000715;155.954;2147;-loop-rotate, -scalarrepl-ssa;2798;-loop-rotate, -scalarrepl-ssa;2

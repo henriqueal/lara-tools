@@ -1,3 +1,0 @@
-IMG_dilate_bin_c;5436;5435;1.000184;307.371;4026;-basicaa, -gvn, -simplifycfg, -instcombine, -sink, -loop-rotate;5435;-strip-dead-prototypes, -memdep, -basicaa, -mergefunc, -loop-unroll, -gvn, -loops, -simplifycfg, -globaldce, -gvn, -instcombine, -sink, -loop-rotate, -inline, -globaldce;15
-IMG_dilate_bin_c;5436;5435;1.000184;291.128;3929;-basicaa, -instsimplify, -gvn, -loop-rotate, -simplifycfg, -instcombine;5435;-basicaa, -jump-threading, -instsimplify, -gvn, -loop-rotate, -simplifycfg, -instcombine;7
-IMG_dilate_bin_c;5436;5435;1.000184;290.749;3997;-instcombine, -gvn, -simplifycfg, -basicaa, -instcombine, -loop-rotate;5435;-always-inline, -instcombine, -tailcallelim, -gvn, -simplifycfg, -codegenprepare, -basicaa, -instcombine, -loop-rotate, -prune-eh;10

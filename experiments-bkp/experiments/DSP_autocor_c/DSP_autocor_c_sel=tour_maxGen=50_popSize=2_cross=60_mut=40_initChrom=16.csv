@@ -1,4 +1,0 @@
-DSP_autocor_c;10069;25284;0.398236;0.151;0;;25284;-codegenprepare, -indvars, -rewrite-symbols, -mergereturn;4
-DSP_autocor_c;10069;25284;0.398236;0.098;0;-objc-arc-apelim, -lazy-value-info, -basicaa, -intervals;1.7976931348623157e+308;-objc-arc-apelim, -lazy-value-info, -basicaa, -intervals, -loop-ex.-single, -strip, -da, -instcount, -reg2mem, -basicaa, -loop-simplify, -consthoist, -slp-vectorizer, -mergereturn;128
-DSP_autocor_c;10069;25284;0.398236;0.079;0;-branch-prob, -slsr, -strip-nondebug, -bdce, -inline-cost, -scalar-evolution, -objc-arc, -scoped-noalias;1.7976931348623157e+308;-branch-prob, -slsr, -strip-nondebug, -bdce, -inline-cost, -scalar-evolution, -objc-arc, -scoped-noalias, -add-dis., -debug-aa;128
-DSP_autocor_c;10069;25284;0.398236;0.092;0;-reg2mem, -intervals, -rewrite-symbols;1.7976931348623157e+308;-reg2mem, -intervals, -rewrite-symbols, -objc-arc-contrac., -globalopt, -strip-nondebug;128

@@ -1,3 +1,0 @@
-DSP_maxidx_c;1666;1097;1.518687;178.617;2538;-scalarrepl, -loop-rotate;1097;-scalarrepl, -loop-rotate;2
-DSP_maxidx_c;1666;1097;1.518687;152.363;2318;-loop-rotate, -scalarrepl-ssa;1097;-loop-rotate, -scalarrepl-ssa;2
-DSP_maxidx_c;1666;1097;1.518687;171.119;2259;-scalarrepl, -loop-rotate;1097;-scalarrepl, -loop-rotate;2

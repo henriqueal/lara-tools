@@ -1,3 +1,0 @@
-IMG_perimeter_c;40037;26415;1.515692;697.647;7234;-early-cse, -basicaa, -loop-rotate, -licm, -gvn;26415;-early-cse, -basicaa, -loop-rotate, -licm, -gvn;5
-IMG_perimeter_c;40037;26413;1.515807;838.530;7948;-early-cse, -simplifycfg, -basicaa, -loop-rotate, -reassociate, -licm, -gvn;26413;-reassociate, -early-cse, -simplifycfg, -basicaa, -loop-rotate, -reassociate, -licm, -gvn;8
-IMG_perimeter_c;40037;26415;1.515692;639.537;6714;-early-cse, -loop-rotate, -licm, -basicaa, -gvn;26415;-early-cse, -loop-rotate, -licm, -basicaa, -gvn;5

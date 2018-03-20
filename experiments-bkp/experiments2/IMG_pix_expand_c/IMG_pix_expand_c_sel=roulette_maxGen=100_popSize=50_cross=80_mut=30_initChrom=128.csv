@@ -1,3 +1,0 @@
-IMG_pix_expand_c;12323;11306;1.089952;175.088;2175;-loop-rotate, -scalarrepl;11306;-loop-rotate, -scalarrepl;2
-IMG_pix_expand_c;12323;11306;1.089952;201.161;2330;-scalarrepl-ssa, -loop-rotate;11306;-scalarrepl-ssa, -loop-rotate, -intervals;2
-IMG_pix_expand_c;12323;11306;1.089952;177.465;2125;-scalarrepl-ssa, -loop-rotate;11306;-scalarrepl-ssa, -loop-rotate;2

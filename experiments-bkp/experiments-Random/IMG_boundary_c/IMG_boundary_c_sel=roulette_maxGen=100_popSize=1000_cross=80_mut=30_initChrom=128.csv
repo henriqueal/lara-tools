@@ -1,3 +1,0 @@
-IMG_boundary_c;9320;10093;0.923412;214.323;0;-scalarrepl;10093;-atomic-expand, -scalarrepl, -tbaa, -mergefunc, -globalsmodref-aa;5
-IMG_boundary_c;9320;10093;0.923412;223.224;0;-scalarrepl-ssa;10093;-domtree, -scalarrepl-ssa, -functionattrs, -constprop, -count-aa, -codegenprepare, -argpromotion, -consthoist, -loop-unswitch;9
-IMG_boundary_c;9320;9700;0.960825;214.722;0;-sroa, -loop-unswitch, -loop-rotate, -codegenprepare, -reg2mem, -sroa, -simplifycfg;9700;-sroa, -loop-unswitch, -loop-rotate, -loop-unswitch, -dse, -instsimplify, -deadargelim, -scalar-evolution, -codegenprepare, -adce, -reg2mem, -licm, -prune-eh, -constprop, -deadargelim, -sroa, -simplifycfg, -loop-distribute, -mem2reg, -float2int, -scalarrepl, -loops, -loop-unroll;23

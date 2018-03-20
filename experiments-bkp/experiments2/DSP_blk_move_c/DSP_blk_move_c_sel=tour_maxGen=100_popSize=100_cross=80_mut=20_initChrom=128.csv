@@ -1,3 +1,0 @@
-DSP_blk_move_c;907;898;1.010022;421.398;6122;-scalarrepl, -instcombine, -loop-rotate, -indvars;898;-scalarrepl, -instcombine, -loop-rotate, -indvars;4
-DSP_blk_move_c;907;898;1.010022;442.321;6608;-scalarrepl, -instcombine, -loop-rotate, -indvars;898;-scalarrepl, -instcombine, -loop-rotate, -indvars;4
-DSP_blk_move_c;907;898;1.010022;479.579;7217;-instcombine, -loop-rotate, -scalarrepl, -indvars;898;-instcombine, -loop-rotate, -scalarrepl, -indvars;4

@@ -1,3 +1,0 @@
-IMG_median_3x3_c;35291;30327;1.163683;6.840;0;-scalarrepl, -loop-rotate;30327;-partial-inliner, -partial-inliner, -sink, -constmerge, -adce, -globaldce, -globalopt, -loop-idiom, -adce, -scalarrepl, -loop-rotate, -targetlibinfo, -argpromotion, -scalar-evolution, -lowerinvoke, -codegenprepare, -sccp, -tailcallelim, -lcssa, -domtree;20
-IMG_median_3x3_c;35291;30884;1.142695;8.331;0;-scalarrepl;30884;-memcpyopt, -scalarrepl, -loop-idiom, -memcpyopt, -argpromotion;5
-IMG_median_3x3_c;35291;30287;1.165219;6.834;0;-loop-rotate, -scalarrepl-ssa;30287;-die, -inline, -functionattrs, -tailcallelim, -ipsccp, -inline, -jump-threading, -mergereturn, -loop-rotate, -dse, -jump-threading, -lower-expect, -scalarrepl-ssa, -basicaa, -indvars, -strip-dead-prototypes, -always-inline;17
