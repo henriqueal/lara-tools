@@ -1,0 +1,3 @@
+DSP_vecsumsq_c;3887.9999999999995;3887;1.000257;285.024;4756;-scalarrepl, -loop-rotate;3887;-scalarrepl, -loop-rotate;2
+DSP_vecsumsq_c;3887.9999999999995;3887;1.000257;259.550;4347;-loop-rotate, -scalarrepl-ssa;3887;-loop-rotate, -scalarrepl-ssa;2
+DSP_vecsumsq_c;3887.9999999999995;3884;1.001030;552.622;8008;-scalarrepl-ssa, -loop-rotate, -basicaa, -gvn, -indvars, -reg2mem, -loop-rotate, -scalarrepl-ssa;3884;-scalarrepl-ssa, -basicaa, -loop-rotate, -basicaa, -gvn, -indvars, -ipsccp, -reg2mem, -reg2mem, -loop-rotate, -gvn, -scalarrepl-ssa, -loop-unswitch, -loop-unswitch;14

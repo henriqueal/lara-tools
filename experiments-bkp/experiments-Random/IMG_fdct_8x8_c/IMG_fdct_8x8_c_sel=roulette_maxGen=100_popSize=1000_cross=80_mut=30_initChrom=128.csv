@@ -1,0 +1,3 @@
+IMG_fdct_8x8_c;20141;19919;1.011145;207.355;0;-scalarrepl-ssa;19919;-bounds-checking, -scalarrepl-ssa, -globalopt;3
+IMG_fdct_8x8_c;20141.000000000004;19910;1.011602;205.578;0;-mem2reg, -simplifycfg;19910;-mem2reg, -dce, -memdep, -scalarizer, -tti, -simplifycfg, -die, -load-combine, -count-aa, -scalar-evolution, -early-cse;11
+IMG_fdct_8x8_c;20141.000000000004;19407;1.037821;196.252;0;-mem2reg, -loop-rotate;19407;-dse, -strip-nondebug, -memcpyopt, -load-combine, -mem2reg, -irce, -sink, -scoped-noalias, -loop-rotate, -sccp, -libcall-aa, -tti, -strip-nondebug, -instrprof, -slp-vectorizer, -loop-unswitch, -pa-eval;17

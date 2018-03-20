@@ -1,0 +1,3 @@
+IMG_pix_sat_c;22589.000000000004;21567;1.047387;215.327;0;-sroa, -loop-rotate;21567;-tti, -jump-threading, -globalopt, -sroa, -tbaa, -tailcallelim, -count-aa, -loop-rotate, -lazy-value-info, -rewrite-symbols, -globalsmodref-aa, -loop-distribute;12
+IMG_pix_sat_c;22589;23093;0.978175;211.735;0;-scalarrepl-ssa;23093;-tti, -scalarrepl-ssa;2
+IMG_pix_sat_c;22589.000000000004;21567;1.047387;212.808;0;-loop-rotate, -scalarrepl;21567;-loop-rotate, -loop-distribute, -scalarrepl, -prune-eh;4

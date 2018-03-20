@@ -1,1 +1,0 @@
-IMG_wave_vert_c;-loop-rotate, -sroa, -indvars, -early-cse, -simplifycfg, -gvn, -loop-unroll;5185;5164;1.004067;363.925;4994;5164;-debug-aa, -loop-rotate, -sroa, -indvars, -loop-unroll, -constmerge, -early-cse, -simplifycfg, -gvn, -loop-unroll, -barrier;11

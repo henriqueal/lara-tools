@@ -1,1 +1,0 @@
-IMG_sad_16x16_c;-scalarrepl-ssa, -instcombine, -loop-reduce, -loop-rotate;4643;4087;1.136041;275.318;4570;4087;-scalarrepl-ssa, -instcombine, -loop-reduce, -loop-rotate;4

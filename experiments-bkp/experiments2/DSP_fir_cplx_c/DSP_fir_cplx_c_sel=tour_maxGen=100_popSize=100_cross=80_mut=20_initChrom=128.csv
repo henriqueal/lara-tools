@@ -1,0 +1,3 @@
+DSP_fir_cplx_c;8509;8262;1.029896;594.005;7955;-gvn, -reassociate, -basicaa, -instcombine, -loop-rotate, -gvn, -loop-unswitch;8262;-gvn, -reassociate, -basicaa, -dse, -instcombine, -loop-rotate, -dce, -gvn, -loop-unswitch;9
+DSP_fir_cplx_c;8509;8277;1.028029;551.396;7713;-licm, -gvn, -loop-unswitch, -loop-rotate, -basicaa, -instcombine;8277;-licm, -gvn, -deadargelim, -loop-unswitch, -loop-rotate, -basicaa, -instcombine, -lazy-value-info;8
+DSP_fir_cplx_c;8509;8277;1.028029;521.742;7596;-scalarrepl-ssa, -gvn, -licm, -loop-rotate, -structurizecfg, -gvn, -loop-unswitch;8277;-scalarrepl-ssa, -gvn, -licm, -loop-rotate, -structurizecfg, -gvn, -loop-unswitch, -lazy-value-info;8

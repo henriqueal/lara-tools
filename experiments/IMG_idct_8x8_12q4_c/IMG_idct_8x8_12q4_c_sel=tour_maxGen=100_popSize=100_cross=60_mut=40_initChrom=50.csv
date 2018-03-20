@@ -1,1 +1,0 @@
-IMG_idct_8x8_12q4_c;-instcombine, -scalarrepl-ssa, -loop-rotate, -early-cse, -reassociate, -instcombine, -simplifycfg;24268;22544;1.076473;450.883;4881;22544;-objc-arc-aa, -scalar-evolution, -instcombine, -scalarrepl-ssa, -loop-rotate, -early-cse, -scalar-evolution, -instcombine, -reassociate, -loop-rotate, -count-aa, -instcombine, -simplifycfg, -sroa;14

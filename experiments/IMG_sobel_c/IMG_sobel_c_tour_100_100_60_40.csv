@@ -1,1 +1,0 @@
-IMG_sobel_c;-simplifycfg, -mem2reg, -reassociate, -reassociate, -loop-rotate, -instcombine;14187;12923;1.097810;340.577;4906;12923;-reassociate, -simplifycfg, -mem2reg, -reassociate, -reassociate, -loop-rotate, -instcombine, -loop-accesses;8

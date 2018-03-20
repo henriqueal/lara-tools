@@ -1,1 +1,0 @@
-IMG_wave_vert_c;-mem2reg, -loop-rotate, -indvars, -loop-unroll;5184.999999999999;5181;1.000772;289.872;4500;5181;-mem2reg, -loop-rotate, -indvars, -loop-unroll;4

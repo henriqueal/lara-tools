@@ -1,0 +1,3 @@
+IMG_perimeter_c;40037;26470;1.512543;416.633;4010;-early-cse, -licm, -simplifycfg, -reassociate, -loop-rotate, -licm, -correlated-propagation, -early-cse, -basicaa;26470;-ipsccp, -early-cse, -dce, -licm, -ipsccp, -dce, -dce, -simplifycfg, -always-inline, -early-cse, -reassociate, -loop-rotate, -licm, -lower-expect, -basicaa, -domtree, -correlated-propagation, -early-cse, -lowerinvoke, -codegenprepare, -basicaa, -strip-dead-prototypes;22
+IMG_perimeter_c;40037;28290;1.415235;274.002;2813;-early-cse, -loop-rotate, -scalarrepl-ssa;28290;-early-cse, -loop-rotate, -scalarrepl-ssa;3
+IMG_perimeter_c;40037;26415;1.515692;327.514;3323;-basicaa, -early-cse, -loop-rotate, -licm, -gvn;26415;-basicaa, -early-cse, -loop-rotate, -licm, -gvn;5

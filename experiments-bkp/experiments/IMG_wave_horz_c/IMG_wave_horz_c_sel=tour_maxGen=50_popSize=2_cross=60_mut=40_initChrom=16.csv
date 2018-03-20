@@ -1,0 +1,2 @@
+IMG_wave_horz_c;99866.00000000001;176281;0.566516;0.206;0;;176281;-dce, -adce, -lint, -lowerinvoke, -consthoist, -rewrite-symbols;6
+IMG_wave_horz_c;99866.00000000001;176281;0.566516;0.300;0;;176281;-loop-distribute, -loop-vectorize, -prune-eh, -loop-vectorize;4

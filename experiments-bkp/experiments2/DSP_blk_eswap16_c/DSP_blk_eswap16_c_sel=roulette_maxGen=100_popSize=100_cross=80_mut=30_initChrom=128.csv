@@ -1,0 +1,3 @@
+DSP_blk_eswap16_c;3664;3655;1.002462;538.672;7788;-instcombine, -scalarrepl, -licm, -loop-reduce, -loop-rotate, -gvn, -indvars;3655;-instcombine, -scalarrepl, -licm, -loop-reduce, -loop-rotate, -gvn, -indvars;7
+DSP_blk_eswap16_c;3664;3664;1.000000;400.640;6263;-scalarrepl-ssa, -loop-rotate, -indvars;3664;-scalarrepl-ssa, -loop-rotate, -indvars;3
+DSP_blk_eswap16_c;3664;3655;1.002462;577.729;7966;-loop-rotate, -licm, -basicaa, -instcombine, -scalarrepl, -codegenprepare, -lowerswitch, -indvars, -gvn, -licm;3655;-loop-rotate, -licm, -basicaa, -instcombine, -scalarrepl, -codegenprepare, -lowerswitch, -indvars, -loop-unswitch, -loweratomic, -gvn, -gvn, -licm, -deadargelim;14

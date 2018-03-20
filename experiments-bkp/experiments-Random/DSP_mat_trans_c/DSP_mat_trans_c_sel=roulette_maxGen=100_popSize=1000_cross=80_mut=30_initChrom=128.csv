@@ -1,0 +1,3 @@
+DSP_mat_trans_c;14152;17427;0.812073;241.684;0;-mem2reg;17427;-mem2reg, -cfl-aa, -tbaa, -mldst-motion, -codegenprepare, -mergefunc;6
+DSP_mat_trans_c;14152;15171;0.932832;230.748;0;-mem2reg, -loop-rotate;15171;-irce, -mem2reg, -targetlibinfo, -domfrontier, -simplifycfg, -loop-rotate;6
+DSP_mat_trans_c;14152;17427;0.812073;237.801;0;-sroa;17427;-consthoist, -sroa, -mldst-motion, -strip, -domfrontier;5

@@ -1,0 +1,3 @@
+IMG_dilate_bin_c;5436;5833;0.931939;201.320;0;-sroa;5833;-sroa, -cost-model, -sancov;3
+IMG_dilate_bin_c;5436;5698;0.954019;1556.651;0;-instcombine, -sroa, -loop-rotate;5766;-basicaa, -functionattrs, -scalar-evolution, -slsr, -objc-arc-expand, -functionattrs, -instcombine, -pa-eval, -adce, -flattencfg, -sroa, -verify, -loop-rotate, -simplifycfg, -sccp;15
+IMG_dilate_bin_c;5436;5833;0.931939;198.630;0;-scalarrepl;5833;-scalarrepl;1

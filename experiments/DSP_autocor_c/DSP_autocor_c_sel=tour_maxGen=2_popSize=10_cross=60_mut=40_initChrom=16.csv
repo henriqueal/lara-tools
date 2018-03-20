@@ -1,3 +1,0 @@
-DSP_autocor_c;-loop-rotate, -scalarrepl-ssa, -loop-reduce;10069;9404;1.070715;1.407;22;9404;-licm, -loop-rotate, -lowerbitsets, -objc-arc-apelim, -scalarrepl-ssa, -objc-arc, -loop-reduce, -loweratomic, -slsr;9
-DSP_autocor_c;-mem2reg;10069;12053;0.835394;1.628;22;12053;-objc-arc-aa, -mem2reg, -da, -tti, -deadargelim, -domtree, -load-combine, -instcombine, -flattencfg, -basiccg;10
-DSP_autocor_c;-early-cse;10069;24650;0.408479;1.310;21;24650;-cfl-aa, -early-cse, -slsr, -basicaa, -slsr;5

@@ -1,0 +1,3 @@
+DSP_fltoq15_c;1015.0000000000001;967;1.049638;403.688;5497;-scalarrepl-ssa, -jump-threading, -loop-rotate;967;-scalarrepl-ssa, -jump-threading, -loop-rotate;3
+DSP_fltoq15_c;1015.0000000000001;967;1.049638;414.910;5749;-scalarrepl, -loop-rotate, -jump-threading;967;-scalarrepl, -loop-rotate, -jump-threading;3
+DSP_fltoq15_c;1015.0000000000001;967;1.049638;366.970;5316;-loop-rotate, -scalarrepl, -jump-threading;967;-loop-rotate, -scalarrepl, -jump-threading;3

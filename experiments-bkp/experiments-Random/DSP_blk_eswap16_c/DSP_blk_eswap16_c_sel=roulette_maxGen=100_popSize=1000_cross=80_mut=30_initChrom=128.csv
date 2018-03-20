@@ -1,0 +1,3 @@
+DSP_blk_eswap16_c;3664;4276;0.856876;210.028;0;-mem2reg;4276;-functionattrs, -mem2reg;2
+DSP_blk_eswap16_c;3664;4276;0.856876;207.472;0;-scalarrepl;4276;-scalarrepl, -gvn;2
+DSP_blk_eswap16_c;3664;4276;0.856876;211.352;0;-sroa;4276;-sccp, -lowerswitch, -rewrite-symbols, -loop-vectorize, -sroa, -simplifycfg, -domfrontier, -scalar-evolution;8

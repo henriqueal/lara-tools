@@ -1,1 +1,0 @@
-DSP_mul32_c;-mem2reg, -loop-rotate, -indvars;10567;10567;1.000000;294.190;4179;10567;-mem2reg, -loop-rotate, -indvars;3

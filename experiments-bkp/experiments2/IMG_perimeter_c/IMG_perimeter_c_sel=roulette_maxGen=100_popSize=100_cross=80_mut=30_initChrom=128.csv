@@ -1,0 +1,3 @@
+IMG_perimeter_c;40037;26415;1.515692;521.871;6411;-early-cse, -loop-rotate, -licm, -gvn, -basicaa;26415;-early-cse, -loop-rotate, -licm, -gvn, -basicaa;5
+IMG_perimeter_c;40037;26415;1.515692;530.092;6504;-early-cse, -basicaa, -loop-rotate, -licm, -gvn;26415;-early-cse, -basicaa, -loop-rotate, -licm, -gvn;5
+IMG_perimeter_c;40037;26415;1.515692;737.026;7999;-gvn, -loop-reduce, -gvn, -loop-reduce, -basicaa, -sink, -loop-rotate, -licm;26415;-gvn, -lowerinvoke, -mergefunc, -correlated-propagation, -tbaa, -loop-reduce, -gvn, -memcpyopt, -consthoist, -loop-reduce, -lowerinvoke, -basicaa, -sink, -loop-rotate, -dce, -licm, -constmerge;17

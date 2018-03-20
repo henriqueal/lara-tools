@@ -1,1 +1,0 @@
-IMG_sobel_c;-loop-rotate, -reassociate, -reassociate, -simplifycfg, -instcombine, -scalarrepl, -indvars;14187.000000000002;12910;1.098916;363.451;4967;12910;-bounds-checking, -bb-vectorize, -loop-rotate, -divergence, -reassociate, -divergence, -reassociate, -mergefunc, -jump-threading, -simplifycfg, -instcombine, -scalarrepl, -indvars, -jump-threading, -lint;15

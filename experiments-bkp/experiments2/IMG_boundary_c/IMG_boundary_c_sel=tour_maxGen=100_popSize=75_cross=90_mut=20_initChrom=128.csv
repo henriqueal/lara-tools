@@ -1,0 +1,3 @@
+IMG_boundary_c;9320;9318;1.000215;705.222;6552;-licm, -scalarrepl-ssa, -basicaa, -loop-rotate, -loop-unswitch, -instcombine, -loop-deletion;9318;-licm, -licm, -scalarrepl-ssa, -basicaa, -loop-rotate, -loop-unswitch, -instcombine, -loop-deletion;8
+IMG_boundary_c;9320;9318;1.000215;658.356;6504;-loop-rotate, -scalarrepl, -loop-unswitch, -simplifycfg, -loop-deletion, -licm;9318;-loop-rotate, -scalarrepl, -loop-unswitch, -simplifycfg, -loop-deletion, -licm, -lowerbitsets;7
+IMG_boundary_c;9320;9318;1.000215;495.694;6404;-loop-rotate, -scalarrepl-ssa, -lowerswitch, -loop-unswitch, -licm, -jump-threading, -loop-deletion;9318;-loop-rotate, -scalarrepl-ssa, -lowerswitch, -loop-unswitch, -licm, -jump-threading, -loop-deletion, -constmerge;8

@@ -1,0 +1,3 @@
+IMG_yc_demux_be16_c;578;586;0.986348;226.066;0;-loop-rotate, -scalarrepl-ssa;603;-loop-rotate, -loop-simplify, -objc-arc-expand, -objc-arc-aa, -targetlibinfo, -scalarrepl-ssa, -tbaa, -structurizecfg, -jump-threading;9
+IMG_yc_demux_be16_c;578;636;0.908805;225.966;0;-sroa;636;-scalarrepl, -sroa;2
+IMG_yc_demux_be16_c;578;636;0.908805;210.879;0;-scalarrepl;636;-divergence, -inline-cost, -scalarrepl, -pa-eval, -basicaa, -branch-prob;6

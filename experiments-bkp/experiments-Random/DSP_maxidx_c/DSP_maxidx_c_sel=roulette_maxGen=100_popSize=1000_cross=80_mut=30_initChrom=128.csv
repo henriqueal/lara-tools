@@ -1,0 +1,3 @@
+DSP_maxidx_c;1666;1168;1.426370;218.578;0;-scalarrepl-ssa;1168;-scalarrepl-ssa;1
+DSP_maxidx_c;1666;1097;1.518687;219.581;0;-loop-rotate, -scalarrepl-ssa;1109;-regions, -loop-accesses, -lint, -globalsmodref-aa, -cfl-aa, -ipconstprop, -ipconstprop, -irce, -domfrontier, -intervals, -no-aa, -slsr, -bdce, -load-combine, -early-cse, -loop-unroll, -debug-aa, -loop-rotate, -postdomtree, -mem2reg, -loop-vectorize, -objc-arc-aa, -basicaa, -sancov, -scalarrepl-ssa, -instnamer, -inline-cost;27
+DSP_maxidx_c;1666;1168;1.426370;208.138;0;-scalarrepl;1168;-tbaa, -scalarrepl;2

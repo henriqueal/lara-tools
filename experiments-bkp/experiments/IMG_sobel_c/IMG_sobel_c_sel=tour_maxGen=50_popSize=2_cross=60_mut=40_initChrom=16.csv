@@ -1,0 +1,2 @@
+IMG_sobel_c;14187;16813;0.843811;0.174;0;-simplifycfg, -scalarrepl;22195;-simplifycfg, -loop-idiom, -instcount, -ipsccp, -mldst-motion, -scalarrepl, -verify, -lowerswitch, -lcssa, -globalopt, -reg2mem;11
+IMG_sobel_c;14187;17059;0.831643;0.161;0;-sroa;17059;-lint, -sroa, -load-combine, -always-inline;4

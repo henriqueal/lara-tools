@@ -1,0 +1,3 @@
+DSP_minerror_c;25844;25834;1.000387;312.498;3514;-scalarrepl, -loop-reduce, -loop-rotate, -loop-unroll, -indvars;25834;-scalarrepl, -loop-reduce, -loop-rotate, -loop-unroll, -indvars, -loop-unswitch;6
+DSP_minerror_c;25844;25834;1.000387;315.203;3564;-scalarrepl, -loop-rotate, -loop-reduce, -loop-unroll, -indvars;25834;-scalarrepl, -loop-rotate, -loop-reduce, -loop-unroll, -indvars, -inline;6
+DSP_minerror_c;25844;25834;1.000387;372.701;3823;-scalarrepl, -indvars, -loop-reduce, -loop-rotate, -loop-unroll;25834;-scalarrepl, -indvars, -loop-reduce, -loop-rotate, -loop-unroll;5

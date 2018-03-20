@@ -1,0 +1,3 @@
+IMG_conv_3x3_c;25269;24749;1.021011;418.954;5234;-gvn, -scalarrepl-ssa, -loop-rotate, -loop-unroll;24749;-gvn, -scalarrepl-ssa, -loop-rotate, -loop-unroll, -early-cse;5
+IMG_conv_3x3_c;25268.999999999996;24501;1.031346;407.247;5079;-loop-rotate, -scalarrepl, -loop-unroll, -gvn;24501;-loop-rotate, -scalarrepl, -loop-unroll, -gvn;4
+IMG_conv_3x3_c;25268.999999999996;24750;1.020970;377.544;4751;-scalarrepl-ssa, -jump-threading, -loop-rotate, -loop-unroll;24750;-scalarrepl-ssa, -jump-threading, -loop-rotate, -loop-unroll;4

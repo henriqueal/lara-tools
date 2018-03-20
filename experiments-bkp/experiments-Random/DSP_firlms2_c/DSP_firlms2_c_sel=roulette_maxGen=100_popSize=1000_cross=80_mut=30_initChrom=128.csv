@@ -1,0 +1,3 @@
+DSP_firlms2_c;831.0000000000001;821;1.012180;230.377;0;-mem2reg, -loop-rotate;821;-reg2mem, -loop-vectorize, -block-freq, -ipconstprop, -objc-arc-expand, -mem2reg, -inline-cost, -loop-idiom, -irce, -loop-rotate;10
+DSP_firlms2_c;831;906;0.917219;250.083;0;-scalarrepl-ssa;906;-simplifycfg, -scalarrepl-ssa, -inline-cost;3
+DSP_firlms2_c;831;909;0.914191;247.722;0;-sroa;909;-sroa;1

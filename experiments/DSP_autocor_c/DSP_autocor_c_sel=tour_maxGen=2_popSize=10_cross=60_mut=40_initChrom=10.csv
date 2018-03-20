@@ -1,2 +1,0 @@
-DSP_autocor_c;-loop-rotate;10069;22684;0.443881;1.066;18;22684;-loop-rotate, -loop-idiom, -branch-prob, -atomic-expand, -inline-cost;5
-DSP_autocor_c;-scalarrepl;10069;12053;0.835394;1.005;15;12053;-scalarrepl, -cfl-aa, -lint, -loop-extract, -barrier;5

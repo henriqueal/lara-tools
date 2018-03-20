@@ -1,0 +1,4 @@
+DSP_blk_move_c;907;908;0.998899;0.163;0;-loop-rotate, -mem2reg;908;-loop-simplify, -loop-rotate, -mem2reg, -tti, -strip-nondebug, -sancov, -reassociate, -globalopt, -domfrontier, -lower-expect, -tbaa, -loop-distribute, -cfl-aa, -deadargelim;14
+DSP_blk_move_c;907.0000000000001;1794;0.505574;0.136;0;;1794;-divergence, -reassociate, -tti, -bdce, -strip;5
+DSP_blk_move_c;907.0000000000001;1794;0.505574;0.108;0;;1794;-loops;1
+DSP_blk_move_c;907;1.7976931348623157e+308;0.000000;0.093;0;-regions, -strip, -verify, -loop-instsimpl., -basicaa, -place-safep., -targetlibinfo, -slsr, -inline-cost, -sancov, -branch-prob;1.7976931348623157e+308;-regions, -strip, -verify, -loop-instsimpl., -basicaa, -place-safep., -targetlibinfo, -slsr, -inline-cost, -sancov, -branch-prob;128

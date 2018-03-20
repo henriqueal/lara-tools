@@ -1,0 +1,3 @@
+DSP_blk_move_c;907;908;0.998899;215.846;0;-sroa, -loop-rotate;908;-pa-eval, -bounds-checking, -sroa, -ipsccp, -always-inline, -loop-rotate, -die, -rewrite-symbols;8
+DSP_blk_move_c;907;908;0.998899;224.312;0;-scalarrepl, -loop-rotate;908;-scalarrepl, -alloca-hoisting, -lowerswitch, -cfl-aa, -cost-model, -loop-rotate, -objc-arc-expand, -strip-nondebug;8
+DSP_blk_move_c;907.0000000000001;1107;0.819332;205.176;0;-mem2reg;1107;-loop-unroll, -mem2reg, -targetlibinfo, -functionattrs;4

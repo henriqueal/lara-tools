@@ -1,1 +1,0 @@
-IMG_wave_horz_c;-loop-rotate, -mem2reg, -indvars, -loop-unroll, -instcombine;99866;99471;1.003971;573.016;4922;99471;-loop-rotate, -mem2reg, -instsimplify, -indvars, -loop-unroll, -instsimplify, -instcombine, -loop-reroll, -objc-arc-expand;9

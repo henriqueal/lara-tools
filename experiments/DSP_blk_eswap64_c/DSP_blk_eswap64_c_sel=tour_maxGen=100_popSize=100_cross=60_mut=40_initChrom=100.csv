@@ -1,4 +1,0 @@
-DSP_blk_eswap64_c;-loop-rotate, -mem2reg;2800;2798;1.000715;242.171;3776;2798;-loop-rotate, -mem2reg;2
-DSP_blk_eswap64_c;-sroa, -loop-rotate;2800;2798;1.000715;273.905;4226;2798;-sroa, -loop-rotate;2
-DSP_blk_eswap64_c;-scalarrepl-ssa, -loop-rotate;2800;2798;1.000715;287.903;4511;2798;-scalarrepl-ssa, -loop-rotate;2
-DSP_blk_eswap64_c;-mem2reg, -loop-rotate;2800;2798;1.000715;254.650;4032;2798;-mem2reg, -loop-rotate;1

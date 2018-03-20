@@ -1,0 +1,3 @@
+DSP_autocor_c;10069;12053;0.835394;211.163;0;-scalarrepl-ssa;12053;-scalarrepl-ssa, -delinearize, -lowerinvoke, -instcombine, -mldst-motion, -ipconstprop;6
+DSP_autocor_c;10069;9404;1.070715;211.718;0;-sroa, -loop-reduce, -loop-rotate;10069;-da, -bdce, -scoped-noalias, -scalarrepl-ssa, -jump-threading, -sroa, -delinearize, -objc-arc-aa, -loweratomic, -tti, -slsr, -da, -scev-aa, -scalarizer, -lint, -bounds-checking, -irce, -verify, -loop-reduce, -sccp, -scev-aa, -functionattrs, -sccp, -scalarizer, -scev-aa, -targetlibinfo, -loop-rotate, -float2int, -inline, -instcount;30
+DSP_autocor_c;10069;10069;1.000000;213.204;0;-loop-rotate, -scalarrepl-ssa;10069;-lower-expect, -intervals, -loop-rotate, -pa-eval, -scalarrepl-ssa, -constmerge;6

@@ -1,1 +1,0 @@
-IMG_dilate_bin_c;-instsimplify, -mem2reg, -loop-rotate;5436;5698;0.954019;269.053;4394;5698;-instsimplify, -mem2reg, -loop-rotate;3

@@ -1,0 +1,3 @@
+IMG_quantize_c;2008;2812;0.714083;205.503;0;-sroa;2812;-aa-eval, -alloca-hoisting, -sroa;3
+IMG_quantize_c;2008;2812;0.714083;211.658;0;-scalarrepl;2812;-mldst-motion, -no-aa, -sink, -intervals, -loop-deletion, -scalarrepl;6
+IMG_quantize_c;2008;2812;0.714083;210.928;0;-scalarrepl;2812;-lower-expect, -postdomtree, -load-combine, -postdomtree, -scalarrepl, -always-inline;6

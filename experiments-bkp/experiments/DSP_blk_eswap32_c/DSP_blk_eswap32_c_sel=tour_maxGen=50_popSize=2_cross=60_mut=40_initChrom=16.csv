@@ -1,0 +1,4 @@
+DSP_blk_eswap32_c;3078;9567;0.321731;0.134;0;-gvn;9567;-gvn, -tti, -inline-cost, -tailcallelim, -postdomtree, -basiccg, -lint, -globalsmodref-aa, -loop-unswitch;9
+DSP_blk_eswap32_c;3078;3596;0.855951;0.124;0;-scalarrepl;3596;-scalarrepl;1
+DSP_blk_eswap32_c;3078;9864;0.312044;0.132;0;-bdce;1.7976931348623157e+308;-bdce, -alig.-f.-ass.;128
+DSP_blk_eswap32_c;3078;1.7976931348623157e+308;0.000000;0.117;0;-sroa, -divergence, -strip-nondebug, -inline, -alig.-f.-ass., -alig.-f.-ass.;1.7976931348623157e+308;-sroa, -divergence, -strip-nondebug, -inline, -alig.-f.-ass., -alig.-f.-ass.;128
