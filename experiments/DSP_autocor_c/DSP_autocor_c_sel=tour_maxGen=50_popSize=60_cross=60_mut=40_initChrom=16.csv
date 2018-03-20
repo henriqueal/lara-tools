@@ -1,0 +1,1 @@
+DSP_autocor_c;10069;12053;0.835394;3.950;0;-sroa;12053;-reg2mem, -tbaa, -lazy-value-info, -reg2mem, -early-cse, -targetlibinfo, -atomic-expand, -dce, -reg2mem, -barrier, -sroa, -loop-vectorize;12
